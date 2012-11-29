@@ -1,7 +1,12 @@
 package game
 {
+
+import game.entities.Ship;
     import game.entities.Fighter;
     import game.entities.Ship;
+	import game.enemy.Enemy;
+	import game.enemy.EnemyFactory;
+	import game.entities.Ship;
     import game.entitymanager.EntityManager;
     import game.scene.Scene;
 
@@ -26,6 +31,7 @@ package game
 
             var fighter:Fighter = new Fighter();
             fighter.add();
+			EnemyFactory.createFlayingEnemy();
         }
     }
 }

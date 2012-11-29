@@ -6,7 +6,11 @@ package game.entitymanager
     import game.entities.strategies.DefaultMovingStrategy;
     import game.entities.strategies.IMovingStrategy;
 
-    public class Entity
+    import starling.display.Sprite;
+
+	import utlis.log;
+
+	public class Entity extends Sprite
     {
         protected var entityManager:EntityManager = EntityManager.getInstance();
 

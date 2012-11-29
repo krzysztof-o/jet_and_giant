@@ -4,7 +4,9 @@ package game.entitymanager
     import game.scene.Scene;
     import starling.events.Event;
 
-    public class EntityManager
+	import utlis.log;
+
+	public class EntityManager
     {
         private var entities:Vector.<Entity> = new Vector.<Entity>();
 
@@ -14,9 +16,9 @@ package game.entitymanager
         public function EntityManager()
         {
             if (instance)
-            {
-                throw new Error("this is Singleton, you fool!");
-            }
+			{
+				throw new Error("this is Singleton, you fool!");
+			}
         }
 
         public static function getInstance():EntityManager

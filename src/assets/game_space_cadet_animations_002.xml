@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with TexturePacker http://texturepacker.com-->
+<!-- $TexturePacker:SmartUpdate:de5404db32bda9bd603f6d75b6e306dc$ -->
+<TextureAtlas imagePath="game_space_cadet_animations_002-hd.png">
+    <SubTexture name="symbol_special_scatter_1" x="216" y="0" width="214" height="214" frameX="-14" frameY="-13" frameWidth="240" frameHeight="240"/>
+    <SubTexture name="symbol_special_scatter_2" x="0" y="648" width="214" height="214" frameX="-14" frameY="-13" frameWidth="240" frameHeight="240"/>
+    <SubTexture name="symbol_special_scatter_3" x="0" y="432" width="214" height="214" frameX="-14" frameY="-13" frameWidth="240" frameHeight="240"/>
+    <SubTexture name="symbol_special_scatter_4" x="0" y="216" width="214" height="214" frameX="-14" frameY="-13" frameWidth="240" frameHeight="240"/>
+    <SubTexture name="symbol_special_scatter_5" x="0" y="0" width="214" height="214" frameX="-14" frameY="-13" frameWidth="240" frameHeight="240"/>
+    <SubTexture name="symbol_special_scatter_6" x="216" y="216" width="214" height="214" frameX="-14" frameY="-13" frameWidth="240" frameHeight="240"/>
+    <SubTexture name="symbol_special_wild_sticky_1x" x="426" y="890" width="81" height="80"/>
+    <SubTexture name="symbol_special_wild_sticky_2x" x="216" y="758" width="95" height="96"/>
+    <SubTexture name="symbol_special_wild_sticky_3x" x="327" y="961" width="72" height="54"/>
+    <SubTexture name="symbol_special_wild_sticky_4x" x="327" y="890" width="97" height="69"/>
+    <SubTexture name="symbol_special_wild_sticky_5x" x="0" y="907" width="143" height="115"/>
+    <SubTexture name="symbol_special_wild_sticky_bg" x="216" y="432" width="198" height="192" frameX="-21" frameY="-22" frameWidth="240" frameHeight="240"/>
+    <SubTexture name="symbol_special_wild_sticky_claw_bottom" x="416" y="528" width="68" height="65"/>
+    <SubTexture name="symbol_special_wild_sticky_claw_top" x="432" y="0" width="65" height="67"/>
+    <SubTexture name="symbol_special_wild_sticky_discharge_001" x="364" y="626" width="146" height="130"/>
+    <SubTexture name="symbol_special_wild_sticky_discharge_002" x="327" y="758" width="146" height="130"/>
+    <SubTexture name="symbol_special_wild_sticky_discharge_003" x="216" y="626" width="146" height="130"/>
+    <SubTexture name="symbol_special_wild_sticky_discharge_004" x="179" y="864" width="146" height="130"/>
+    <SubTexture name="symbol_special_wild_sticky_label" x="0" y="864" width="177" height="41"/>
+    <SubTexture name="symbol_special_wild_sticky_leg" x="432" y="69" width="61" height="63"/>
+    <SubTexture name="symbol_special_wild_sticky_leg_crack" x="432" y="134" width="67" height="56"/>
+    <SubTexture name="symbol_special_wild_sticky_light_large" x="416" y="432" width="94" height="94"/>
+</TextureAtlas>
