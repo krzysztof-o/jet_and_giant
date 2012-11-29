@@ -20,6 +20,7 @@ package game.entities
     {
         private const BOMB_RELATIVE_X:Number = 160;
         private const BOMB_RELATIVE_Y:Number = 100;
+        private var lastTime:int;
 
         public function Bomber()
         {
@@ -46,8 +47,9 @@ package game.entities
 
         private function touchHandler(event:TouchEvent):void
         {
-            if (event.getTouch(Starling.current.root, TouchPhase.BEGAN))
+            if (event.getTouch(Starling.current.root, TouchPhase.BEGAN) && getTimer() - lastTime > 1000)
             {
+                lastTime = getTimer();
                 var dx:Number = position.x + BOMB_RELATIVE_X;
                 var dy:Number = position.y + BOMB_RELATIVE_Y;
                 if (ClientType.MOBILE)
