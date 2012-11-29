@@ -41,7 +41,7 @@ package game.weapon
 			return loadingTime >= shootTimeInterval;
 		}
 
-		public function shoot(x:int,  y:int) :void
+		public function shoot(x:Number,  y:Number) :void
 		{
 			loadingTime = 0;
 			shootTimeInterval = Math.random()*500 +  Math.random()*600;

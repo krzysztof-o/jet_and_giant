@@ -1,6 +1,7 @@
 package game.entities
 {
-	import flash.utils.setTimeout;
+    import flash.utils.getTimer;
+    import flash.utils.setTimeout;
 
 	import game.Global;
     import game.SocketManager;
