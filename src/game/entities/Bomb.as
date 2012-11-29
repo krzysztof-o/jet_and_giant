@@ -4,17 +4,24 @@ package game.entities
     import game.entitymanager.Entity;
 
     import starling.display.Quad;
+	import starling.events.Event;
 
-    import starling.utils.Color;
+	import starling.utils.Color;
 
     public class Bomb extends Entity
     {
         public function Bomb()
         {
             super();
-            hull.addChild(new Quad(50,50,Color.BLUE));
+			hull.addEventListener(Event.ADDED_TO_STAGE, onAddedToStage)
+
             movingStrategy = new BombMovingStrategy(this);
         }
+
+		private function onAddedToStage(event: Event): void
+		{
+			hull.addChildAt(Assets.getImage("fx_particle_bomb"),0);
+		}
 
         override public function onAdd():void
         {
