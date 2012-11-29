@@ -19,6 +19,7 @@ package game.entitymanager
 		public var density:Number = 1;
 		public var restitution:Number = 0.2;
 		public var linearDamping:Number = 0;
+		public var angularDamping:Number = 0;
 		public var type:uint = b2Body.b2_dynamicBody;
 
         private var _active:Boolean = true;

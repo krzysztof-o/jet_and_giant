@@ -1,26 +1,28 @@
 package game.scene
 {
-	import Box2D.Collision.b2AABB;
 	import Box2D.Common.Math.b2Vec2;
 	import Box2D.Dynamics.b2World;
-    import flash.geom.Point;
-    import game.entitymanager.BodySprite;
-    import starling.display.DisplayObject;
-    import starling.display.Sprite;
-    import starling.events.EnterFrameEvent;
+
+	import flash.geom.Point;
+
+	import game.entitymanager.BodySprite;
+
+	import starling.display.DisplayObject;
+	import starling.display.Sprite;
+	import starling.events.EnterFrameEvent;
 	import starling.events.Event;
 
 	public class Scene extends Sprite
 	{
 		protected var world:b2World;
 		private var dt:Number;
-		public static var worldScale:Number = 10;
+		public static var worldScale:Number = 30;
 		public static var displayScale:Number = 1;
 		public static var displayOffset:Point = new Point();
 		
 		public function Scene(width:Number, height:Number):void
 		{
-			world = new b2World(new b2Vec2(0, 1000), true);
+			world = new b2World(new b2Vec2(0, 10), true);
 			addEventListener(EnterFrameEvent.ENTER_FRAME, onFrame);
 			addEventListener(Event.ADDED_TO_STAGE, onAdded);
 		}
@@ -32,7 +34,7 @@ package game.scene
 		
 		protected function onFrame(e:EnterFrameEvent):void
 		{
-			world.Step(e.passedTime, 100, 100);
+			world.Step(e.passedTime, 10, 10);
 			world.ClearForces();
 			
 			scaleX = Scene.displayScale;
@@ -59,6 +61,16 @@ package game.scene
 				(child as BodySprite).body = world.CreateBody((child as BodySprite).bodyDef);
 			}
             return child;
+		}
+
+		override public function removeChild(child:DisplayObject, dispose:Boolean = false):DisplayObject
+		{
+			if (child is BodySprite)
+			{
+				world.DestroyBody((child as BodySprite).body);
+			}
+			super.removeChild(child, dispose);
+			return child;
 		}
 	}
 
