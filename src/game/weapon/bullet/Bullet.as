@@ -7,7 +7,8 @@
  */
 package game.weapon.bullet
 {
-	import game.entities.strategies.BulletMovingStrategy;
+    import game.Global;
+    import game.entities.strategies.BulletMovingStrategy;
 	import game.entitymanager.Entity;
 
 	import starling.display.Quad;
@@ -20,5 +21,11 @@ package game.weapon.bullet
 			movingStrategy = new BulletMovingStrategy(this);
 			hull.addChild(new Quad(20,20,Color.FUCHSIA));
 		}
-	}
+
+        override public function dispose():void
+        {
+            Global.bulletPool.returnObject(this);
+            super.dispose();
+        }
+    }
 }

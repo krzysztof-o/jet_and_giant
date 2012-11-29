@@ -1,7 +1,8 @@
 package game.entitymanager
 {
 	import flash.globalization.DateTimeFormatter;
-	import flash.utils.getTimer;
+    import flash.utils.getQualifiedClassName;
+    import flash.utils.getTimer;
     import game.scene.Scene;
     import starling.events.Event;
 
@@ -60,6 +61,7 @@ package game.entitymanager
 
         public function remove(entity:Entity):void
         {
+            log("remove", getQualifiedClassName(entity));
             entity.onRemove();
             entities.splice(entities.indexOf(entity), 1);
             entity.hull.removeFromParent(true);

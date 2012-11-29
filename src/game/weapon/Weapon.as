@@ -9,7 +9,9 @@ package game.weapon
 {
 	import avmplus.factoryXml;
 
-	import game.weapon.bullet.Bullet;
+    import game.Global;
+
+    import game.weapon.bullet.Bullet;
 
 	import utlis.log;
 
@@ -40,7 +42,7 @@ package game.weapon
 			loadingTime = 0;
 			shootTimeInterval = Math.random()*500 +  Math.random()*600;
 
-			var bullet:Bullet = new Bullet();
+			var bullet:Bullet = Global.bulletPool.borrowObject();
 			bullet.add();
 			bullet.position.x = x;
 			bullet.position.y = y;
