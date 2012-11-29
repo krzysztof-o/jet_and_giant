@@ -13,4 +13,5 @@ bin-release/
 jet_and_giant.iml
 atlassian-ide-plugin.xml
 .idea
+*.DS_Store
 out
