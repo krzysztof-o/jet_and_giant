@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TextureAtlas imagePath="background_parallax.png">
+    <SubTexture name="background_parallax_01" x="2" y="1346" width="442" height="680" frameX="0"  frameY="0"  frameWidth="512" frameHeight="680"/>
+    <SubTexture name="background_parallax_02" x="2" y="680"  width="444" height="664" frameX="-1" frameY="-1" frameWidth="512" frameHeight="680"/>
+    <SubTexture name="background_parallax_03" x="2" y="2" width="480" height="676" frameX="0" frameY="0" frameWidth="512" frameHeight="680"/>
+</TextureAtlas>
