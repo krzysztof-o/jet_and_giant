@@ -80,7 +80,7 @@ package game.entities.strategies
             if (int(entity.position.x) != int(dx) || int(entity.position.y) != int(dy))
             if (int(entity.position.x) != int(dx) || int(entity.position.y) != int(dy))
             var newTime:int = new Date().time;
-            if ((int(entity.position.x) != int(dx) || int(entity.position.y) != int(dy)) && newTime - lastTime > 0)
+            if ((int(entity.position.x) != int(dx) || int(entity.position.y) != int(dy)) && newTime - lastTime > 20)
             {
                 //log("SEND", newTime - lastTime);
                 lastTime = newTime;

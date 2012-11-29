@@ -8,9 +8,9 @@ package game
     import flash.system.Security;
 
     import game.entities.FighterServerMovingStrategy;
-
     import game.entities.Message;
 
+    import utlis.ClientType;
     import utlis.log;
 
     public class SocketManager
@@ -70,21 +70,18 @@ package game
             if (socket.bytesAvailable > 0)
             {
                 var messages:String = socket.readUTFBytes(socket.bytesAvailable);
-                log("onResponse (" + messages.length + ")" + messages);
+                //log("onResponse (" + messages.length + ")" + messages);
                 if (messages.length > 0)
                 {
-                    try
-                    {
-                        var arr:Array = messages.split("\n");
-                        for each(var message:String in arr)
-                        {
-                            var obj:Object = JSON.parse(message);
-                            parse(obj.id, obj.data);
-                        }
-                    }
-                    catch (e:*)
-                    {
-                    }
+//                    try
+//                    {
+                    var obj:Object = JSON.parse(messages);
+                    parse(obj.id, obj.data);
+
+//                    }
+//                    catch (e:*)
+//                    {
+//                    }
                 }
             }
         }
@@ -96,6 +93,7 @@ package game
             var str:String = JSON.stringify({id: id, data: data});
 
             socket.writeUTFBytes(str + "\n");
+            //socket.writeByte(0);
             socket.flush();
         }
 
@@ -103,7 +101,10 @@ package game
         {
             if (id == Message.FIGHTER_POSITION)
             {
-                FighterServerMovingStrategy(Global.fighter.movingStrategy).setPosition(data.x, data.y);
+                if (ClientType.MOBILE)
+                {
+                    FighterServerMovingStrategy(Global.fighter.movingStrategy).setPosition(data.x, data.y);
+                }
             }
         }
     }
