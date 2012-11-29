@@ -585,7 +585,7 @@ package com.adobe.utils
 		private static const SQT:String							= "sqt";
 		private static const RSQ:String							= "rsq";
 		private static const POW:String							= "pow";
-		private static const LOG:String							= "log";
+		private static const LOG:String							= "utlis.log";
 		private static const EXP:String							= "exp";
 		private static const NRM:String							= "nrm";
 		private static const SIN:String							= "sin";
