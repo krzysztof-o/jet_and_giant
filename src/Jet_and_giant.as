@@ -23,6 +23,7 @@ package
             stage.scaleMode = StageScaleMode.NO_SCALE;
 
             var starling:Starling = new Starling(Game, stage);
+			starling.showStats = true;
             starling.start();
 
             var socketManager:SocketManager = SocketManager.getInstance();

@@ -22,5 +22,11 @@ package game.entities.strategies
 		{
 
 		}
+
+
+		public function dispose():void
+		{
+
+		}
 	}
 }

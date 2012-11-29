@@ -35,6 +35,7 @@ import game.entities.Ship;
 
 			var vo:EnemyVO =  new EnemyVO();
 			vo.type = 1;
+			vo.startX = 700;
 			EnemyFactory.getInstance().createEnemy(vo);
         }
     }

@@ -36,17 +36,28 @@ package game.entitymanager
 
         public function onEnterFrame():void
         {
+			var entity:Entity;
+
             for (var i:uint = 0; i < entities.length; i++)
             {
-                entities[i].update(new Date().time);
+                entities[i].update();
+				entity =  entities[i];
+				entity.update(new Date().time);
+
+				if(entity.hull.bounds.right < 0)
+				{
+					remove(entity);
+					i--;
+				}
             }
         }
+
 
         public function remove(entity:Entity):void
         {
             entity.onRemove();
-            entities.slice(entities.indexOf(entity), 1);
-            entity.hull.removeFromParent();
+            entities.splice(entities.indexOf(entity), 1);
+            entity.hull.removeFromParent(true);
         }
 
         public function init(root:Scene):void
