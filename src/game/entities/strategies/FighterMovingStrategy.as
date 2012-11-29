@@ -64,17 +64,17 @@ package game.entities.strategies
             dy = Math.max(20, dy);
             dy = Math.min(Starling.current.stage.stageHeight - 20 - entity.hull.height, dy);
 
-            if (int(entity.hull.x) != int(dx) || int(entity.hull.y) != int(dy))
+            if (int(entity.position.x) != int(dx) || int(entity.position.y) != int(dy))
             {
                 SocketManager.getInstance().send(getPositionObject());
             }
-            entity.hull.x = dx;
-            entity.hull.y = dy;
+            entity.position.x = dx;
+            entity.position.y = dy;
         }
 
         private function getPositionObject():Object
         {
-            return {x: int(entity.hull.x), y: int(entity.hull.y)};
+            return {x: int(entity.position.x), y: int(entity.position.y)};
         }
 
         private function getDirection():void

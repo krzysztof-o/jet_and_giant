@@ -11,6 +11,7 @@
         {
             var quad:Quad = new Quad(50, 50, 0x123456);
             hull.addChild(quad);
+            hull.active = true;
         }
 
         override public function update(timer:int):void

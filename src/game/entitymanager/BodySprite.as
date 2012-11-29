@@ -20,7 +20,9 @@ package game.entitymanager
 		public var restitution:Number = 1;
 		public var linearDamping:Number = 0;
 		public var angularDamping:Number = 0;
-		public var type:uint = b2Body.b2_staticBody;
+		public var type:uint = b2Body.b2_dynamicBody;
+
+        private var _active:Boolean = true;
 		
 		public function get body():b2Body 
 		{
@@ -29,19 +31,12 @@ package game.entitymanager
 
         public function set active(value:Boolean):void
         {
-            if(value)
-            {
-                type =  b2Body.b2_staticBody;
-            }
-            else
-            {
-                type =  b2Body.b2_dynamicBody;
-            }
+            _active = value;
         }
 
         public function get active():Boolean
         {
-            return (type == b2Body.b2_staticBody);
+            return _active;
         }
 		
 		public function set body(value:b2Body):void 
@@ -67,7 +62,7 @@ package game.entitymanager
 		
 		public function update(timer:int):void
 		{
-            if(type == b2Body.b2_dynamicBody)
+            if(!active)
             {
                 x = body.GetPosition().x * Scene.worldScale;
 			    y = body.GetPosition().y * Scene.worldScale;
@@ -78,9 +73,7 @@ package game.entitymanager
                 body.SetPosition(new b2Vec2(x, y));
                 body.SetAngle(rotation);
             }
-
-            trace(x + ", " + y);
-		}		
+		}
 	}
 
 }

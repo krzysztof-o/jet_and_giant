@@ -1,7 +1,9 @@
 package game.entitymanager
 {
 
-    import game.entities.strategies.DefaultMovingStrategy;
+import flash.geom.Point;
+
+import game.entities.strategies.DefaultMovingStrategy;
     import game.entities.strategies.IMovingStrategy;
 
     public class Entity
@@ -11,6 +13,38 @@ package game.entitymanager
         protected var movingStrategy:IMovingStrategy;
 
         public var hull:BodySprite;
+
+        private var _position:Point = new Point();
+        private var _rotation:Number = 0;
+
+        public function set position(value:Point):void
+        {
+            _position = value;
+            if(hull.active)
+            {
+                hull.x = _position.x;
+                hull.y = _position.y;
+            }
+        }
+
+        public function get position():Point
+        {
+            return _position;
+        }
+
+        public function set rotation(value:Number):void
+        {
+            _rotation = value;
+            if(hull.active)
+            {
+                hull.rotation = _rotation;
+            }
+        }
+
+        public function get rotation():Number
+        {
+            return _rotation;
+        }
 
         public function Entity()
         {

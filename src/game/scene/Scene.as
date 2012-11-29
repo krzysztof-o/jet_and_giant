@@ -13,13 +13,13 @@ package game.scene
 	{
 		protected var world:b2World;
 		private var dt:Number;
-		public static var worldScale:Number = 20;
+		public static var worldScale:Number = 1;
 		public static var displayScale:Number = 1;
 		public static var displayOffset:Point = new Point();
 		
 		public function Scene(width:Number, height:Number):void
 		{
-			world = new b2World(new b2Vec2(0, 0), true);
+			world = new b2World(new b2Vec2(0, 100000000), true);
 			addEventListener(EnterFrameEvent.ENTER_FRAME, onFrame);
 			addEventListener(Event.ADDED_TO_STAGE, onAdded);
 		}
