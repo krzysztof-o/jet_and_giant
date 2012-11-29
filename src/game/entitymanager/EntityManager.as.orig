@@ -1,7 +1,6 @@
 package game.entitymanager
 {
-	import flash.globalization.DateTimeFormatter;
-	import flash.utils.getTimer;
+    import flash.utils.getTimer;
     import game.scene.Scene;
     import starling.events.Event;
 
@@ -14,15 +13,12 @@ package game.entitymanager
         private static var instance:EntityManager;
         private var scene:Scene;
 
-		private  var lastTime:Number;
-
         public function EntityManager()
         {
             if (instance)
 			{
 				throw new Error("this is Singleton, you fool!");
 			}
-			lastTime = new Date().time;
         }
 
         public static function getInstance():EntityManager
@@ -41,20 +37,21 @@ package game.entitymanager
         public function onEnterFrame():void
         {
 			var entity:Entity;
-			var date:Date = new Date();
-			var dt:Number = date.time - lastTime;
-			lastTime = date.time;
+
             for (var i:uint = 0; i < entities.length; i++)
             {
+<<<<<<< HEAD
+                entities[i].update(new Date().time);
+=======
 				entity =  entities[i];
-				log(dt);
-				entity.update(dt);
+				entity.update(getTimer()/100);
 
-				if(entity.position.x < 0)
+				if(entity.hull.bounds.right < 0)
 				{
 					remove(entity);
 					i--;
 				}
+>>>>>>> bullets
             }
         }
 

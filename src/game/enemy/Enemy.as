@@ -19,18 +19,18 @@ package game.enemy
 		{
 			super();
 			enemVO = vo;
-			hull.x = enemVO.startX;
-			hull.y = enemVO.startY;
+			position.x = enemVO.startX;
+			position.y = enemVO.startY;
 			hull.addChild(Assets.getImage("symbol_special_scatter_1"));
 
 			weapon = new Weapon();
 		}
 
-		override public function update(time:int):void
+		override public function update(timer: Number): void
 		{
-			super.update(time);
+			super.update(timer);
 
-			weapon.load(time);
+			weapon.load(timer);
 
 			if(weapon.isLoaded)
 			{

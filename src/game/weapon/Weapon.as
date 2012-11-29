@@ -15,19 +15,18 @@ package game.weapon
 
 	public class Weapon
 	{
-		protected var loadingTime:int;
-		protected var shootTimeInterval:int;
+		protected var loadingTime:Number;
+		protected var shootTimeInterval:Number;
 
         public function Weapon()
 		{
 			loadingTime = 0;
-			shootTimeInterval = 10;
+			shootTimeInterval = 30;
         }
 
-		public function load(time:int):void
+		public function load(dt:Number):void
 		{
-			loadingTime += time;
-			log(time);
+			loadingTime += dt;
 		}
 
 
@@ -39,12 +38,12 @@ package game.weapon
 		public function shoot(x:int,  y:int) :void
 		{
 			loadingTime = 0;
-			shootTimeInterval = Math.random()*1000 + 1600;
+			shootTimeInterval = Math.random()*500 +  Math.random()*600;
 
 			var bullet:Bullet = new Bullet();
 			bullet.add();
-			bullet.hull.x = x;
-			bullet.hull.y = y;
+			bullet.position.x = x;
+			bullet.position.y = y;
 		}
 	}
 }

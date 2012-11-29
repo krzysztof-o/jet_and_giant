@@ -8,7 +8,6 @@
 package game.entities.strategies
 {
 	import game.weapon.bullet.*;
-	import game.entities.strategies.IMovingStrategy;
 
 	public class BulletMovingStrategy implements IMovingStrategy
 	{
@@ -18,9 +17,9 @@ package game.entities.strategies
 			this.bullet = bullet;
 		}
 
-		public function update(time:int):void
+		public function update(dt: Number): void
 		{
-			bullet.hull.x -= 10;
+			bullet.position.x -= 0.5*dt;
 		}
 
 		public function dispose():void

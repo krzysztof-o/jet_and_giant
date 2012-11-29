@@ -1,14 +1,12 @@
 package game.entitymanager
 {
 
-    import flash.geom.Point;
+	import flash.geom.Point;
 
-    import game.entities.strategies.DefaultMovingStrategy;
-    import game.entities.strategies.IMovingStrategy;
+	import game.entities.strategies.DefaultMovingStrategy;
+	import game.entities.strategies.IMovingStrategy;
 
-    import starling.display.Sprite;
-
-
+	import starling.display.Sprite;
 
 	public class Entity extends Sprite
     {
@@ -31,12 +29,12 @@ package game.entitymanager
             return _position;
         }
 
-        public function set rotation(value:Number):void
+        override  public function set rotation(value:Number):void
         {
             _rotation = value;
         }
 
-        public function get rotation():Number
+        override public function get rotation():Number
         {
             return _rotation;
         }
@@ -46,7 +44,7 @@ package game.entitymanager
             hull = new BodySprite();
         }
 
-        public function update(timer:Number):void
+        public function update(timer: Number): void
         {
             movingStrategy.update(timer);
 

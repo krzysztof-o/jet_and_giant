@@ -1,8 +1,8 @@
 package game.entities.strategies
 {
-    import game.entitymanager.Entity;
+	import game.entitymanager.Entity;
 
-    public class DefaultMovingStrategy implements IMovingStrategy
+	public class DefaultMovingStrategy implements IMovingStrategy
     {
         private var entity:Entity;
 
@@ -11,7 +11,7 @@ package game.entities.strategies
             this.entity = entity;
         }
 
-        public function update(timer:Number):void
+        public function update(timer: Number): void
         {
             entity.hull.x += 4;
             entity.hull.y = 200;

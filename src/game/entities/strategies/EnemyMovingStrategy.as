@@ -9,7 +9,6 @@ package game.entities.strategies
 {
 	import game.enemy.Enemy;
 
-
 	public class EnemyMovingStrategy implements  IMovingStrategy
 	{
 		protected var enemy:Enemy;
@@ -18,7 +17,7 @@ package game.entities.strategies
 			this.enemy = enemy;
 		}
 
-		public function update(timer:int):void
+		public function update(timer: Number): void
 		{
 
 		}

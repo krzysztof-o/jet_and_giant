@@ -1,19 +1,17 @@
 package game.entities.strategies
 {
-    import flash.geom.Point;
-    import flash.ui.Keyboard;
-    import flash.utils.getTimer;
+	import flash.geom.Point;
+	import flash.ui.Keyboard;
 
-    import game.SocketManager;
-    import game.entities.Message;
-    import game.entitymanager.Entity;
+	import game.SocketManager;
+	import game.entities.Message;
+	import game.entitymanager.Entity;
 
-    import starling.core.Starling;
+	import starling.core.Starling;
 
-    import utlis.KeyboardManager;
-    import utlis.log;
+	import utlis.KeyboardManager;
 
-    public class FighterMovingStrategy implements IMovingStrategy
+	public class FighterMovingStrategy implements IMovingStrategy
     {
         private var entity:Entity;
         private var direction:Point = new Point();
@@ -28,7 +26,7 @@ package game.entities.strategies
             keyboardManager = new KeyboardManager();
         }
 
-        public function update(timer:Number):void
+        public function update(timer: Number): void
         {
             var pt:Point = calculatePosition();
 

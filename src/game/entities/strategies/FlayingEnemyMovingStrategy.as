@@ -18,12 +18,13 @@ package game.entities.strategies
 			super(enemy);
 		}
 
-		override  public function update(timer:int):void
+		override  public function update(dt: Number): void
 		{
-			super.update(timer);
+			super.update(dt);
 
-			//enemy.hull.y +=2;
-			//enemy.hull.x+=2;
+
+			enemy.position.x -= 0.05*dt;
+			enemy.position.y = Math.sin(0.05*dt);
 
 		}
 	}

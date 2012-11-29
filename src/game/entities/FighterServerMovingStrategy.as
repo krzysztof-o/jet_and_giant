@@ -1,8 +1,8 @@
 package game.entities
 {
-    import game.entities.strategies.IMovingStrategy;
+	import game.entities.strategies.IMovingStrategy;
 
-    public class FighterServerMovingStrategy implements IMovingStrategy
+	public class FighterServerMovingStrategy implements IMovingStrategy
     {
         private var entity:Fighter;
         private var dx:Number = 0;
@@ -19,7 +19,7 @@ package game.entities
             this.dy = y;
         }
 
-        public function update(timer:Number):void
+        public function update(timer: Number): void
         {
             entity.position.x += (dx - entity.position.x) / 10;
             entity.position.y += (dy - entity.position.y) / 10;
