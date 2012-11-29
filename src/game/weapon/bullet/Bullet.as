@@ -12,6 +12,7 @@ package game.weapon.bullet
 	import game.entitymanager.Entity;
 
 	import starling.display.Quad;
+	import starling.events.Event;
 	import starling.utils.Color;
 
 	public class Bullet extends Entity
@@ -23,8 +24,12 @@ package game.weapon.bullet
 		{
 			deltaX = 0.5;
 			deltaY = 0;
+			hull.addEventListener(Event.ADDED_TO_STAGE, onAddedToStage)
 			movingStrategy = new BulletMovingStrategy(this);
+		}
 
+		protected function onAddedToStage(event: Event): void
+		{
 			hull.addChild(new Quad(20,20,Color.FUCHSIA));
 		}
 

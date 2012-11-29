@@ -75,7 +75,7 @@ package game.entities.fighter
 		public function shoot(): void
 		{
 			var x:Number = hull.bounds.right - ratataAnimationController.ratata.width/2 ;
-			var y:Number = hull.bounds.bottom - ratataAnimationController.ratata.height/2;
+			var y:Number = hull.bounds.bottom - ratataAnimationController.ratata.height;
 			weapon.shoot(x,  y);
 
 			ratataAnimationController.showRatata();

@@ -3,10 +3,8 @@
     import game.enemy.FlyingEnemy;
     import game.entities.Bomb;
     import game.entities.Bomber;
-    import game.entities.Fighter;
        import game.entities.GroundBullet;
        import game.entities.GroundEnemy;
-       import game.entitymanager.EnemiesManager;
 	   import game.entities.fighter.Fighter;
 	   import game.entitymanager.EnemiesManager;
     import game.weapon.bullet.Bullet;
