@@ -1,7 +1,9 @@
 package game.entities.strategies
 {
-    import flash.geom.Point;
-    import flash.ui.Keyboard;
+import flash.events.AccelerometerEvent;
+import flash.geom.Point;
+import flash.sensors.Accelerometer;
+import flash.ui.Keyboard;
 
     import game.SocketManager;
     import game.entities.Message;
@@ -17,6 +19,7 @@ package game.entities.strategies
         private var direction:Point = new Point();
         private var speed:Point = new Point();
 
+        protected var accelerometer:Accelerometer;
         private var keyboardManager:KeyboardManager;
         private var lastTime:Number = 0;
 
@@ -24,6 +27,14 @@ package game.entities.strategies
         {
             this.entity = entity;
             keyboardManager = new KeyboardManager();
+
+            accelerometer = new Accelerometer();
+            accelerometer.addEventListener(AccelerometerEvent.UPDATE, onAccUpdate);
+        }
+
+        public function onAccUpdate(event:AccelerometerEvent):void
+        {
+            trace(event);
         }
 
         public function update(timer: Number): void
@@ -32,7 +43,6 @@ package game.entities.strategies
 
             entity.position.x = pt.x;
             entity.position.y = pt.y;
-
         }
 
         private function calculatePosition():Point

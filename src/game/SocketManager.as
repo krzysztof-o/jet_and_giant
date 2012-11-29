@@ -8,7 +8,7 @@ package game
     import flash.system.Security;
 
     import game.entities.Message;
-    import game.entities.ServerMovingStrategy;
+    import game.entities.strategies.ServerMovingStrategy;
 
     import utlis.ClientType;
     import utlis.log;

@@ -1,4 +1,4 @@
-package game.entities
+package game.entities.strategies
 {
     import game.entities.strategies.IMovingStrategy;
     import game.entitymanager.Entity;

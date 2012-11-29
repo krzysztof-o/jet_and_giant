@@ -2,7 +2,8 @@ package game.entities
 {
     import game.Global;
     import game.entities.strategies.FighterMovingStrategy;
-    import game.entitymanager.Entity;
+import game.entities.strategies.ServerMovingStrategy;
+import game.entitymanager.Entity;
 
     import starling.display.Image;
 
