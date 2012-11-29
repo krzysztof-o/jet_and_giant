@@ -15,4 +15,4 @@ atlassian-ide-plugin.xml
 .idea
 *.DS_Store
 out
-.orig
+*.orig

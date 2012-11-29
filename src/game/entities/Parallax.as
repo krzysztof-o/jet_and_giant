@@ -54,16 +54,22 @@ import starling.display.Sprite;
             tex.repeat = true;
             var img:Image = new Image(tex);
             layers.push(img);
+            tex = null;
+            img = null;
 
             tex = Texture.fromBitmap(new ParallaxBitmap02);
             tex.repeat = true;
             img = new Image(tex);
             layers.push(img);
+            tex = null;
+            img = null;
 
             tex = Texture.fromBitmap(new ParallaxBitmap03);
             tex.repeat = true;
             img = new Image(tex);
             layers.push(img);
+            tex = null;
+            img = null;
 
             for (var i:uint=0; i<layers.length; ++i)
             {
@@ -85,7 +91,6 @@ import starling.display.Sprite;
             addEventListener(Event.ENTER_FRAME, update);
         }
 
-//        override public function update(timer:int):void
         public function update(event:Event):void
         {
             var timer:int = getTimer();
@@ -107,9 +112,12 @@ import starling.display.Sprite;
                     p.x += dist;
 
                     layers[i].setTexCoords(vID, p);
+                    p = null;
                 }
+                dist = null;
             }
             distance += diff * speed;
+            diff = null;
 
             lastUpdate = timer;
         }
