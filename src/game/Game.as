@@ -3,7 +3,8 @@ package game
 
     import game.entities.Bomber;
     import game.entities.Fighter;
-    import game.entities.Ship;
+	import game.entities.Ground;
+	import game.entities.Ship;
 	import game.enemy.Enemy;
 	import game.enemy.EnemyFactory;
 	import game.enemy.EnemyVO;
@@ -13,7 +14,9 @@ package game
     import game.entitymanager.EntityManager;
     import game.scene.Scene;
 
-    import starling.display.Sprite;
+	import spark.components.Group;
+
+	import starling.display.Sprite;
 
     public class Game extends Sprite
     {
@@ -38,13 +41,8 @@ package game
             var fighter:Fighter = new Fighter();
             fighter.add();
 
-            var bomber:Bomber = new Bomber();
-            bomber.add();
-
-			var vo:EnemyVO =  new EnemyVO();
-			vo.type = 1;
-			vo.startX = 700;
-			EnemyFactory.getInstance().createEnemy(vo);
+			var ground:Ground = new Ground();
+			ground.add();
         }
     }
 }

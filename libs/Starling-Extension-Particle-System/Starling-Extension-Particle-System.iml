@@ -31,6 +31,7 @@
     <orderEntry type="library" name="libs" level="project" />
     <orderEntry type="module" module-name="Starling" />
     <orderEntry type="module" module-name="Starling1" />
+    <orderEntry type="module" module-name="Starling" />
   </component>
 </module>
 

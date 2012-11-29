@@ -46,16 +46,13 @@ package game.entitymanager
             hull = new BodySprite();
         }
 
-        public function update(timer: Number): void
+        public function update(timer:int):void
         {
             movingStrategy.update(timer);
 
-            if (hull.active)
-            {
-                hull.x = _position.x;
-                hull.y = _position.y;
-                hull.rotation = _rotation;
-            }
+            hull.x = _position.x;
+            hull.y = _position.y;
+			hull.rotation = rotation;
         }
 
         public function add():void
@@ -76,11 +73,6 @@ package game.entitymanager
         public function onRemove():void
         {
             movingStrategy.dispose();
-        }
-
-        public function dispose():void
-        {
-            Global.bombPool.returnObject(this);
         }
     }
 }

@@ -1,14 +1,17 @@
 package game.entitymanager
 {
     import Box2D.Collision.Shapes.b2CircleShape;
-    import Box2D.Collision.Shapes.b2Shape;
+	import Box2D.Collision.Shapes.b2PolygonShape;
+	import Box2D.Collision.Shapes.b2Shape;
     import Box2D.Common.Math.b2Vec2;
-    import Box2D.Dynamics.b2Body;
+	import Box2D.Dynamics.Contacts.b2ContactEdge;
+	import Box2D.Dynamics.b2Body;
 	import Box2D.Dynamics.b2BodyDef;
 	import Box2D.Dynamics.b2FixtureDef;
     import game.scene.Scene;
     import starling.display.Sprite;
-	
+	import starling.events.Event;
+
 	public class BodySprite extends Sprite 
 	{
 		private var _body:b2Body;
@@ -42,13 +45,15 @@ package game.entitymanager
 		public function set body(value:b2Body):void
 		{
 			_body = value;
+			shape = new b2PolygonShape();
+			(shape as b2PolygonShape).SetAsBox(width, height);
 			var fixture:b2FixtureDef = new b2FixtureDef();
 			fixture.shape = shape;
 			fixture.friction = friction;
 			fixture.density = density;
 			fixture.restitution = restitution;
 			_body.CreateFixture(fixture);
-		}		
+		}
 		
 		public function BodySprite() 
 		{
@@ -56,22 +61,48 @@ package game.entitymanager
 			bodyDef.type = type;
 			bodyDef.linearDamping = linearDamping;
 			bodyDef.angularDamping = angularDamping;
+		}
 
-            shape = new b2CircleShape(45 / Scene.worldScale);
+		public override function set x(value:Number):void
+		{
+			if(active)
+			{
+				super.x = value;
+			}
+		}
+
+		public override function set y(value:Number):void
+		{
+			if(active)
+			{
+				super.y = value;
+			}
+		}
+
+		public override function set rotation(value:Number):void
+		{
+			if(active)
+			{
+				super.rotation = value;
+			}
 		}
 		
 		public function update(timer:int):void
 		{
             if(!active)
             {
-                x = body.GetPosition().x * Scene.worldScale;
-			    y = body.GetPosition().y * Scene.worldScale;
-			    rotation = body.GetAngle();
+                super.x = body.GetPosition().x * Scene.worldScale;
+				super.y = body.GetPosition().y * Scene.worldScale;
+				super.rotation = body.GetAngle();
+
+				trace("phys_" + x + ", " + y);
             }
             else
             {
                 body.SetPosition(new b2Vec2(x, y));
                 body.SetAngle(rotation);
+
+				trace("dupl_"+ x + ", " + y);
             }
 		}
 	}
