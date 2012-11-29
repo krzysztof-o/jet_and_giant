@@ -2,13 +2,14 @@ package game
 {
 
     import game.entities.Bomber;
-    import game.entities.Ship;
     import game.entities.Fighter;
     import game.entities.Ship;
 	import game.enemy.Enemy;
 	import game.enemy.EnemyFactory;
 	import game.enemy.EnemyVO;
 	import game.entities.Ship;
+    import game.entities.Parallax;
+
     import game.entitymanager.EntityManager;
     import game.scene.Scene;
 
@@ -27,6 +28,9 @@ package game
             scene = new Scene(width, height);
             addChild(scene);
             entityManager.init(scene);
+
+            var parallax:Parallax = new Parallax(1.0);
+            parallax.add();
 
             var ship:Ship = new Ship();
             ship.add();
