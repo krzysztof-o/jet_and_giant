@@ -30,7 +30,9 @@ package game
             entityManager.init(scene);
 
             var parallax:Parallax = new Parallax(1.0);
-            parallax.add();
+//            parallax.add();
+
+            addChild(parallax);
 
             var ship:Ship = new Ship();
             ship.add();

@@ -7,20 +7,17 @@
  */
 package game.entities
 {
-import avmplus.factoryXml;
-
 import flash.geom.Point;
+import flash.utils.getTimer;
 
-import flashx.textLayout.operations.ModifyInlineGraphicOperation;
-
-import game.entitymanager.Entity;
-
+import starling.display.Sprite;
+    import starling.textures.Texture;
     import starling.display.Image;
     import starling.events.Event;
     import starling.textures.Texture;
     import starling.textures.TextureAtlas;
 
-    public class Parallax extends Entity
+    public class Parallax extends Sprite //Entity
     {
         protected var lastUpdate:int;
         protected var speed:Number;
@@ -28,6 +25,15 @@ import game.entitymanager.Entity;
 
         [Embed(source="../../assets/background_parallax.png")]
         protected static const ParallaxAtlasBitmap:Class;
+
+        [Embed(source="../../assets/background_parallax_01.png")]
+        protected static const ParallaxBitmap01:Class;
+
+        [Embed(source="../../assets/background_parallax_02.png")]
+        protected static const ParallaxBitmap02:Class;
+
+        [Embed(source="../../assets/background_parallax_03.png")]
+        protected static const ParallaxBitmap03:Class;
 
         [Embed(source="../../assets/background_parallax.xml", mimeType="application/octet-stream")]
         protected static const ParallaxAtlasXML:Class;
@@ -40,57 +46,80 @@ import game.entitymanager.Entity;
             super();
 
             lastUpdate = -1;
-            this.speed = _speed;
-            this.distance = 0.0;
+            speed = _speed;
+            distance = 0.0;
 
             layers = new Vector.<Image>;
 
-//            addEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
-            init();
+            addEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
         }
 
-//        protected function onAddedToStage(event:Event):void
-        protected function  init():void
+//        override public function add():void
+        public function onAddedToStage(event:Event):void
         {
             textureAtlas = new TextureAtlas(Texture.fromBitmap(new ParallaxAtlasBitmap()), XML(new ParallaxAtlasXML()));
 
-            var textures:Vector.<Texture> = textureAtlas.getTextures("background_parallax_");
-            for (var i:uint = 0; i < textures.length; ++i)
-            {
-                var tex:Texture = textures[i];
-                tex.repeat = true;
-                var img:Image = new Image(tex);
-                layers.push(img);
+//            var textures:Vector.<Texture> = textureAtlas.getTextures("background_parallax_");
+            var tex:Texture = Texture.fromBitmap(new ParallaxBitmap01);
+            tex.repeat = true;
+            var img:Image = new Image(tex);
+            layers.push(img);
 
-                if (i==0) hull.addChild(img);
+            tex = Texture.fromBitmap(new ParallaxBitmap02);
+            tex.repeat = true;
+            img = new Image(tex);
+            layers.push(img);
+
+            tex = Texture.fromBitmap(new ParallaxBitmap03);
+            tex.repeat = true;
+            img = new Image(tex);
+            layers.push(img);
+
+            for (var i:uint=0; i<layers.length; ++i)
+            {
+                img = layers[i];
+                addChild(img);
+                img.width = stage.stageWidth;
+                img.height = stage.stageHeight;
+
+                img.x = img.y = 0.0;
+                img.setTexCoords(1, new Point(2,0));
+                img.setTexCoords(3, new Point(2,1));
             }
 
-//            removeEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
+            this.x = this.y = 0.0;
+            this.width = stage.stageWidth;
+            this.height = stage.stageHeight;
+
+            removeEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
+            addEventListener(Event.ENTER_FRAME, update);
         }
 
-        override public function update(timer:int):void
+//        override public function update(timer:int):void
+        public function update(event:Event):void
         {
-            trace("update");
-
+            var timer:int = getTimer();
             if (lastUpdate < 0)
             {
                 lastUpdate = timer;
                 return;
             }
 
-            var diff:int = timer - lastUpdate;
-            var factor:Number = 0.0005;
+            var diff:Number = (timer - lastUpdate) * 0.001;
 
-            for (var i:uint=0; i<1/*layers.length*/; ++i)
+            for (var i:uint=0; i<layers.length; ++i)
             {
+                var dist:Number = (diff * speed / Math.exp(1/(i+1)));
                 for (var vID:uint=0; vID<4; ++vID)
                 {
                     var p:Point = layers[i].getTexCoords(vID);
 
-                    p.x += (diff * speed * factor);
+                    p.x += dist;
+
                     layers[i].setTexCoords(vID, p);
                 }
             }
+            distance += diff * speed;
 
             lastUpdate = timer;
         }
