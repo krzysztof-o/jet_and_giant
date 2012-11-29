@@ -6,6 +6,7 @@ import game.entities.Ship;
     import game.entities.Ship;
 	import game.enemy.Enemy;
 	import game.enemy.EnemyFactory;
+	import game.enemy.EnemyVO;
 	import game.entities.Ship;
     import game.entitymanager.EntityManager;
     import game.scene.Scene;
@@ -31,7 +32,10 @@ import game.entities.Ship;
 
             var fighter:Fighter = new Fighter();
             fighter.add();
-			EnemyFactory.createFlayingEnemy();
+
+			var vo:EnemyVO =  new EnemyVO();
+			vo.type = 1;
+			EnemyFactory.getInstance().createEnemy(vo);
         }
     }
 }

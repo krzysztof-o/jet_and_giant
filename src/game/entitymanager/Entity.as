@@ -8,7 +8,7 @@ package game.entitymanager
 
     import starling.display.Sprite;
 
-	import utlis.log;
+
 
 	public class Entity extends Sprite
     {

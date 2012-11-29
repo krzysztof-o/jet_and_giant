@@ -8,26 +8,36 @@
 package game.enemy
 {
 
+	import flash.utils.Dictionary;
+
 	import game.entities.strategies.FlayingEnemyMovingStrategy;
 	import game.entities.strategies.GroundEnemyMovingStrategy;
 
 	public class EnemyFactory
 	{
+		private const  GROUND_ENEMY_TYPE:int = 0;
+		private const  FLAYING_ENEMY_TYPE:int = 1;
+		private static var instance: EnemyFactory;
+		private var movingStrategies:Dictionary;
+
 		public function EnemyFactory()
 		{
+			movingStrategies = new Dictionary();
+			movingStrategies[GROUND_ENEMY_TYPE] = GroundEnemyMovingStrategy;
+			movingStrategies[FLAYING_ENEMY_TYPE] = FlayingEnemyMovingStrategy;
 		}
 
-		static public function createGroundEnemy():void
+		public static function getInstance():EnemyFactory
 		{
-			var enemy:Enemy =  new Enemy();
-			enemy.movingStrategy = new GroundEnemyMovingStrategy(enemy);
-			enemy.add();
+			instance ||= new EnemyFactory();
+			return instance;
 		}
 
-		static public function createFlayingEnemy():void
+		public function  createEnemy(vo:EnemyVO):void
 		{
-			var enemy:Enemy =  new Enemy();
-			enemy.movingStrategy = new FlayingEnemyMovingStrategy(enemy);
+			var enemy:Enemy =  new Enemy(vo);
+			var movingTypeClass:Class =  movingStrategies[vo.type] as Class;
+			enemy.movingStrategy = new movingTypeClass(enemy);
 			enemy.add();
 		}
 	}

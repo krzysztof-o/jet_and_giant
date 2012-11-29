@@ -22,8 +22,8 @@ package game.entities.strategies
 		{
 			super.update(timer);
 
-			enemy.y +=2;0
-			enemy.x+=20;
+			enemy.hull.y +=2;
+			enemy.hull.x+=2;
 
 		}
 	}

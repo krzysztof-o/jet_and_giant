@@ -24,7 +24,7 @@ package game.entitymanager
 
         private var _active:Boolean = true;
 		
-		public function get body():b2Body 
+		public function get body():b2Body
 		{
 			return _body;
 		}
@@ -39,7 +39,7 @@ package game.entitymanager
             return _active;
         }
 		
-		public function set body(value:b2Body):void 
+		public function set body(value:b2Body):void
 		{
 			_body = value;
 			var fixture:b2FixtureDef = new b2FixtureDef();

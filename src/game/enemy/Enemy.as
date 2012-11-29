@@ -11,10 +11,14 @@ package game.enemy
 
 	public class Enemy  extends  Entity
 	{
-		public function Enemy()
+		protected var enemVO:EnemyVO;
+		public function Enemy(vo:EnemyVO)
 		{
 			super();
-			addChild(Assets.getImage("symbol_special_scatter_1"));
+			enemVO = vo;
+			hull.x = enemVO.startX;
+			hull.y = enemVO.startY;
+			hull.addChild(Assets.getImage("symbol_special_scatter_1"));
 		}
 
 

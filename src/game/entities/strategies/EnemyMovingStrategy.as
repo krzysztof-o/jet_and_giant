@@ -20,7 +20,7 @@ package game.entities.strategies
 
 		public function update(timer:int):void
 		{
-			enemy.x += 2;
+
 		}
 	}
 }
