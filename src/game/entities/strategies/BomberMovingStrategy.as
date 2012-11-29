@@ -2,9 +2,7 @@ package game.entities.strategies
 {
 import flash.events.AccelerometerEvent;
 import flash.geom.Point;
-import flash.html.script.PropertyEnumHelper;
 import flash.sensors.Accelerometer;
-import flash.text.engine.TabStop;
 import flash.ui.Keyboard;
 
     import game.SocketManager;
