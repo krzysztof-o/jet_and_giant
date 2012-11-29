@@ -8,12 +8,12 @@
 package game.enemy
 {
 	import game.entitymanager.Entity;
-	import game.weapon.Weapon;
+	import game.weapon.EnemyWeapon;
 
 	public class Enemy  extends  Entity
 	{
 		protected var enemVO:EnemyVO;
-		protected var weapon:Weapon;
+		protected var weapon:EnemyWeapon;
 
 		public function Enemy(vo:EnemyVO)
 		{
@@ -23,8 +23,16 @@ package game.enemy
 			position.y = enemVO.startY;
 			hull.addChild(Assets.getImage("symbol_special_scatter_1"));
 
-			weapon = new Weapon();
+			weapon = new EnemyWeapon();
 		}
+
+        override public function dispose():void
+        {
+            enemVO = null;
+            weapon = null;
+
+            super.dispose();
+        }
 
 		override public function update(timer: Number): void
 		{
@@ -34,7 +42,7 @@ package game.enemy
 
 			if(weapon.isLoaded)
 			{
-				weapon.shoot(hull.x,  hull.y);
+				weapon.shoot(hull.x, hull.y);
 			}
 		}
 	}

@@ -26,6 +26,7 @@ package
 
         public static function getImage(textureName:String):Image
         {
+            trace("imgae: ", textureName);
             return new Image(ATLAS.getTexture(textureName) || ATLAS_JET.getTexture(textureName));
         }
     }

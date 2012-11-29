@@ -174,17 +174,19 @@
         <!-- A list of plist key/value pairs to be added to the application Info.plist -->
         <InfoAdditions>
             <![CDATA[
-            <key>UIDeviceFamily</key>
-            <array>
-                <!-- iPhone and iPod touch devices -->
-                <string>1</string>
-                <!-- iPad devices -->
-                <string>2</string>
-            </array>
-            <!--<key>UIStatusBarStyle</key>-->
-            <!--<string>UIStatusBarStyleBlackOpaque</string>-->
-            <!--<key>UIRequiresPersistentWiFi</key>-->
-            <!--<string>YES</string>-->
+                <key>UIDeviceFamily</key>
+                <array>
+                    <!-- iPhone and iPod touch devices -->
+                    <string>1</string>
+                    <!-- iPad devices -->
+                    <string>2</string>
+                </array>
+
+                <!--<key>UIStatusBarStyle</key>-->
+                <!--<string>UIStatusBarStyleBlackOpaque</string>-->
+
+                <key>UIRequiresPersistentWiFi</key>
+                <string>YES</string>
             ]]>
         </InfoAdditions>
 
@@ -207,31 +209,31 @@
     <android>
         <manifestAdditions>
             <![CDATA[
-            <manifest android:installLocation="auto">
-                <uses-permission android:name="android.permission.INTERNET"/>
-                <!--<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>-->
-                <!--<uses-permission android:name="android.permission.READ_PHONE_STATE"/>-->
-                <!--<uses-permission android:name="android.permission.VIBRATE"/>-->
-                <!--<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>-->
-                <!--<uses-permission android:name="android.permission.DISABLE_KEYGUARD"/>-->
-                <!--<uses-permission android:name="android.permission.WAKE_LOCK"/>-->
-                <!--<uses-permission android:name="android.permission.CAMERA"/>-->
-                <!--<uses-permission android:name="android.permission.RECORD_AUDIO"/>-->
-                <!--<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>-->
-                <!--<uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>-->
+                <manifest android:installLocation="auto">
+                    <uses-permission android:name="android.permission.INTERNET"/>
+                    <!--<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>-->
+                    <!--<uses-permission android:name="android.permission.READ_PHONE_STATE"/>-->
+                    <!--<uses-permission android:name="android.permission.VIBRATE"/>-->
+                    <!--<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>-->
+                    <!--<uses-permission android:name="android.permission.DISABLE_KEYGUARD"/>-->
+                    <!--<uses-permission android:name="android.permission.WAKE_LOCK"/>-->
+                    <!--<uses-permission android:name="android.permission.CAMERA"/>-->
+                    <!--<uses-permission android:name="android.permission.RECORD_AUDIO"/>-->
+                    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+                    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
 
-                <!--<uses-feature android:required="true" android:name="android.hardware.touchscreen.multitouch"/>-->
-                <!--<application android:enabled="true">
-                    <activity android:excludeFromRecents="false">
-                        <intent-filter>
-                            <action android:name="android.intent.action.MAIN"/>
-                            <category android:name="android.intent.category.LAUNCHER"/>
-                        </intent-filter>
-                    </activity>
-                </application>-->
-            </manifest>
+                    <!--<uses-feature android:required="true" android:name="android.hardware.touchscreen.multitouch"/>-->
+                    <!--<application android:enabled="true">
+                        <activity android:excludeFromRecents="false">
+                            <intent-filter>
+                                <action android:name="android.intent.action.MAIN"/>
+                                <category android:name="android.intent.category.LAUNCHER"/>
+                            </intent-filter>
+                        </activity>
+                    </application>-->
+                </manifest>
             ]]>
-            </manifestAdditions>
+         </manifestAdditions>
 
         <!-- Color depth for the app (either "32bit" or "16bit"). Optional. Default 16bit before namespace 3.0, 32bit after -->
         <!--<colorDepth></colorDepth>-->

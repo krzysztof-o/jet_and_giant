@@ -4,8 +4,9 @@ package
     import flash.display.Sprite;
     import flash.display.StageAlign;
     import flash.display.StageScaleMode;
+import flash.sensors.Accelerometer;
 
-    import game.Game;
+import game.Game;
     import game.SocketManager;
 
     import starling.core.Starling;
@@ -28,7 +29,7 @@ package
             var socketManager:SocketManager = SocketManager.getInstance();
             socketManager.connect("192.168.3.91", 17234);
 
-            var isMobile:Boolean = stage.loaderInfo.parameters.isMobile == "true";
+            var isMobile:Boolean = stage.loaderInfo.parameters.isMobile == "true"  || Accelerometer.isSupported;
             ClientType.MOBILE = isMobile;
             ClientType.DESKTOP = !isMobile;
             log(isMobile ? "MOBILE" : "DESKTOP");

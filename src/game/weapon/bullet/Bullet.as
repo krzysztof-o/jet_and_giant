@@ -16,9 +16,15 @@ package game.weapon.bullet
 
 	public class Bullet extends Entity
 	{
+		public var deltaX:Number;
+		public var deltaY:Number;
+
 		public function Bullet()
 		{
+			deltaX = 0.5;
+			deltaY = 0;
 			movingStrategy = new BulletMovingStrategy(this);
+
 			hull.addChild(new Quad(20,20,Color.FUCHSIA));
 			hull.active = false;
 		}

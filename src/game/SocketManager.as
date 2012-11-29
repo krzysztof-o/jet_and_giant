@@ -5,12 +5,13 @@ package game
     import flash.events.ProgressEvent;
     import flash.events.SecurityErrorEvent;
     import flash.net.Socket;
-    import flash.system.Security;
 
     import game.entities.Message;
-    import game.entities.ServerMovingStrategy;
 
-    import utlis.ClientType;
+	import game.entities.strategies.ServerMovingStrategy;
+
+
+	import utlis.ClientType;
     import utlis.log;
 
     public class SocketManager
@@ -35,7 +36,7 @@ package game
 
         public function connect(host:String, port:int):void
         {
-            Security.allowDomain("*");
+//            Security.allowDomain("*");
             socket = new Socket();
             socket.addEventListener(Event.CONNECT, onConnect);
             socket.addEventListener(Event.CLOSE, onClose);
@@ -127,6 +128,14 @@ package game
                     Global.bomber.dropBomb(data.x, data.y);
                 }
             }
+
+			if(id == Message.FIGHTER_SHOOT)
+			{
+				if(ClientType.MOBILE)
+				{
+					Global.fighter.shoot();
+				}
+			}
         }
     }
 }

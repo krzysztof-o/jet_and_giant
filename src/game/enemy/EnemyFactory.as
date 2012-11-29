@@ -33,12 +33,16 @@ package game.enemy
 			return instance;
 		}
 
-		public function  createEnemy(vo:EnemyVO):void
+		public function createEnemy(vo:EnemyVO):void
 		{
 			var enemy:Enemy =  new Enemy(vo);
 			var movingTypeClass:Class =  movingStrategies[vo.type] as Class;
-			enemy.movingStrategy = new movingTypeClass(enemy);
+
+            enemy.movingStrategy = new movingTypeClass(enemy);
 			enemy.add();
+
+            movingTypeClass = null;
+            enemy = null;
 		}
 	}
 }

@@ -59,6 +59,7 @@ package game.entitymanager
 					remove(entity);
 					i--;
 				}
+                entity = null;
             }
         }
 

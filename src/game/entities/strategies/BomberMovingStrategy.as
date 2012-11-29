@@ -1,7 +1,9 @@
 package game.entities.strategies
 {
-    import flash.geom.Point;
-    import flash.ui.Keyboard;
+import flash.events.AccelerometerEvent;
+import flash.geom.Point;
+import flash.sensors.Accelerometer;
+import flash.ui.Keyboard;
 
     import game.SocketManager;
     import game.entities.Message;
@@ -17,13 +19,14 @@ package game.entities.strategies
         private var direction:Point = new Point();
         private var speed:Point = new Point();
 
+        protected var accelerometer:Accelerometer;
         private var keyboardManager:KeyboardManager;
         private var lastTime:Number = 0;
 
         public function BomberMovingStrategy(entity:Entity)
         {
             this.entity = entity;
-            keyboardManager = new KeyboardManager();
+            keyboardManager = KeyboardManager.getInstance();
         }
 
         public function update(timer: Number): void
@@ -32,7 +35,6 @@ package game.entities.strategies
 
             entity.position.x = pt.x;
             entity.position.y = pt.y;
-
         }
 
         private function calculatePosition():Point

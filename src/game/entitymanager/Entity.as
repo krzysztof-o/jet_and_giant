@@ -42,7 +42,19 @@ package game.entitymanager
             hull = new BodySprite();
         }
 
-        public function update(timer: Number):void
+        public function dispose():void
+        {
+            entityManager = null;
+            movingStrategy = null;
+
+            hull = null;
+            this.position = null;
+            this.rotation = 0;
+
+            Global.bombPool.returnObject(this);
+        }
+
+        public function update(timer: Number): void
         {
             movingStrategy.update(timer);
 
@@ -70,10 +82,5 @@ package game.entitymanager
         {
             movingStrategy.dispose();
         }
-
-		public function dispose():void
-		{
-			Global.bombPool.returnObject(this);
-		}
     }
 }

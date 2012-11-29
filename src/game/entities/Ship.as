@@ -12,6 +12,7 @@
             var quad:Quad = new Quad(50, 50, 0x123456);
             hull.addChild(quad);
             hull.active = true;
+            quad = null;
         }
 
     }
