@@ -3,7 +3,6 @@ package game.entities
 	import flash.ui.Keyboard;
 
 	import game.Global;
-	import game.entities.FighterShootController;
 	import game.entities.strategies.FighterMovingStrategy;
     import game.entitymanager.Entity;
 	import game.weapon.FighterWeapon;
@@ -12,12 +11,12 @@ package game.entities
 	import starling.display.Image;
 
     import utlis.ClientType;
-	import utlis.KeyboardManager;
-	import utlis.log;
 
 	public class Fighter extends Entity
     {
 		protected var weapon:Weapon;
+		protected var shootController:FighterShootController;
+
         public function Fighter()
         {
             super();
@@ -26,6 +25,7 @@ package game.entities
             Global.fighter = this;
             if (ClientType.DESKTOP)
             {
+				shootController = new FighterShootController(this)
                 movingStrategy = new FighterMovingStrategy(this);
             }
             else
@@ -42,18 +42,15 @@ package game.entities
 			super.update(dt) ;
    			if(ClientType.DESKTOP)
 			{
-
-				if(FighterShootController.checkForShoot())
-				{
-					log("tt")
-					shoot();
-				}
+				shootController.checkForShoot();
 			}
 		}
 
 		public function shoot(): void
 		{
-			 weapon.shoot(this.x,  this.y);
+			var x:Number = hull.bounds.right;
+			var y:Number = hull.bounds.bottom;
+			 weapon.shoot(x,  y);
 		}
 	}
 }

@@ -47,11 +47,6 @@ package game.weapon
 		public function shoot(x: Number, y: Number) : void
 		{
 
-			var bullet:Bullet = Global.bulletPool.borrowObject();
-			bullet.add();
-			bullet.position.x = x;
-			bullet.position.y = y;
-            bullet = null;
 		}
 	}
 }

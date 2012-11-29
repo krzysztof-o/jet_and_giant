@@ -7,6 +7,7 @@
  */
 package game.weapon
 {
+	import game.Global;
 	import game.weapon.bullet.Bullet;
 	import game.weapon.bullet.FighterBullet;
 
@@ -20,15 +21,17 @@ package game.weapon
 		{
 			var bullet:Bullet = createBullet();
  			bullet.add();
-			bullet.position.x = x;
-			bullet.position.y = y;
+			bullet.position.x = x - bullet.hull.width;
+			bullet.position.y = y - bullet.hull.height;
 		}
 
 		protected function  createBullet():Bullet
 		{
-			var bullet:Bullet = new FighterBullet();
+			var bullet:Bullet = Global.fighterBullerPool.borrowObject();
 			bullet.deltaX = -0.6;
 			return bullet;
 		}
+
+
 	}
 }
