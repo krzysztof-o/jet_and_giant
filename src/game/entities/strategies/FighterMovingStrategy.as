@@ -111,6 +111,10 @@ package game.entities.strategies
             {
                 direction.x = -1;
             }
+			else if (keyboardManager.isKeyPressed(Keyboard.K))
+			{
+				entity.hull.active = false;
+			}
         }
 
         public function dispose():void

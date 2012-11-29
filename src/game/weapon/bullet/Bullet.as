@@ -26,7 +26,6 @@ package game.weapon.bullet
 			movingStrategy = new BulletMovingStrategy(this);
 
 			hull.addChild(new Quad(20,20,Color.FUCHSIA));
-			hull.active = false;
 		}
 
         override public function dispose():void

@@ -1,16 +1,13 @@
 package game.entitymanager
 {
-    import Box2D.Collision.Shapes.b2CircleShape;
 	import Box2D.Collision.Shapes.b2PolygonShape;
 	import Box2D.Collision.Shapes.b2Shape;
     import Box2D.Common.Math.b2Vec2;
-	import Box2D.Dynamics.Contacts.b2ContactEdge;
 	import Box2D.Dynamics.b2Body;
 	import Box2D.Dynamics.b2BodyDef;
 	import Box2D.Dynamics.b2FixtureDef;
     import game.scene.Scene;
     import starling.display.Sprite;
-	import starling.events.Event;
 
 	public class BodySprite extends Sprite 
 	{
@@ -20,9 +17,8 @@ package game.entitymanager
 		
 		public var friction:Number = 0.5;
 		public var density:Number = 1;
-		public var restitution:Number = 0.5;
+		public var restitution:Number = 0.2;
 		public var linearDamping:Number = 0;
-		public var angularDamping:Number = 0;
 		public var type:uint = b2Body.b2_dynamicBody;
 
         private var _active:Boolean = true;
@@ -59,8 +55,8 @@ package game.entitymanager
 		{
 			bodyDef = new b2BodyDef();
 			bodyDef.type = type;
-			bodyDef.linearDamping = linearDamping;
-			bodyDef.angularDamping = angularDamping;
+			//bodyDef.linearDamping = linearDamping;
+			//bodyDef.angularDamping = angularDamping;
 		}
 
 		public override function set x(value:Number):void
