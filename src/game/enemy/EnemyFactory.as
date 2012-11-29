@@ -35,7 +35,7 @@ package game.enemy
 
 		public function createEnemy(vo:EnemyVO):void
 		{
-			var enemy:Enemy =  new Enemy(vo);
+			var enemy:FlyingEnemy =  new FlyingEnemy(vo);
 			var movingTypeClass:Class =  movingStrategies[vo.type] as Class;
 
             enemy.movingStrategy = new movingTypeClass(enemy);

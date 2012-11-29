@@ -8,7 +8,7 @@ import game.entities.Bomber;
     import game.entities.Fighter;
 	import game.entities.Ground;
 	import game.entities.Ship;
-	import game.enemy.Enemy;
+	import game.enemy.FlyingEnemy;
 	import game.enemy.EnemyFactory;
 	import game.enemy.EnemyVO;
 	import game.entities.Ship;

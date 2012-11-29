@@ -1,12 +1,12 @@
 package game.entities.strategies
 {
-    import game.enemy.Enemy;
+    import game.enemy.FlyingEnemy;
 
     public class EnemyMovingStrategy implements IMovingStrategy
     {
-        protected var enemy:Enemy;
+        protected var enemy:FlyingEnemy;
 
-        public function EnemyMovingStrategy(enemy:Enemy)
+        public function EnemyMovingStrategy(enemy:FlyingEnemy)
         {
             this.enemy = enemy;
         }

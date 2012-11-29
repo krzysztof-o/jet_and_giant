@@ -1,10 +1,8 @@
 package game.entitymanager
 {
     import game.Global;
-    import game.enemy.Enemy;
     import game.enemy.EnemyVO;
-
-    import utlis.log;
+    import game.entities.EnemyBase;
 
     public class EnemiesManager extends Entity
     {
@@ -37,9 +35,7 @@ package game.entitymanager
             {
                 if (Global.timeWithCorrection > enemies[i].time * 100)
                 {
-                    var enemy:Enemy = Global.enemiesPool.borrowObject();
-                    enemy.setVO(enemies[i]);
-                    enemy.add();
+                    createEnemy(enemies[i]);
                     enemies.splice(i, 1);
                     i--;
                 }
@@ -48,6 +44,26 @@ package game.entitymanager
                     break;
                 }
             }
+        }
+
+        private function createEnemy(vo:EnemyVO):void
+        {
+            var enemy:EnemyBase;
+            switch (vo.asset)
+            {
+                case EnemyAssetType.FLYING_1:
+                case EnemyAssetType.FLYING_2:
+                    enemy = Global.enemiesPool.borrowObject();
+                    break;
+                case EnemyAssetType.GROUND_1:
+                case EnemyAssetType.GROUND_2:
+                case EnemyAssetType.GROUND_3:
+                    enemy = Global.groundEnemiesPool.borrowObject();
+                    break;
+            }
+
+            enemy.setVO(vo);
+            enemy.add();
         }
     }
 }
