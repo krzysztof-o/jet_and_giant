@@ -6,11 +6,11 @@ package
     import flash.display.StageScaleMode;
 
     import game.Game;
-    import game.entitymanager.EntityManager;
+    import game.SocketManager;
 
     import starling.core.Starling;
 
-	[SWF(frameRate=60, height="600", width="760")]
+    [SWF(frameRate=60, height="600", width="760")]
     public class Jet_and_giant extends Sprite
     {
         public function Jet_and_giant()
@@ -20,6 +20,9 @@ package
 
             var starling:Starling = new Starling(Game, stage);
             starling.start();
+
+            var socketManager:SocketManager = SocketManager.getInstance();
+            socketManager.connect("192.168.3.91", 17234);
         }
     }
 }

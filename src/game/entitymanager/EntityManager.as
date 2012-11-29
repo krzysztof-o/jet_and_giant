@@ -14,7 +14,9 @@ package game.entitymanager
         public function EntityManager()
         {
             if (instance)
+            {
                 throw new Error("this is Singleton, you fool!");
+            }
         }
 
         public static function getInstance():EntityManager
@@ -34,7 +36,7 @@ package game.entitymanager
         {
             for (var i:uint = 0; i < entities.length; i++)
             {
-                entities[0].update(getTimer());
+                entities[i].update(getTimer());
             }
         }
 

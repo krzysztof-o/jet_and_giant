@@ -15,7 +15,6 @@ import game.entities.strategies.DefaultMovingStrategy;
 
         public function Entity()
         {
-            movingStrategy = new DefaultMovingStrategy(this);
             hull = new BodySprite();
         }
 
@@ -31,7 +30,7 @@ import game.entities.strategies.DefaultMovingStrategy;
 
         public function onAdd():void
         {
-
+            movingStrategy ||= new DefaultMovingStrategy(this);
         }
 
         public function remove():void
@@ -41,7 +40,7 @@ import game.entities.strategies.DefaultMovingStrategy;
 
         public function onRemove():void
         {
-
+            movingStrategy.dispose();
         }
     }
 }

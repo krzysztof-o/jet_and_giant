@@ -16,5 +16,9 @@ package game.entities.strategies
             entity.hull.x += 4;
             entity.hull.y = 200;
         }
+
+        public function dispose():void
+        {
+        }
     }
 }

@@ -1,7 +1,10 @@
 package game
 {
+    import game.entities.Ship;
 
 import game.entities.Ship;
+    import game.entities.Fighter;
+    import game.entities.Ship;
     import game.entitymanager.EntityManager;
 import game.scene.Scene;
 
@@ -27,6 +30,9 @@ import starling.display.Sprite;
 
             var ship:Ship = new Ship();
             ship.add();
+
+            var fighter:Fighter = new Fighter();
+            fighter.add();
         }
     }
 }
