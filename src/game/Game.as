@@ -25,14 +25,12 @@ package game
         {
             super();
 
+            var parallax:Parallax = new Parallax(1.0);
+            addChild(parallax);
+
             scene = new Scene(width, height);
             addChild(scene);
             entityManager.init(scene);
-
-            var parallax:Parallax = new Parallax(1.0);
-//            parallax.add();
-
-            addChild(parallax);
 
             var ship:Ship = new Ship();
             ship.add();

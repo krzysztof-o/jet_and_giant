@@ -4,7 +4,6 @@ package
     import flash.display.Sprite;
     import flash.display.StageAlign;
     import flash.display.StageScaleMode;
-    import flash.external.ExternalInterface;
 
     import game.Game;
     import game.SocketManager;
@@ -14,7 +13,7 @@ package
     import utlis.ClientType;
     import utlis.log;
 
-    [SWF(frameRate=60, height="600", width="760")]
+    [SWF(frameRate=60, height="600", width="760",backgroundColor=0x000000)]
     public class Jet_and_giant extends Sprite
     {
         public function Jet_and_giant()
