@@ -13,8 +13,8 @@ package game.entities.strategies
 
         public function update(timer: Number): void
         {
-            entity.hull.x += 4;
-            entity.hull.y = 200;
+            entity.position.x += 4;
+            entity.position.y = 200;
         }
 
         public function dispose():void

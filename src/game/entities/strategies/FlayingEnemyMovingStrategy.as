@@ -21,10 +21,7 @@ package game.entities.strategies
 		override  public function update(dt: Number): void
 		{
 			super.update(dt);
-
-
 			enemy.position.x -= 0.05*dt;
-			enemy.position.y = Math.sin(0.05*dt);
 
 		}
 	}

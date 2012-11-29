@@ -47,7 +47,6 @@ package game.entitymanager
             for (var i:uint = 0; i < entities.length; i++)
             {
 				entity =  entities[i];
-				log(dt);
 				entity.update(dt);
 
 				if(entity.position.x < 0)
