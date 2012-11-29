@@ -28,8 +28,8 @@ package game.weapon
 
         public function dispose():void
         {
-            loadingTime = null;
-            shootTimeInterval = null;
+            loadingTime = 0;
+            shootTimeInterval = 0;
 
             super.dispose();
         }

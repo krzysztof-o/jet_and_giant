@@ -5,11 +5,11 @@ package game
     import flash.events.ProgressEvent;
     import flash.events.SecurityErrorEvent;
     import flash.net.Socket;
-    import flash.system.Security;
 
     import game.entities.Message;
-    import game.entities.ServerMovingStrategy;
-	import game.weapon.bullet.Bullet;
+
+	import game.entities.strategies.ServerMovingStrategy;
+
 
 	import utlis.ClientType;
     import utlis.log;

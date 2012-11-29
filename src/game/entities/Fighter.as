@@ -4,7 +4,8 @@ package game.entities
 
 	import game.Global;
 	import game.entities.strategies.FighterMovingStrategy;
-    import game.entitymanager.Entity;
+	import game.entities.strategies.ServerMovingStrategy;
+	import game.entitymanager.Entity;
 	import game.weapon.FighterWeapon;
 	import game.weapon.Weapon;
 
@@ -25,7 +26,7 @@ package game.entities
             Global.fighter = this;
             if (ClientType.DESKTOP)
             {
-				shootController = new FighterShootController(this)
+				shootController = new FighterShootController(this) ;
                 movingStrategy = new FighterMovingStrategy(this);
             }
             else

@@ -49,7 +49,7 @@ package game.entitymanager
 
             hull = null;
             this.position = null;
-            this.rotation = null;
+            this.rotation = 0;
 
             Global.bombPool.returnObject(this);
         }
