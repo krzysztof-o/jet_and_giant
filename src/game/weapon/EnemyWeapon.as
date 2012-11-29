@@ -1,10 +1,3 @@
-/**
- * Created with IntelliJ IDEA.
- * User: grzegorz-przybylowic
- * Date: 29.11.12
- * Time: 15:06
- * To change this template use File | Settings | File Templates.
- */
 package game.weapon
 {
 	import game.weapon.bullet.Bullet;
@@ -25,8 +18,8 @@ package game.weapon
 
 			var bullet:Bullet = new Bullet();
 			bullet.add();
-			bullet.position.x = x;
-			bullet.position.y = y;
+			bullet.position.x = x + bullet.hull.width/2;
+			bullet.position.y = y - 20;
 		}
 	}
 }

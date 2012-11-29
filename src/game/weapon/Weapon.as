@@ -1,10 +1,3 @@
-/**
- * Created with IntelliJ IDEA.
- * User: grzegorz-przybylowic
- * Date: 29.11.12
- * Time: 15:06
- * To change this template use File | Settings | File Templates.
- */
 package game.weapon
 {
     import game.Global;
@@ -24,8 +17,8 @@ package game.weapon
 
         public function dispose():void
         {
-            loadingTime = null;
-            shootTimeInterval = null;
+            loadingTime = 0;
+            shootTimeInterval = 0;
 
             super.dispose();
         }
@@ -52,5 +45,5 @@ package game.weapon
 			bullet.position.y = y;
             bullet = null;
 		}
-	}
+    }
 }

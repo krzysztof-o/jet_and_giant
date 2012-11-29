@@ -5,10 +5,10 @@ import flash.events.TimerEvent;
 import flash.utils.Timer;
 
 import game.entities.Bomber;
-    import game.entities.Fighter;
+    import game.entities.fighter.Fighter;
 	import game.entities.Ground;
 	import game.entities.Ship;
-	import game.enemy.Enemy;
+	import game.enemy.FlyingEnemy;
 	import game.enemy.EnemyFactory;
 	import game.enemy.EnemyVO;
 	import game.entities.Ship;
@@ -46,8 +46,8 @@ import game.entities.Bomber;
 			var ground:Ground = new Ground();
 			ground.add();
 
-           // var enemiesManager:EnemiesManager = Global.enemiesManager;
-            //enemiesManager.add();
+            var enemiesManager:EnemiesManager = Global.enemiesManager;
+            enemiesManager.add();
 
 //			var vo:EnemyVO =  new EnemyVO();
 //			vo.type = 1;

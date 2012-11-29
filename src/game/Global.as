@@ -1,10 +1,12 @@
    package game
 {
-    import game.enemy.Enemy;
+    import game.enemy.FlyingEnemy;
     import game.entities.Bomb;
     import game.entities.Bomber;
-    import game.entities.Fighter;
-    import game.entitymanager.EnemiesManager;
+       import game.entities.GroundBullet;
+       import game.entities.GroundEnemy;
+	   import game.entities.fighter.Fighter;
+	   import game.entitymanager.EnemiesManager;
     import game.weapon.bullet.Bullet;
 	   import game.weapon.bullet.FighterBullet;
 
@@ -17,8 +19,10 @@
 
         public static var bulletPool:Pool = new Pool(Bullet);
         public static var bombPool:Pool = new Pool(Bomb);
-		public static  var fighterBullerPool:Pool = new Pool(FighterBullet);
-        public static var enemiesPool:Pool = new Pool(Enemy);
+		public static  var fighterBulletPool:Pool = new Pool(FighterBullet);
+		public static  var groundBulletPool:Pool = new Pool(GroundBullet);
+        public static var enemiesPool:Pool = new Pool(FlyingEnemy);
+        public static var groundEnemiesPool:Pool = new Pool(GroundEnemy);
 
         public static var clientServerTimeDifference:Number;
         public static var enemiesManager:EnemiesManager = new EnemiesManager();

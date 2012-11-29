@@ -20,7 +20,7 @@ package game.weapon
 
 		protected function  createBullet():Bullet
 		{
-			var bullet:Bullet = Global.fighterBullerPool.borrowObject();
+			var bullet:Bullet = Global.fighterBulletPool.borrowObject();
 			bullet.deltaX = -0.6;
 			return bullet;
 		}

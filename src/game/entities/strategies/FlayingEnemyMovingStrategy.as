@@ -7,13 +7,13 @@
  */
 package game.entities.strategies
 {
-	import game.enemy.Enemy;
+	import game.enemy.FlyingEnemy;
 
 	import utlis.log;
 
 	public class FlayingEnemyMovingStrategy extends EnemyMovingStrategy
 	{
-		public function FlayingEnemyMovingStrategy(enemy: Enemy)
+		public function FlayingEnemyMovingStrategy(enemy: FlyingEnemy)
 		{
 			super(enemy);
 		}

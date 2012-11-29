@@ -1,10 +1,3 @@
-/**
- * Created with IntelliJ IDEA.
- * User: grzegorz-przybylowic
- * Date: 29.11.12
- * Time: 15:20
- * To change this template use File | Settings | File Templates.
- */
 package game.entities.strategies
 {
 	import game.weapon.bullet.*;
@@ -21,6 +14,7 @@ package game.entities.strategies
 		public function update(dt: Number): void
 		{
 			bullet.position.x -= bullet.deltaX *dt;
+			bullet.position.y -= bullet.deltaY *dt;
 		}
 
 		public function dispose():void

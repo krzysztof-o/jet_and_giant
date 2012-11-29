@@ -1,8 +1,8 @@
 package game.entitymanager
 {
     import game.Global;
-    import game.enemy.Enemy;
     import game.enemy.EnemyVO;
+    import game.entities.EnemyBase;
 
     import utlis.log;
 
@@ -32,14 +32,12 @@ package game.entitymanager
 
         override public function update(timer:Number):void
         {
-//            log("enemies", enemies.length);
+            //log("enemies", enemies.length);
             for (var i:uint = 0; i < enemies.length; i++)
             {
                 if (Global.timeWithCorrection > enemies[i].time * 100)
                 {
-                    var enemy:Enemy = Global.enemiesPool.borrowObject();
-                    enemy.setVO(enemies[i]);
-                    enemy.add();
+                    createEnemy(enemies[i]);
                     enemies.splice(i, 1);
                     i--;
                 }
@@ -48,6 +46,26 @@ package game.entitymanager
                     break;
                 }
             }
+        }
+
+        private function createEnemy(vo:EnemyVO):void
+        {
+            var enemy:EnemyBase;
+            switch (vo.asset)
+            {
+                case EnemyAssetType.FLYING_1:
+                case EnemyAssetType.FLYING_2:
+                    enemy = Global.enemiesPool.borrowObject();
+                    break;
+                case EnemyAssetType.GROUND_1:
+                case EnemyAssetType.GROUND_2:
+                case EnemyAssetType.GROUND_3:
+                    enemy = Global.groundEnemiesPool.borrowObject();
+                    break;
+            }
+
+            enemy.setVO(vo);
+            enemy.add();
         }
     }
 }

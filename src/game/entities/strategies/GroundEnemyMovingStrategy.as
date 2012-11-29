@@ -1,19 +1,25 @@
-/**
- * Created with IntelliJ IDEA.
- * User: grzegorz-przybylowic
- * Date: 29.11.12
- * Time: 12:35
- * To change this template use File | Settings | File Templates.
- */
 package game.entities.strategies
 {
-	import game.enemy.Enemy;
+    import game.entities.GroundEnemy;
 
-	public class GroundEnemyMovingStrategy extends EnemyMovingStrategy
-	{
-		public function GroundEnemyMovingStrategy(enemy: Enemy)
-		{
-			super(enemy);
-		}
-	}
+    public class GroundEnemyMovingStrategy implements IMovingStrategy
+    {
+        private var enemy:GroundEnemy;
+
+        public function GroundEnemyMovingStrategy(enemy:GroundEnemy)
+        {
+            this.enemy = enemy;
+        }
+
+        public function update(timer:Number):void
+        {
+            enemy.position.y = 650;
+            enemy.position.x -= 3;
+        }
+
+        public function dispose():void
+        {
+            enemy = null;
+        }
+    }
 }
