@@ -26,6 +26,14 @@ package game.enemy
 			weapon = new Weapon();
 		}
 
+        override public function dispose():void
+        {
+            enemVO = null;
+            weapon = null;
+
+            super.dispose();
+        }
+
 		override public function update(timer: Number): void
 		{
 			super.update(timer);

@@ -42,7 +42,19 @@ package game.entitymanager
             hull = new BodySprite();
         }
 
-        public function update(timer: Number):void
+        override public function dispose():void
+        {
+            entityManager = null;
+            movingStrategy = null;
+
+            hull = null;
+            this.position = null;
+            this.rotation = null;
+
+            super.dispose();
+        }
+
+        public function update(timer: Number): void
         {
             movingStrategy.update(timer);
 

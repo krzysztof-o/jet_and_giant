@@ -35,14 +35,14 @@ package game
 
         public function connect(host:String, port:int):void
         {
-            Security.allowDomain("*");
-            socket = new Socket();
-            socket.addEventListener(Event.CONNECT, onConnect);
-            socket.addEventListener(Event.CLOSE, onClose);
-            socket.addEventListener(IOErrorEvent.IO_ERROR, onError);
-            socket.addEventListener(ProgressEvent.SOCKET_DATA, onResponse);
-            socket.addEventListener(SecurityErrorEvent.SECURITY_ERROR, onSecError);
-            socket.connect(host, port);
+//            Security.allowDomain("*");
+//            socket = new Socket();
+//            socket.addEventListener(Event.CONNECT, onConnect);
+//            socket.addEventListener(Event.CLOSE, onClose);
+//            socket.addEventListener(IOErrorEvent.IO_ERROR, onError);
+//            socket.addEventListener(ProgressEvent.SOCKET_DATA, onResponse);
+//            socket.addEventListener(SecurityErrorEvent.SECURITY_ERROR, onSecError);
+//            socket.connect(host, port);
         }
 
         private function onSecError(event:SecurityErrorEvent):void

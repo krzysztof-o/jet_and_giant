@@ -1,7 +1,10 @@
 package game
 {
 
-    import game.entities.Bomber;
+import flash.events.TimerEvent;
+import flash.utils.Timer;
+
+import game.entities.Bomber;
     import game.entities.Fighter;
 	import game.entities.Ground;
 	import game.entities.Ship;
@@ -49,6 +52,7 @@ package game
 			vo.type = 1;
 			vo.startX = 700;
 			EnemyFactory.getInstance().createEnemy(vo);
+            vo = null;
         }
     }
 }

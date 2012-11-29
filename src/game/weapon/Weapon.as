@@ -7,13 +7,9 @@
  */
 package game.weapon
 {
-	import avmplus.factoryXml;
-
     import game.Global;
 
     import game.weapon.bullet.Bullet;
-
-	import utlis.log;
 
 	public class Weapon
 	{
@@ -26,6 +22,14 @@ package game.weapon
 			shootTimeInterval = 30;
         }
 
+        public function dispose():void
+        {
+            loadingTime = null;
+            shootTimeInterval = null;
+
+            super.dispose();
+        }
+
 		public function load(dt:Number):void
 		{
 			loadingTime += dt;
@@ -34,7 +38,7 @@ package game.weapon
 
 		public function get isLoaded():Boolean
 		{
-			return loadingTime >=  shootTimeInterval;
+			return loadingTime >= shootTimeInterval;
 		}
 
 		public function shoot(x:int,  y:int) :void
@@ -46,6 +50,7 @@ package game.weapon
 			bullet.add();
 			bullet.position.x = x;
 			bullet.position.y = y;
+            bullet = null;
 		}
 	}
 }
