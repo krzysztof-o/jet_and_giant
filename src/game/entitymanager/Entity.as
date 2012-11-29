@@ -75,6 +75,7 @@ package game.entitymanager
             movingStrategy.dispose();
         }
 
+
 		public function dispose():void
 		{
 			Global.bombPool.returnObject(this);
