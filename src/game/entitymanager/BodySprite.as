@@ -106,6 +106,4 @@ package game.entitymanager
             super.dispose();
         }
     }
-
-}
 }
