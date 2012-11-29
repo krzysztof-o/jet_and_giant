@@ -52,7 +52,7 @@ package game.entities
 		{
 			var x:Number = hull.bounds.right;
 			var y:Number = hull.bounds.bottom;
-			 weapon.shoot(x,  y);
+			weapon.shoot(x,  y);
 		}
 	}
 }

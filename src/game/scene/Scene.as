@@ -16,7 +16,7 @@ package game.scene
 	{
 		protected var world:b2World;
 		private var dt:Number;
-		public static var worldScale:Number = 30;
+		public static var worldScale:Number = 100;
 		public static var displayScale:Number = 1;
 		public static var displayOffset:Point = new Point();
 		

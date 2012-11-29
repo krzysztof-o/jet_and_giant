@@ -6,8 +6,11 @@ package game.entitymanager
 	import Box2D.Dynamics.b2Body;
 	import Box2D.Dynamics.b2BodyDef;
 	import Box2D.Dynamics.b2FixtureDef;
-    import game.scene.Scene;
+	import Box2D.Dynamics.b2World;
+
+	import game.scene.Scene;
     import starling.display.Sprite;
+	import starling.events.Event;
 
 	public class BodySprite extends Sprite 
 	{
@@ -31,7 +34,18 @@ package game.entitymanager
 
         public function set active(value:Boolean):void
         {
-            _active = value;
+			if(value != _active)
+			{
+            	_active = value;
+				if(body)
+				{
+					var world:b2World = body.GetWorld();
+					world.DestroyBody(body);
+					body = world.CreateBody(bodyDef);
+					body.SetPosition(new b2Vec2(x / Scene.worldScale, y / Scene.worldScale));
+					body.SetAngle(rotation);
+				}
+			}
         }
 
         public function get active():Boolean
@@ -43,21 +57,38 @@ package game.entitymanager
 		{
 			_body = value;
 			shape = new b2PolygonShape();
-			(shape as b2PolygonShape).SetAsBox(width / Scene.worldScale, height / Scene.worldScale);
+
+			pivotX = width/2;
+			pivotY = height/2;
+
+			(shape as b2PolygonShape).SetAsBox(width / Scene.worldScale * 0.5, height / Scene.worldScale * 0.5);
 			var fixture:b2FixtureDef = new b2FixtureDef();
 			fixture.shape = shape;
 			fixture.friction = friction;
 			fixture.density = density;
 			fixture.restitution = restitution;
+			if(active)
+			{
+				fixture.isSensor = true;
+			}
 			_body.CreateFixture(fixture);
+
+			body.SetPosition(new b2Vec2(x / Scene.worldScale, y / Scene.worldScale));
+			body.SetAngle(rotation);
 		}
 		
-		public function BodySprite() 
+		public function BodySprite()
 		{
 			bodyDef = new b2BodyDef();
-			bodyDef.type = type;
+			addEventListener(Event.ADDED_TO_STAGE, onAdded);
+
 			//bodyDef.linearDamping = linearDamping;
 			//bodyDef.angularDamping = angularDamping;
+		}
+
+		private function onAdded(e:Event):void
+		{
+			bodyDef.type = type;
 		}
 
 		public override function set x(value:Number):void
