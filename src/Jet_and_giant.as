@@ -13,7 +13,7 @@ package
     import utlis.ClientType;
     import utlis.log;
 
-    [SWF(frameRate=60, height="600", width="760",backgroundColor=0x000000)]
+    [SWF(frameRate=60, height="720", width="1280",backgroundColor=0x000000)]
     public class Jet_and_giant extends Sprite
     {
         public function Jet_and_giant()
