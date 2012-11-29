@@ -10,7 +10,7 @@
         public function Ship()
         {
             var quad:Quad = new Quad(50, 50, 0x123456);
-            addChild(quad);
+            hull.addChild(quad);
         }
 
         override public function update(timer:int):void

@@ -1,19 +1,22 @@
 package game.entitymanager
 {
-    import game.entities.strategies.DefaultMovingStrategy;
+import flash.display.Sprite;
+
+import game.entities.strategies.DefaultMovingStrategy;
     import game.entities.strategies.IMovingStrategy;
 
-    import starling.display.Sprite;
-
-    public class Entity extends Sprite
+    public class Entity
     {
         protected var entityManager:EntityManager = EntityManager.getInstance();
 
         protected var movingStrategy:IMovingStrategy;
 
+        public var hull:BodySprite;
+
         public function Entity()
         {
             movingStrategy = new DefaultMovingStrategy(this);
+            hull = new BodySprite();
         }
 
         public function update(timer:int):void

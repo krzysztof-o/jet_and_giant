@@ -1,8 +1,7 @@
 package game.entitymanager
 {
     import flash.utils.getTimer;
-
-    import starling.display.DisplayObjectContainer;
+    import game.scene.Scene;
     import starling.events.Event;
 
     public class EntityManager
@@ -10,7 +9,7 @@ package game.entitymanager
         private var entities:Vector.<Entity> = new Vector.<Entity>();
 
         private static var instance:EntityManager;
-        private var root:DisplayObjectContainer;
+        private var scene:Scene;
 
         public function EntityManager()
         {
@@ -28,7 +27,7 @@ package game.entitymanager
         {
             entity.onAdd();
             entities.push(entity);
-            root.addChild(entity);
+            scene.addChild(entity.hull);
         }
 
         public function onEnterFrame():void
@@ -43,13 +42,13 @@ package game.entitymanager
         {
             entity.onRemove();
             entities.slice(entities.indexOf(entity), 1);
-            entity.removeFromParent();
+            entity.hull.removeFromParent();
         }
 
-        public function init(root:DisplayObjectContainer):void
+        public function init(root:Scene):void
         {
-            this.root = root;
-            root.addEventListener(Event.ENTER_FRAME, onEnterFrame);
+            this.scene = root;
+            scene.addEventListener(Event.ENTER_FRAME, onEnterFrame);
         }
     }
 }

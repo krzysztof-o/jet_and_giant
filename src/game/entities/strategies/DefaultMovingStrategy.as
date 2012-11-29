@@ -13,8 +13,8 @@ package game.entities.strategies
 
         public function update(timer:int):void
         {
-            entity.x += 4;
-            entity.y = 200;
+            entity.hull.x += 4;
+            entity.hull.y = 200;
         }
     }
 }
