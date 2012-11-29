@@ -24,7 +24,7 @@ package game.weapon.bullet
 		{
 			deltaX = 0.5;
 			deltaY = 0;
-			hull.addEventListener(Event.ADDED_TO_STAGE, onAddedToStage)
+			hull.addEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
 			movingStrategy = new BulletMovingStrategy(this);
 		}
 

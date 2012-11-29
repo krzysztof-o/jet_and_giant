@@ -47,7 +47,7 @@ import game.entities.Bomber;
 			ground.add();
 
             var enemiesManager:EnemiesManager = Global.enemiesManager;
-            //enemiesManager.add();
+            enemiesManager.add();
 
 //			var vo:EnemyVO =  new EnemyVO();
 //			vo.type = 1;

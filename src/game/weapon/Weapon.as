@@ -45,5 +45,5 @@ package game.weapon
 			bullet.position.y = y;
             bullet = null;
 		}
-	}
+    }
 }
