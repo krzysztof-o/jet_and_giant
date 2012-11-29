@@ -1,0 +1,31 @@
+package
+{
+
+    import flash.display.Sprite;
+
+<<<<<<< HEAD
+public class Jet_and_giant extends Sprite
+{
+    public function Jet_and_giant()
+	{
+        var textField:TextField = new TextField();
+        textField.text = "Hello, World";
+        addChild(textField);
+=======
+    import game.entity.Entity;
+
+    import game.entity.EntityManager;
+
+    public class Jet_and_giant extends Sprite
+    {
+        private var entityManager:EntityManager = EntityManager.getInstance();
+
+        public function Jet_and_giant()
+        {
+            var entity:Entity = new Entity();
+            entityManager.add(entity);
+
+        }
+>>>>>>> entity manager
+    }
+}
