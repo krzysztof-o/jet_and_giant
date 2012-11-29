@@ -7,6 +7,8 @@
        import game.entities.GroundBullet;
        import game.entities.GroundEnemy;
        import game.entitymanager.EnemiesManager;
+	   import game.entities.fighter.Fighter;
+	   import game.entitymanager.EnemiesManager;
     import game.weapon.bullet.Bullet;
 	   import game.weapon.bullet.FighterBullet;
 

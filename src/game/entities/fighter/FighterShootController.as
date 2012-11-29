@@ -7,21 +7,29 @@
  */
 package game.entities.fighter
 {
+	import com.greensock.TweenMax;
+
+	import flash.utils.setTimeout;
+
 	import game.entities.*;
 	import flash.ui.Keyboard;
 
 	import game.SocketManager;
 
 	import starling.core.Starling;
+	import starling.display.Image;
 	import starling.events.KeyboardEvent;
+	import starling.textures.Texture;
 
 	public class FighterShootController
 	{
 		private var shoot:Boolean = false;
-	   	private var fighter:Fighter;
+		private var fighter:Fighter;
+
 		public function FighterShootController(fighter:Fighter)
 		{
 			this.fighter = fighter;
+
 			Starling.current.stage.addEventListener(KeyboardEvent.KEY_UP, onKeyUp);
 			Starling.current.stage.addEventListener(KeyboardEvent.KEY_DOWN, onKeyDown)
 		}
@@ -31,10 +39,11 @@ package game.entities.fighter
 			if(shoot)
 			{
 				shoot = false;
-				 fighter.shoot();
+				fighter.shoot();
 				SocketManager.getInstance().send(Message.FIGHTER_SHOOT,{})
 			}
 		}
+
 
 		private function onKeyDown(event: KeyboardEvent): void
 		{

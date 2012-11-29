@@ -14,15 +14,16 @@ package game.entities.fighter
 	import starling.display.MovieClip;
 	import starling.textures.Texture;
 
+	import utlis.log;
 
-	public class FighterRatata extends MovieClip
+
+	public class FighterEngineAnimation extends MovieClip
 	{
-		private function var maxFrames:int;
-		public function FighterRatata()
+
+		public function FighterEngineAnimation()
 		{
-			var texures :Vector.<Texture>   = Assets.getTextures("fx_particle_ratata") ;
-			maxFrames = texures.length;
-			super(texures,9);
+			var texures :Vector.<Texture>  = Assets.getTextures("fx_particle_engine");
+			super(texures,12);
 		}
 
 
@@ -30,7 +31,7 @@ package game.entities.fighter
 
 		override public function  advanceTime(passedTime:Number):void
 		{
-			//currentFrame = Math.random() * maxFrames;
+
 			super.advanceTime(passedTime);
 
 			var tmp:Number = Math.sin(getTimer() * 0.01)+1;

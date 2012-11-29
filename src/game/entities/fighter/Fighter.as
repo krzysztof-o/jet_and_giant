@@ -21,15 +21,16 @@ package game.entities.fighter
     {
 		protected var weapon:Weapon;
 		protected var shootController:FighterShootController;
-		protected var ratata:FighterRatata;
-
+		protected var engineAnimation:FighterEngineAnimation;
+	   	protected var ratataAnimationController :RatataAnimationController;
         public function Fighter()
         {
             super();
 			Global.fighter = this;
 			hull.addEventListener(Event.ADDED_TO_STAGE, onAddedToStage)
 			weapon = new FighterWeapon();
-
+			var img:Image = Assets.getImage("ship_jet_full");
+			hull.addChild(img);
 
             if (ClientType.DESKTOP)
             {
@@ -41,23 +42,24 @@ package game.entities.fighter
                 movingStrategy = new ServerMovingStrategy(this);
             }
 
-            var img:Image = Assets.getImage("ship_jet_full");
-            hull.addChild(img);
+
+
         }
 
 		private function onAddedToStage(event: Event): void
 		{
-			createRatata();
+			createEngineAnimation();
+			ratataAnimationController = new RatataAnimationController(this);
 		}
 
-		private function createRatata(): void
+		private function createEngineAnimation(): void
 		{
-			ratata = new FighterRatata();
-			hull.addChildAt(ratata,0);
-			ratata.x = -ratata.width/2;
-			ratata.y = -10;
-			Starling.juggler.add(ratata);
-			ratata.play();
+			engineAnimation = new FighterEngineAnimation();
+			hull.addChildAt(engineAnimation,0);
+			engineAnimation.x = -engineAnimation.width/3 + 10;
+			engineAnimation.y = hull.height - 19;
+			Starling.juggler.add(engineAnimation);
+			engineAnimation.play();
 		}
 
 
@@ -72,9 +74,11 @@ package game.entities.fighter
 
 		public function shoot(): void
 		{
-			var x:Number = hull.bounds.right;
-			var y:Number = hull.bounds.bottom;
-			 weapon.shoot(x,  y);
+			var x:Number = hull.bounds.right - ratataAnimationController.ratata.width/2 ;
+			var y:Number = hull.bounds.bottom - ratataAnimationController.ratata.height/2;
+			weapon.shoot(x,  y);
+
+			ratataAnimationController.showRatata();
 		}
 	}
 }
