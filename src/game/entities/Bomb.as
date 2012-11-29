@@ -13,7 +13,7 @@ package game.entities
         public function Bomb()
         {
             super();
-			hull.addEventListener(Event.ADDED_TO_STAGE, onAddedToStage)
+			hull.addEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
 
             movingStrategy = new BombMovingStrategy(this);
         }
