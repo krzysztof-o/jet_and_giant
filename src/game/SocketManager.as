@@ -36,7 +36,6 @@ package game
 
         public function connect(host:String, port:int):void
         {
-            //Security.allowDomain("*");
             socket = new Socket();
             socket.addEventListener(Event.CONNECT, onConnect);
             socket.addEventListener(Event.CLOSE, onClose);
