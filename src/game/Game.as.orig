@@ -1,11 +1,18 @@
 package game
 {
+<<<<<<< HEAD
+
+import game.entities.Ship;
+=======
     import game.entities.Fighter;
     import game.entities.Ship;
+>>>>>>> socket
     import game.entitymanager.EntityManager;
-    import game.scene.Scene;
+import game.scene.Scene;
 
-    import starling.display.Sprite;
+import starling.core.Starling;
+
+import starling.display.Sprite;
 
     public class Game extends Sprite
     {
@@ -18,7 +25,9 @@ package game
             super();
 
             scene = new Scene(width, height);
+
             addChild(scene);
+
             entityManager.init(scene);
 
             var ship:Ship = new Ship();

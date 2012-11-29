@@ -13,12 +13,7 @@ package game.entities
             movingStrategy = new FighterMovingStrategy(this);
 
             var quad:Quad = new Quad(50, 50, 0xFF0000);
-            addChild(quad);
-        }
-
-        override public function update(timer:int):void
-        {
-            super.update(timer);
+            hull.addChild(quad);
         }
     }
 }

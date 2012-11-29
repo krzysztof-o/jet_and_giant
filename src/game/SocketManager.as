@@ -74,9 +74,13 @@ package game
             }
         }
 
-        public function send(message:String):void
+        public function send(message:Object):void
         {
-            socket.writeUTFBytes(message + "\r\n");
+            if (!socket.connected) return;
+
+            var str:String = JSON.stringify(message);
+
+            socket.writeUTFBytes(str + "\r\n");
             socket.flush();
         }
     }
