@@ -7,8 +7,8 @@ package game
     import flash.net.Socket;
     import flash.system.Security;
 
-    import game.entities.FighterServerMovingStrategy;
     import game.entities.Message;
+    import game.entities.ServerMovingStrategy;
 
     import utlis.ClientType;
     import utlis.log;
@@ -70,7 +70,7 @@ package game
             if (socket.bytesAvailable > 0)
             {
                 var messages:String = socket.readUTFBytes(socket.bytesAvailable);
-                //log("onResponse (" + messages.length + ")" + messages);
+                log("onResponse (" + messages.length + ")" + messages);
                 if (messages.length > 0)
                 {
 //                    try
@@ -103,7 +103,14 @@ package game
             {
                 if (ClientType.MOBILE)
                 {
-                    FighterServerMovingStrategy(Global.fighter.movingStrategy).setPosition(data.x, data.y);
+                    ServerMovingStrategy(Global.fighter.movingStrategy).setPosition(data.x, data.y);
+                }
+            }
+            if (id == Message.BOMBER_POSITION)
+            {
+                if (ClientType.DESKTOP)
+                {
+                    ServerMovingStrategy(Global.bomber.movingStrategy).setPosition(data.x, data.y);
                 }
             }
         }

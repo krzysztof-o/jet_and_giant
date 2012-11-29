@@ -1,14 +1,15 @@
 package game.entities
 {
-	import game.entities.strategies.IMovingStrategy;
+    import game.entities.strategies.IMovingStrategy;
+    import game.entitymanager.Entity;
 
-	public class FighterServerMovingStrategy implements IMovingStrategy
+    public class ServerMovingStrategy implements IMovingStrategy
     {
-        private var entity:Fighter;
+        private var entity:Entity;
         private var dx:Number = 0;
         private var dy:Number = 0;
 
-        public function FighterServerMovingStrategy(entity:Fighter)
+        public function ServerMovingStrategy(entity:Entity)
         {
             this.entity = entity;
         }
@@ -19,7 +20,7 @@ package game.entities
             this.dy = y;
         }
 
-        public function update(timer: Number): void
+        public function update(timer:Number):void
         {
             entity.position.x += (dx - entity.position.x) / 10;
             entity.position.y += (dy - entity.position.y) / 10;

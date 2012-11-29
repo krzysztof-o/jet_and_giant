@@ -1,7 +1,8 @@
 package game
 {
 
-import game.entities.Ship;
+    import game.entities.Bomber;
+    import game.entities.Ship;
     import game.entities.Fighter;
     import game.entities.Ship;
 	import game.enemy.Enemy;
@@ -32,6 +33,9 @@ import game.entities.Ship;
 
             var fighter:Fighter = new Fighter();
             fighter.add();
+
+            var bomber:Bomber = new Bomber();
+            bomber.add();
 
 			var vo:EnemyVO =  new EnemyVO();
 			vo.type = 1;

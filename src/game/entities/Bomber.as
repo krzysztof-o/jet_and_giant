@@ -1,29 +1,29 @@
 package game.entities
 {
     import game.Global;
-    import game.entities.strategies.FighterMovingStrategy;
+    import game.entities.strategies.BomberMovingStrategy;
     import game.entitymanager.Entity;
 
     import starling.display.Image;
 
     import utlis.ClientType;
 
-    public class Fighter extends Entity
+    public class Bomber extends Entity
     {
-        public function Fighter()
+        public function Bomber()
         {
             super();
-            Global.fighter = this;
-            if (ClientType.DESKTOP)
+            Global.bomber = this;
+            if (ClientType.MOBILE)
             {
-                movingStrategy = new FighterMovingStrategy(this);
+                movingStrategy = new BomberMovingStrategy(this);
             }
             else
             {
                 movingStrategy = new ServerMovingStrategy(this);
             }
 
-            var img:Image = Assets.getImage("ship_jet_full");
+            var img:Image = Assets.getImage("ship_giant_full");
             hull.addChild(img);
         }
     }
