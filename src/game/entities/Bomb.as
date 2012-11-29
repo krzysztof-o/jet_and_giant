@@ -26,6 +26,10 @@ package game.entities
         override public function onAdd():void
         {
             super.onAdd();
+
+			hull.x = position.x;
+			hull.y = position.y;
+			hull.active = false;
         }
     }
 }

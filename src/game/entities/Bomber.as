@@ -70,11 +70,11 @@ package game.entities
             x -= (x - (position.x + BOMB_RELATIVE_X)) / 2;
             y -= (y - (position.y + BOMB_RELATIVE_Y)) / 2;
 
-			bomb.add();
-            bomb.position.x = x;
-            bomb.position.y = y - bomb.hull.height/2;
-			bomb.hull.parent.setChildIndex(bomb.hull,0);
 
+            bomb.position.x = x - 80;
+            bomb.position.y = y - bomb.hull.height * 2;
+			bomb.add();
+			bomb.hull.parent.setChildIndex(bomb.hull,0);
         }
 
         override public function dispose():void
