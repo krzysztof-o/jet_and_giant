@@ -1,4 +1,5 @@
-package game.entities
+
+  package game.entities
 {
     import game.entitymanager.Entity;
 

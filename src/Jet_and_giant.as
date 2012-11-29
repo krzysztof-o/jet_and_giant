@@ -13,8 +13,6 @@ package
 	[SWF(frameRate=60, height="600", width="760")]
     public class Jet_and_giant extends Sprite
     {
-        private var entityManager:EntityManager = EntityManager.getInstance();
-
         public function Jet_and_giant()
         {
             stage.align = StageAlign.TOP_LEFT;
