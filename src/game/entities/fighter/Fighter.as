@@ -1,4 +1,4 @@
-package game.entities
+package game.entities.fighter
 {
 	import flash.ui.Keyboard;
     import game.entitymanager.Entity;
@@ -10,21 +10,27 @@ package game.entities
 	import game.weapon.FighterWeapon;
 	import game.weapon.Weapon;
 
-	import starling.display.Image;
+	import starling.core.Starling;
 
-    import utlis.ClientType;
+	import starling.display.Image;
+	import starling.events.Event;
+
+	import utlis.ClientType;
 
 	public class Fighter extends Entity
     {
 		protected var weapon:Weapon;
 		protected var shootController:FighterShootController;
+		protected var ratata:FighterRatata;
 
         public function Fighter()
         {
             super();
+			Global.fighter = this;
+			hull.addEventListener(Event.ADDED_TO_STAGE, onAddedToStage)
 			weapon = new FighterWeapon();
 
-            Global.fighter = this;
+
             if (ClientType.DESKTOP)
             {
 				shootController = new FighterShootController(this) ;
@@ -38,6 +44,22 @@ package game.entities
             var img:Image = Assets.getImage("ship_jet_full");
             hull.addChild(img);
         }
+
+		private function onAddedToStage(event: Event): void
+		{
+			createRatata();
+		}
+
+		private function createRatata(): void
+		{
+			ratata = new FighterRatata();
+			hull.addChildAt(ratata,0);
+			ratata.x = -ratata.width/2;
+			ratata.y = -10;
+			Starling.juggler.add(ratata);
+			ratata.play();
+		}
+
 
 		override public function update(dt: Number): void
 		{

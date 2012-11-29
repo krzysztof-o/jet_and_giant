@@ -5,7 +5,7 @@ import flash.events.TimerEvent;
 import flash.utils.Timer;
 
 import game.entities.Bomber;
-    import game.entities.Fighter;
+    import game.entities.fighter.Fighter;
 	import game.entities.Ground;
 	import game.entities.Ship;
 	import game.enemy.FlyingEnemy;

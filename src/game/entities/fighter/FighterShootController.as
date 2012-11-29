@@ -5,8 +5,9 @@
  * Time: 19:14
  * To change this template use File | Settings | File Templates.
  */
-package game.entities
+package game.entities.fighter
 {
+	import game.entities.*;
 	import flash.ui.Keyboard;
 
 	import game.SocketManager;

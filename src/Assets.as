@@ -1,6 +1,8 @@
 package
 {
-    import starling.display.Image;
+	import flash.geom.Rectangle;
+
+	import starling.display.Image;
     import starling.textures.Texture;
     import starling.textures.TextureAtlas;
 
@@ -29,6 +31,11 @@ package
             trace("imgae: ", textureName);
             return new Image(ATLAS.getTexture(textureName) || ATLAS_JET.getTexture(textureName));
         }
+
+		public static function getTextures(prifix:String): Vector.<Texture>
+		{
+			return ATLAS_JET.getTextures(prifix);
+		}
     }
 
 
