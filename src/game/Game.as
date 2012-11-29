@@ -1,7 +1,7 @@
 package game
 {
     import game.entities.Ship;
-    import game.entity.EntityManager;
+    import game.entitymanager.EntityManager;
 
     import starling.display.Sprite;
 

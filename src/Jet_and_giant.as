@@ -6,7 +6,7 @@ package
     import flash.display.StageScaleMode;
 
     import game.Game;
-    import game.entity.EntityManager;
+    import game.entitymanager.EntityManager;
 
     import starling.core.Starling;
 

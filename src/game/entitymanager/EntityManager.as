@@ -1,5 +1,7 @@
-package game.entity
+package game.entitymanager
 {
+    import flash.utils.getTimer;
+
     import starling.display.DisplayObjectContainer;
     import starling.events.Event;
 
@@ -33,7 +35,7 @@ package game.entity
         {
             for (var i:uint = 0; i < entities.length; i++)
             {
-                entities[0].update();
+                entities[0].update(getTimer());
             }
         }
 
