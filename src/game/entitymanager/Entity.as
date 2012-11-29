@@ -1,16 +1,16 @@
 package game.entitymanager
 {
 
-import flash.geom.Point;
+    import flash.geom.Point;
 
-import game.entities.strategies.DefaultMovingStrategy;
+    import game.entities.strategies.DefaultMovingStrategy;
     import game.entities.strategies.IMovingStrategy;
 
     public class Entity
     {
         protected var entityManager:EntityManager = EntityManager.getInstance();
 
-        protected var movingStrategy:IMovingStrategy;
+        public var movingStrategy:IMovingStrategy;
 
         public var hull:BodySprite;
 
@@ -20,11 +20,6 @@ import game.entities.strategies.DefaultMovingStrategy;
         public function set position(value:Point):void
         {
             _position = value;
-            if(hull.active)
-            {
-                hull.x = _position.x;
-                hull.y = _position.y;
-            }
         }
 
         public function get position():Point
@@ -35,7 +30,7 @@ import game.entities.strategies.DefaultMovingStrategy;
         public function set rotation(value:Number):void
         {
             _rotation = value;
-            if(hull.active)
+            if (hull.active)
             {
                 hull.rotation = _rotation;
             }
@@ -54,6 +49,9 @@ import game.entities.strategies.DefaultMovingStrategy;
         public function update(timer:int):void
         {
             movingStrategy.update(timer);
+
+            hull.x = _position.x;
+            hull.y = _position.y;
         }
 
         public function add():void

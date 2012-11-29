@@ -7,6 +7,10 @@ package game
     import flash.net.Socket;
     import flash.system.Security;
 
+    import game.entities.FighterServerMovingStrategy;
+
+    import game.entities.Message;
+
     import utlis.log;
 
     public class SocketManager
@@ -65,23 +69,43 @@ package game
         {
             if (socket.bytesAvailable > 0)
             {
-                var message:String = socket.readUTFBytes(socket.bytesAvailable);
-                log("onResponse (" + message.length + ")" + message);
-                if (message.length > 0)
+                var messages:String = socket.readUTFBytes(socket.bytesAvailable);
+                //log("onResponse (" + messages.length + ")" + messages);
+                if (messages.length > 0)
                 {
-                    send("twoja stara!");
+                    try
+                    {
+                        var arr:Array = messages.split("\n");
+                        for each(var message:String in arr)
+                        {
+                            var obj:Object = JSON.parse(message);
+                            parse(obj.id, obj.data);
+                        }
+                    }
+                    catch (e:*)
+                    {
+                    }
                 }
             }
         }
 
-        public function send(message:Object):void
+        public function send(id:String, data:Object):void
         {
             if (!socket.connected) return;
 
-            var str:String = JSON.stringify(message);
+            var str:String = JSON.stringify({id: id, data: data});
 
             socket.writeUTFBytes(str + "\r\n");
             socket.flush();
+        }
+
+        private function parse(id:String, data:Object):void
+        {
+            if (id == Message.FIGHTER_POSITION)
+            {
+                log(data);
+                FighterServerMovingStrategy(Global.fighter.movingStrategy).setPosition(data.x, data.y);
+            }
         }
     }
 }

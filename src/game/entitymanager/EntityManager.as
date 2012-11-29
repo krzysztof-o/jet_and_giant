@@ -36,7 +36,7 @@ package game.entitymanager
         {
             for (var i:uint = 0; i < entities.length; i++)
             {
-                entities[i].update(getTimer());
+                entities[i].update(new Date().time);
             }
         }
 

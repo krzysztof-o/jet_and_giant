@@ -2,13 +2,16 @@ package game.entities.strategies
 {
     import flash.geom.Point;
     import flash.ui.Keyboard;
+    import flash.utils.getTimer;
 
     import game.SocketManager;
+    import game.entities.Message;
     import game.entitymanager.Entity;
 
     import starling.core.Starling;
 
     import utlis.KeyboardManager;
+    import utlis.log;
 
     public class FighterMovingStrategy implements IMovingStrategy
     {
@@ -17,6 +20,7 @@ package game.entities.strategies
         private var speed:Point = new Point();
 
         private var keyboardManager:KeyboardManager;
+        private var lastTime:int = 0;
 
         public function FighterMovingStrategy(entity:Entity)
         {
@@ -25,6 +29,15 @@ package game.entities.strategies
         }
 
         public function update(timer:int):void
+        {
+            var pt:Point = calculatePosition();
+
+            entity.position.x = pt.x;
+            entity.position.y = pt.y;
+
+        }
+
+        private function calculatePosition():Point
         {
             getDirection();
 
@@ -55,8 +68,8 @@ package game.entities.strategies
             speed.y = Math.max(speed.y, -3);
 
             //update
-            var dx:Number = entity.hull.x + speed.x;
-            var dy:Number = entity.hull.y + speed.y;
+            var dx:Number = entity.position.x + speed.x;
+            var dy:Number = entity.position.y + speed.y;
 
             //
             dx = Math.max(20, dx);
@@ -65,11 +78,15 @@ package game.entities.strategies
             dy = Math.min(Starling.current.stage.stageHeight - 20 - entity.hull.height, dy);
 
             if (int(entity.position.x) != int(dx) || int(entity.position.y) != int(dy))
+            if (int(entity.position.x) != int(dx) || int(entity.position.y) != int(dy))
+            var newTime:int = new Date().time;
+            if ((int(entity.position.x) != int(dx) || int(entity.position.y) != int(dy)) && newTime - lastTime > 10)
             {
-                SocketManager.getInstance().send(getPositionObject());
+                //log("SEND", newTime - lastTime);
+                lastTime = newTime;
+                SocketManager.getInstance().send(Message.FIGHTER_POSITION, getPositionObject());
             }
-            entity.position.x = dx;
-            entity.position.y = dy;
+            return new Point(dx, dy);
         }
 
         private function getPositionObject():Object
