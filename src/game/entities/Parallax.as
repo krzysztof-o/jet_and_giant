@@ -120,6 +120,7 @@ import starling.display.Sprite;
             diff = null;
 
             lastUpdate = timer;
+            event = null;
         }
     }
 }
