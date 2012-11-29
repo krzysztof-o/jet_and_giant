@@ -1,14 +1,10 @@
 package game.entitymanager
 {
-
 	import flash.geom.Point;
-
     import game.Global;
 
     import game.entities.strategies.DefaultMovingStrategy;
 	import game.entities.strategies.IMovingStrategy;
-
-	import starling.display.Sprite;
 
 	public class Entity
     {
@@ -46,7 +42,7 @@ package game.entitymanager
             hull = new BodySprite();
         }
 
-        public function update(timer:int):void
+        public function update(timer: Number):void
         {
             movingStrategy.update(timer);
 
@@ -74,7 +70,6 @@ package game.entitymanager
         {
             movingStrategy.dispose();
         }
-
 
 		public function dispose():void
 		{
