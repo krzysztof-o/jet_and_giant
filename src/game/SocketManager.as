@@ -75,9 +75,16 @@ package game
                 {
 //                    try
 //                    {
-                    var obj:Object = JSON.parse(messages);
-                    parse(obj.id, obj.data);
 
+                    var arr:Array = messages.split("\n");
+                    for each(var m:String in arr)
+                    {
+                        if(m.length > 2)
+                        {
+                            var obj:Object = JSON.parse(m);
+                            parse(obj.id, obj.data);
+                        }
+                    }
 //                    }
 //                    catch (e:*)
 //                    {
@@ -111,6 +118,13 @@ package game
                 if (ClientType.DESKTOP)
                 {
                     ServerMovingStrategy(Global.bomber.movingStrategy).setPosition(data.x, data.y);
+                }
+            }
+            if (id == Message.DROP_BOMB)
+            {
+                if (ClientType.DESKTOP)
+                {
+                    Global.bomber.dropBomb(data.x, data.y);
                 }
             }
         }

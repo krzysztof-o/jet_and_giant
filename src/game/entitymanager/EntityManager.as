@@ -4,6 +4,8 @@ package game.entitymanager
     import flash.utils.getQualifiedClassName;
     import flash.utils.getTimer;
     import game.scene.Scene;
+
+    import starling.core.Starling;
     import starling.events.Event;
 
 	import utlis.log;
@@ -50,7 +52,9 @@ package game.entitymanager
 				entity =  entities[i];
 				entity.update(dt);
 
-				if(entity.position.x < 0)
+				if(entity.position.x + entity.hull.width < 0 || entity.position.x > Starling.current.stage.stageWidth + 50
+                        || entity.position.y + entity.hull.height < 0 || entity.position.y > Starling.current.stage.stageHeight + 50
+                        )
 				{
 					remove(entity);
 					i--;
@@ -61,7 +65,7 @@ package game.entitymanager
 
         public function remove(entity:Entity):void
         {
-            log("remove", getQualifiedClassName(entity));
+            //log("remove", getQualifiedClassName(entity));
             entity.onRemove();
             entities.splice(entities.indexOf(entity), 1);
             entity.hull.removeFromParent(true);

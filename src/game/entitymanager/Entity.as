@@ -3,12 +3,14 @@ package game.entitymanager
 
 	import flash.geom.Point;
 
-	import game.entities.strategies.DefaultMovingStrategy;
+    import game.Global;
+
+    import game.entities.strategies.DefaultMovingStrategy;
 	import game.entities.strategies.IMovingStrategy;
 
 	import starling.display.Sprite;
 
-	public class Entity extends Sprite
+	public class Entity
     {
         protected var entityManager:EntityManager = EntityManager.getInstance();
 
@@ -29,12 +31,12 @@ package game.entitymanager
             return _position;
         }
 
-        override  public function set rotation(value:Number):void
+        public function set rotation(value:Number):void
         {
             _rotation = value;
         }
 
-        override public function get rotation():Number
+        public function get rotation():Number
         {
             return _rotation;
         }
@@ -74,6 +76,11 @@ package game.entitymanager
         public function onRemove():void
         {
             movingStrategy.dispose();
+        }
+
+        public function dispose():void
+        {
+            Global.bombPool.returnObject(this);
         }
     }
 }

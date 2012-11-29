@@ -439,7 +439,7 @@ package starling.display
                 removeEventListener(TouchEvent.TOUCH, onTouch);
         }
         
-        private function onTouch(event:TouchEvent):void
+        protected function onTouch(event:TouchEvent):void
         {
             Mouse.cursor = event.interactsWith(this) ? MouseCursor.BUTTON : MouseCursor.AUTO;
         }

@@ -4,5 +4,6 @@ package game.entities
     {
         public static const FIGHTER_POSITION:String = "fighter_position";
         public static const BOMBER_POSITION:String = "bomber_position";
+        public static const DROP_BOMB:String = "drop_bomb";
     }
 }

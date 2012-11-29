@@ -1,15 +1,23 @@
 package game.entities
 {
     import game.Global;
+    import game.SocketManager;
     import game.entities.strategies.BomberMovingStrategy;
     import game.entitymanager.Entity;
 
+    import starling.core.Starling;
     import starling.display.Image;
+    import starling.events.TouchEvent;
+    import starling.events.TouchPhase;
 
     import utlis.ClientType;
+    import utlis.log;
 
     public class Bomber extends Entity
     {
+        private const BOMB_RELATIVE_X:Number = 160;
+        private const BOMB_RELATIVE_Y:Number = 100;
+
         public function Bomber()
         {
             super();
@@ -25,6 +33,42 @@ package game.entities
 
             var img:Image = Assets.getImage("ship_giant_full");
             hull.addChild(img);
+
+            Starling.current.stage.addEventListener(TouchEvent.TOUCH, touchHandler);
+        }
+
+        private function touchHandler(event:TouchEvent):void
+        {
+            if (event.getTouch(Starling.current.root, TouchPhase.BEGAN))
+            {
+                var dx:Number = position.x + BOMB_RELATIVE_X;
+                var dy:Number = position.y + BOMB_RELATIVE_Y;
+                if (ClientType.MOBILE)
+                {
+                    log("send drop bomb");
+                    SocketManager.getInstance().send(Message.DROP_BOMB, {x: int(dx), y: int(dy)});
+                }
+                dropBomb(dx, dy);
+            }
+        }
+
+        public function dropBomb(x:Number, y:Number):void
+        {
+            var bomb:Bomb = Global.bombPool.borrowObject();
+
+            //wysrodkowanie pozycji bomby pomiedzy tym co przyszlo z serwera i tym gdzie jest bomber
+            x -= (x - (position.x + BOMB_RELATIVE_X)) / 2;
+            y -= (y - (position.y + BOMB_RELATIVE_Y)) / 2;
+
+            bomb.position.x = x;
+            bomb.position.y = y;
+            bomb.add();
+        }
+
+        override public function dispose():void
+        {
+            Starling.current.stage.removeEventListener(TouchEvent.TOUCH, touchHandler);
+            super.dispose();
         }
     }
 }
