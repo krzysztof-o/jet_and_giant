@@ -23,7 +23,7 @@ package game.entities.strategies
         public function FighterMovingStrategy(entity:Entity)
         {
             this.entity = entity;
-            keyboardManager = new KeyboardManager();
+            keyboardManager = KeyboardManager.getInstance();
         }
 
         public function update(timer: Number): void

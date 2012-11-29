@@ -2,11 +2,17 @@
  * Created with IntelliJ IDEA.
  * User: grzegorz-przybylowic
  * Date: 29.11.12
- * Time: 15:06
+ * Time: 18:19
  * To change this template use File | Settings | File Templates.
  */
 package game.weapon
 {
+	import game.weapon.bullet.Bullet;
+
+	import utlis.log;
+
+	import avmplus.factoryXml;
+
     import game.Global;
 
     import game.weapon.bullet.Bullet;
@@ -16,11 +22,9 @@ package game.weapon
 		protected var loadingTime:Number;
 		protected var shootTimeInterval:Number;
 
-        public function Weapon()
+		public function Weapon()
 		{
-			loadingTime = 0;
-			shootTimeInterval = 30;
-        }
+		}
 
         public function dispose():void
         {
@@ -32,19 +36,16 @@ package game.weapon
 
 		public function load(dt:Number):void
 		{
-			loadingTime += dt;
 		}
 
 
 		public function get isLoaded():Boolean
 		{
-			return loadingTime >= shootTimeInterval;
+			return true;
 		}
 
-		public function shoot(x:int,  y:int) :void
+		public function shoot(x: Number, y: Number) : void
 		{
-			loadingTime = 0;
-			shootTimeInterval = Math.random()*500 +  Math.random()*600;
 
 			var bullet:Bullet = Global.bulletPool.borrowObject();
 			bullet.add();

@@ -26,15 +26,7 @@ import flash.ui.Keyboard;
         public function BomberMovingStrategy(entity:Entity)
         {
             this.entity = entity;
-            keyboardManager = new KeyboardManager();
-
-            accelerometer = new Accelerometer();
-            accelerometer.addEventListener(AccelerometerEvent.UPDATE, onAccUpdate);
-        }
-
-        public function onAccUpdate(event:AccelerometerEvent):void
-        {
-            trace(event);
+            keyboardManager = KeyboardManager.getInstance();
         }
 
         public function update(timer: Number): void

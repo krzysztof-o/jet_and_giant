@@ -51,8 +51,7 @@ import game.entities.Bomber;
 			var vo:EnemyVO =  new EnemyVO();
 			vo.type = 1;
 			vo.startX = 700;
-			EnemyFactory.getInstance().createEnemy(vo);
-            vo = null;
+			//EnemyFactory.getInstance().createEnemy(vo);
         }
     }
 }

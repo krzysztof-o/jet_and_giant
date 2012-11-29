@@ -8,9 +8,10 @@ package game
     import flash.system.Security;
 
     import game.entities.Message;
-    import game.entities.strategies.ServerMovingStrategy;
+    import game.entities.ServerMovingStrategy;
+	import game.weapon.bullet.Bullet;
 
-    import utlis.ClientType;
+	import utlis.ClientType;
     import utlis.log;
 
     public class SocketManager
@@ -127,6 +128,14 @@ package game
                     Global.bomber.dropBomb(data.x, data.y);
                 }
             }
+
+			if(id == Message.FIGHTER_SHOOT)
+			{
+				if(ClientType.MOBILE)
+				{
+					Global.fighter.shoot();
+				}
+			}
         }
     }
 }

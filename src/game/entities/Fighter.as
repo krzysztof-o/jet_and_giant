@@ -1,19 +1,28 @@
 package game.entities
 {
-    import game.Global;
-    import game.entities.strategies.FighterMovingStrategy;
-import game.entities.strategies.ServerMovingStrategy;
-import game.entitymanager.Entity;
+	import flash.ui.Keyboard;
 
-    import starling.display.Image;
+	import game.Global;
+	import game.entities.FighterShootController;
+	import game.entities.strategies.FighterMovingStrategy;
+    import game.entitymanager.Entity;
+	import game.weapon.FighterWeapon;
+	import game.weapon.Weapon;
+
+	import starling.display.Image;
 
     import utlis.ClientType;
+	import utlis.KeyboardManager;
+	import utlis.log;
 
-    public class Fighter extends Entity
+	public class Fighter extends Entity
     {
+		protected var weapon:Weapon;
         public function Fighter()
         {
             super();
+			weapon = new FighterWeapon();
+
             Global.fighter = this;
             if (ClientType.DESKTOP)
             {
@@ -27,5 +36,24 @@ import game.entitymanager.Entity;
             var img:Image = Assets.getImage("ship_jet_full");
             hull.addChild(img);
         }
-    }
+
+		override public function update(dt: Number): void
+		{
+			super.update(dt) ;
+   			if(ClientType.DESKTOP)
+			{
+
+				if(FighterShootController.checkForShoot())
+				{
+					log("tt")
+					shoot();
+				}
+			}
+		}
+
+		public function shoot(): void
+		{
+			 weapon.shoot(this.x,  this.y);
+		}
+	}
 }

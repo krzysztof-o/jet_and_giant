@@ -12,6 +12,7 @@ package game.entities.strategies
 	public class BulletMovingStrategy implements IMovingStrategy
 	{
 		protected var bullet:Bullet
+
 		public function BulletMovingStrategy(bullet: Bullet)
 		{
 			this.bullet = bullet;
@@ -19,7 +20,7 @@ package game.entities.strategies
 
 		public function update(dt: Number): void
 		{
-			bullet.position.x -= 0.5*dt;
+			bullet.position.x -= bullet.deltaX *dt;
 		}
 
 		public function dispose():void
