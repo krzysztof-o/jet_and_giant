@@ -7,6 +7,7 @@
  */
 package game.entities
 {
+import flash.display.Bitmap;
 import flash.geom.Point;
 import flash.utils.getTimer;
 
@@ -23,9 +24,6 @@ import starling.display.Sprite;
         protected var speed:Number;
         protected var distance:Number;
 
-        [Embed(source="../../assets/background_parallax.png")]
-        protected static const ParallaxAtlasBitmap:Class;
-
         [Embed(source="../../assets/background_parallax_01.png")]
         protected static const ParallaxBitmap01:Class;
 
@@ -35,10 +33,6 @@ import starling.display.Sprite;
         [Embed(source="../../assets/background_parallax_03.png")]
         protected static const ParallaxBitmap03:Class;
 
-        [Embed(source="../../assets/background_parallax.xml", mimeType="application/octet-stream")]
-        protected static const ParallaxAtlasXML:Class;
-
-        protected var textureAtlas:TextureAtlas;
         protected var layers:Vector.<Image>;
 
         public function Parallax(_speed:Number)
@@ -54,12 +48,8 @@ import starling.display.Sprite;
             addEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
         }
 
-//        override public function add():void
         public function onAddedToStage(event:Event):void
         {
-            textureAtlas = new TextureAtlas(Texture.fromBitmap(new ParallaxAtlasBitmap()), XML(new ParallaxAtlasXML()));
-
-//            var textures:Vector.<Texture> = textureAtlas.getTextures("background_parallax_");
             var tex:Texture = Texture.fromBitmap(new ParallaxBitmap01);
             tex.repeat = true;
             var img:Image = new Image(tex);
