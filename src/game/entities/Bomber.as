@@ -47,8 +47,8 @@ package game.entities
                 {
                     log("send drop bomb");
                     SocketManager.getInstance().send(Message.DROP_BOMB, {x: int(dx), y: int(dy)});
+                    dropBomb(dx, dy);
                 }
-                dropBomb(dx, dy);
             }
         }
 
