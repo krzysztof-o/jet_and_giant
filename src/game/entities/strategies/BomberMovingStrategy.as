@@ -2,7 +2,9 @@ package game.entities.strategies
 {
 import flash.events.AccelerometerEvent;
 import flash.geom.Point;
+import flash.html.script.PropertyEnumHelper;
 import flash.sensors.Accelerometer;
+import flash.text.engine.TabStop;
 import flash.ui.Keyboard;
 
     import game.SocketManager;
@@ -15,6 +17,13 @@ import flash.ui.Keyboard;
 
     public class BomberMovingStrategy implements IMovingStrategy
     {
+        public static const TOLERANCE_X:Number = 0.01;
+        public static const TOLERANCE_Y:Number = 0.01;
+        public static const TOLERANCE_Z:Number = 0.01;
+
+        protected var lastZ:Number;
+        protected var accMoved:Boolean;
+
         private var entity:Entity;
         private var direction:Point = new Point();
         private var speed:Point = new Point();
@@ -26,7 +35,44 @@ import flash.ui.Keyboard;
         public function BomberMovingStrategy(entity:Entity)
         {
             this.entity = entity;
+
+            accMoved = false;
+            lastZ = NaN;
             keyboardManager = KeyboardManager.getInstance();
+
+            accelerometer = new Accelerometer();
+            accelerometer.addEventListener(AccelerometerEvent.UPDATE, onAccUpdate);
+        }
+
+        public function onAccUpdate(event:AccelerometerEvent):void
+        {
+//            trace(event);
+            if (Math.abs(event.accelerationX) > TOLERANCE_X)
+               speed.x = event.accelerationX;
+            else
+               speed.x = 0.0;
+
+            if (lastZ != NaN)
+            {
+                var diffZ:Number = lastZ - event.accelerationZ;
+                if (Math.abs(diffZ) > TOLERANCE_Z)
+                {
+                    speed.y = event.accelerationZ;
+                }
+                else
+                {
+                    speed.y = 0.0;
+                }
+            }
+            else
+            {
+                speed.y = 0.0;
+            }
+
+            speed.x *= -100.0;
+            speed.y *= -100.0;
+
+            accMoved = true;
         }
 
         public function update(timer: Number): void
@@ -41,23 +87,31 @@ import flash.ui.Keyboard;
         {
             getDirection();
 
-            if (!keyboardManager.isKeyPressed(Keyboard.LEFT) && !keyboardManager.isKeyPressed(Keyboard.RIGHT))
+//            trace("x ", speed.x,  "y ", speed.y, "acc ", accMoved);
+            if (!accMoved)
             {
-                if (speed.x < .1 && speed.x > -.1) speed.x = 0;
-                else speed.x /= 1.1;
+                if (!keyboardManager.isKeyPressed(Keyboard.LEFT) && !keyboardManager.isKeyPressed(Keyboard.RIGHT))
+                {
+                    if (speed.x < .1 && speed.x > -.1) speed.x = 0;
+                    else speed.x /= 1.1;
+                }
+                else
+                {
+                    speed.x += direction.x * .4;
+                }
+                if (!accMoved && !keyboardManager.isKeyPressed(Keyboard.UP) && !keyboardManager.isKeyPressed(Keyboard.DOWN))
+                {
+                    if (speed.y < .1 && speed.y > -.1) speed.y = 0;
+                    else speed.y /= 1.1;
+                }
+                else
+                {
+                    speed.y += direction.y * .4;
+                }
             }
             else
             {
-                speed.x += direction.x * .4;
-            }
-            if (!keyboardManager.isKeyPressed(Keyboard.UP) && !keyboardManager.isKeyPressed(Keyboard.DOWN))
-            {
-                if (speed.y < .1 && speed.y > -.1) speed.y = 0;
-                else speed.y /= 1.1;
-            }
-            else
-            {
-                speed.y += direction.y * .4;
+                accMoved = false;
             }
 
             //min/max speed
