@@ -70,7 +70,7 @@ package game
             if (socket.bytesAvailable > 0)
             {
                 var messages:String = socket.readUTFBytes(socket.bytesAvailable);
-                //log("onResponse (" + messages.length + ")" + messages);
+                log("onResponse (" + messages.length + ")" + messages);
                 if (messages.length > 0)
                 {
                     try
@@ -103,7 +103,6 @@ package game
         {
             if (id == Message.FIGHTER_POSITION)
             {
-                log(data);
                 FighterServerMovingStrategy(Global.fighter.movingStrategy).setPosition(data.x, data.y);
             }
         }

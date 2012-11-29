@@ -30,10 +30,6 @@ package game.entitymanager
         public function set rotation(value:Number):void
         {
             _rotation = value;
-            if (hull.active)
-            {
-                hull.rotation = _rotation;
-            }
         }
 
         public function get rotation():Number
@@ -50,8 +46,12 @@ package game.entitymanager
         {
             movingStrategy.update(timer);
 
-            hull.x = _position.x;
-            hull.y = _position.y;
+            if (hull.active)
+            {
+                hull.x = _position.x;
+                hull.y = _position.y;
+                hull.rotation = _rotation;
+            }
         }
 
         public function add():void
