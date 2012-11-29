@@ -11,6 +11,8 @@ package game.weapon.bullet
     import game.entities.strategies.BulletMovingStrategy;
 	import game.entitymanager.Entity;
 
+	import starling.display.Image;
+
 	import starling.display.Quad;
 	import starling.events.Event;
 	import starling.utils.Color;
@@ -30,7 +32,9 @@ package game.weapon.bullet
 
 		protected function onAddedToStage(event: Event): void
 		{
-			hull.addChild(new Quad(20,20,Color.FUCHSIA));
+			var img:Image =  Assets.getImage("fx_particle_bullett");
+			hull.addChild(img);
+		  	img.scaleX = -1;
 		}
 
         override public function dispose():void

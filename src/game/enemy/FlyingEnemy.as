@@ -15,7 +15,8 @@ package game.enemy
         public function FlyingEnemy()
         {
             super();
-            hull.addChild(Assets.getImage("symbol_special_scatter_1"));
+
+            hull.addChild(Assets.getImage("ship_enemy_full"));
 
             weapon = new EnemyWeapon();
 
@@ -40,7 +41,7 @@ package game.enemy
 
             if (weapon.isLoaded)
             {
-                weapon.shoot(hull.x, hull.y);
+                weapon.shoot(hull.x, hull.bounds.bottom);
             }
         }
 

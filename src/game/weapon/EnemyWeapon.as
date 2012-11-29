@@ -18,8 +18,8 @@ package game.weapon
 
 			var bullet:Bullet = new Bullet();
 			bullet.add();
-			bullet.position.x = x;
-			bullet.position.y = y;
+			bullet.position.x = x + bullet.hull.width/2;
+			bullet.position.y = y - 20;
 		}
 	}
 }
