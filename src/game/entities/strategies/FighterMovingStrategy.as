@@ -20,7 +20,7 @@ package game.entities.strategies
         private var speed:Point = new Point();
 
         private var keyboardManager:KeyboardManager;
-        private var lastTime:int = 0;
+        private var lastTime:Number = 0;
 
         public function FighterMovingStrategy(entity:Entity)
         {
@@ -28,7 +28,7 @@ package game.entities.strategies
             keyboardManager = new KeyboardManager();
         }
 
-        public function update(timer:int):void
+        public function update(timer:Number):void
         {
             var pt:Point = calculatePosition();
 
@@ -80,7 +80,7 @@ package game.entities.strategies
             if (int(entity.position.x) != int(dx) || int(entity.position.y) != int(dy))
             if (int(entity.position.x) != int(dx) || int(entity.position.y) != int(dy))
             var newTime:int = new Date().time;
-            if ((int(entity.position.x) != int(dx) || int(entity.position.y) != int(dy)) && newTime - lastTime > 10)
+            if ((int(entity.position.x) != int(dx) || int(entity.position.y) != int(dy)) && newTime - lastTime > 0)
             {
                 //log("SEND", newTime - lastTime);
                 lastTime = newTime;

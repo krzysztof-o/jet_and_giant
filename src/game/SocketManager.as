@@ -95,7 +95,7 @@ package game
 
             var str:String = JSON.stringify({id: id, data: data});
 
-            socket.writeUTFBytes(str + "\r\n");
+            socket.writeUTFBytes(str + "\n");
             socket.flush();
         }
 

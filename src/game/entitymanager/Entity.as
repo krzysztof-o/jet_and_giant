@@ -42,7 +42,7 @@ package game.entitymanager
             hull = new BodySprite();
         }
 
-        public function update(timer:int):void
+        public function update(timer:Number):void
         {
             movingStrategy.update(timer);
 

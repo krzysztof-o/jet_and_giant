@@ -11,7 +11,7 @@ package game.entities.strategies
             this.entity = entity;
         }
 
-        public function update(timer:int):void
+        public function update(timer:Number):void
         {
             entity.hull.x += 4;
             entity.hull.y = 200;

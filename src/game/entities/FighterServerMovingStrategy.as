@@ -19,7 +19,7 @@ package game.entities
             this.dy = y;
         }
 
-        public function update(timer:int):void
+        public function update(timer:Number):void
         {
             entity.position.x += (dx - entity.position.x) / 10;
             entity.position.y += (dy - entity.position.y) / 10;
