@@ -13,6 +13,7 @@ import game.entities.Bomber;
 	import game.enemy.EnemyVO;
 	import game.entities.Ship;
     import game.entities.Parallax;
+    import game.entitymanager.EnemiesManager;
 
     import game.entitymanager.EntityManager;
     import game.scene.Scene;
@@ -45,10 +46,13 @@ import game.entities.Bomber;
 			var ground:Ground = new Ground();
 			ground.add();
 
-			var vo:EnemyVO =  new EnemyVO();
-			vo.type = 1;
-			vo.startX = 700;
-			//EnemyFactory.getInstance().createEnemy(vo);
+            var enemiesManager:EnemiesManager = Global.enemiesManager;
+            enemiesManager.add();
+
+//			var vo:EnemyVO =  new EnemyVO();
+//			vo.type = 1;
+//			EnemyFactory.getInstance().createEnemy(vo);
+//            vo = null;
         }
     }
 }

@@ -7,6 +7,7 @@ package game
     import flash.net.Socket;
 
     import game.entities.Message;
+    import game.entities.strategies.ServerMovingStrategy;
 
 	import game.entities.strategies.ServerMovingStrategy;
 
@@ -36,6 +37,7 @@ package game
 
         public function connect(host:String, port:int):void
         {
+            //Security.allowDomain("*");
             socket = new Socket();
             socket.addEventListener(Event.CONNECT, onConnect);
             socket.addEventListener(Event.CLOSE, onClose);
@@ -79,7 +81,7 @@ package game
                     var arr:Array = messages.split("\n");
                     for each(var m:String in arr)
                     {
-                        if(m.length > 2)
+                        if (m.length > 2)
                         {
                             var obj:Object = JSON.parse(m);
                             parse(obj.id, obj.data);
@@ -113,28 +115,36 @@ package game
                     ServerMovingStrategy(Global.fighter.movingStrategy).setPosition(data.x, data.y);
                 }
             }
-            if (id == Message.BOMBER_POSITION)
+            else if (id == Message.BOMBER_POSITION)
             {
                 if (ClientType.DESKTOP)
                 {
                     ServerMovingStrategy(Global.bomber.movingStrategy).setPosition(data.x, data.y);
                 }
             }
-            if (id == Message.DROP_BOMB)
+            else if (id == Message.DROP_BOMB)
             {
                 if (ClientType.DESKTOP)
                 {
                     Global.bomber.dropBomb(data.x, data.y);
                 }
             }
-
-			if(id == Message.FIGHTER_SHOOT)
+			else if(id == Message.FIGHTER_SHOOT)
 			{
 				if(ClientType.MOBILE)
 				{
 					Global.fighter.shoot();
 				}
 			}
+            else if (id == Message.ENEMIES_DEFINITION)
+            {
+                Global.enemiesManager.setEnemies(data.enemies);
+                Global.serverTime = data.current_time;
+                Global.clientServerTimeDifference = new Date().time - data.current_time;
+                log("clientServerTimeDifference", Global.clientServerTimeDifference);
+            }
+
+
         }
     }
 }

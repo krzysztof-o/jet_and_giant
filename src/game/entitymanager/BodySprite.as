@@ -97,6 +97,14 @@ package game.entitymanager
                 body.SetAngle(rotation);
             }
 		}
-	}
+
+        override public function dispose():void
+        {
+            _body = null;
+            bodyDef = null;
+            shape = null;
+            super.dispose();
+        }
+    }
 
 }

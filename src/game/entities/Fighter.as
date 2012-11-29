@@ -1,6 +1,7 @@
 package game.entities
 {
 	import flash.ui.Keyboard;
+    import game.entitymanager.Entity;
 
 	import game.Global;
 	import game.entities.strategies.FighterMovingStrategy;

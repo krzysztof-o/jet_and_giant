@@ -47,6 +47,7 @@ package game.entitymanager
             entityManager = null;
             movingStrategy = null;
 
+            hull.dispose();
             hull = null;
             this.position = null;
             this.rotation = 0;

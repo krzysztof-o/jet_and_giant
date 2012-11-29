@@ -35,8 +35,8 @@ package game.entities
                 movingStrategy = new ServerMovingStrategy(this);
             }
 
-			position.x=600;
-			position.y=300;
+			position.x = 600;
+			position.y = 300;
 
             var img:Image = Assets.getImage("ship_giant_full");
             hull.addChild(img);

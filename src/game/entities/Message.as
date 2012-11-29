@@ -6,5 +6,6 @@ package game.entities
         public static const BOMBER_POSITION:String = "bomber_position";
         public static const DROP_BOMB:String = "drop_bomb";
 		public static const FIGHTER_SHOOT:String = "fighter_shoot"
+        public static const ENEMIES_DEFINITION:String = "enemies";
     }
 }
