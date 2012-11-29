@@ -14,9 +14,7 @@ package game
     import game.entitymanager.EntityManager;
     import game.scene.Scene;
 
-	import spark.components.Group;
-
-	import starling.display.Sprite;
+    import starling.display.Sprite;
 
     public class Game extends Sprite
     {
@@ -41,8 +39,16 @@ package game
             var fighter:Fighter = new Fighter();
             fighter.add();
 
+            var bomber:Bomber = new Bomber();
+            bomber.add();
+
 			var ground:Ground = new Ground();
 			ground.add();
+
+			var vo:EnemyVO =  new EnemyVO();
+			vo.type = 1;
+			vo.startX = 700;
+			EnemyFactory.getInstance().createEnemy(vo);
         }
     }
 }
