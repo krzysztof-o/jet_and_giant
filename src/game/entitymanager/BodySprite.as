@@ -18,9 +18,9 @@ package game.entitymanager
 		public var bodyDef:b2BodyDef;
 		protected var shape:b2Shape;
 		
-		public var friction:Number = 1;
+		public var friction:Number = 0.5;
 		public var density:Number = 1;
-		public var restitution:Number = 1;
+		public var restitution:Number = 0.5;
 		public var linearDamping:Number = 0;
 		public var angularDamping:Number = 0;
 		public var type:uint = b2Body.b2_dynamicBody;
@@ -46,7 +46,7 @@ package game.entitymanager
 		{
 			_body = value;
 			shape = new b2PolygonShape();
-			(shape as b2PolygonShape).SetAsBox(width, height);
+			(shape as b2PolygonShape).SetAsBox(width / Scene.worldScale, height / Scene.worldScale);
 			var fixture:b2FixtureDef = new b2FixtureDef();
 			fixture.shape = shape;
 			fixture.friction = friction;
@@ -94,15 +94,11 @@ package game.entitymanager
                 super.x = body.GetPosition().x * Scene.worldScale;
 				super.y = body.GetPosition().y * Scene.worldScale;
 				super.rotation = body.GetAngle();
-
-				trace("phys_" + x + ", " + y);
             }
             else
             {
-                body.SetPosition(new b2Vec2(x, y));
+                body.SetPosition(new b2Vec2(x / Scene.worldScale, y / Scene.worldScale));
                 body.SetAngle(rotation);
-
-				trace("dupl_"+ x + ", " + y);
             }
 		}
 	}

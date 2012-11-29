@@ -1,6 +1,8 @@
 package game.entities
 {
-    import game.Global;
+	import flash.utils.setTimeout;
+
+	import game.Global;
     import game.SocketManager;
     import game.entities.strategies.BomberMovingStrategy;
     import game.entitymanager.Entity;
@@ -31,8 +33,12 @@ package game.entities
                 movingStrategy = new ServerMovingStrategy(this);
             }
 
+			position.x=600;
+			position.y=300;
+
             var img:Image = Assets.getImage("ship_giant_full");
             hull.addChild(img);
+
 
             Starling.current.stage.addEventListener(TouchEvent.TOUCH, touchHandler);
         }

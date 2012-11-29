@@ -8,11 +8,16 @@ package game.entities
 	{
 		public function Ground()
 		{
-			var quad:Quad = new Quad(1280, 50, 0x123456);
+			var quad:Quad = new Quad(2000, 50, 0x123456);
 			quad.alpha = 0.5;
-			quad.y = 670;
+
+			position.y = 670;
+			position.x = -670;
+
 			hull.addChild(quad);
 			hull.active = true;
+
+
 		}
 	}
 }

@@ -33,9 +33,6 @@ package game
             addChild(scene);
             entityManager.init(scene);
 
-            var ship:Ship = new Ship();
-            ship.add();
-
             var fighter:Fighter = new Fighter();
             fighter.add();
 
