@@ -11,7 +11,7 @@ package game.entities
 		public function Ground()
 		{
 			var quad:Quad = new Quad(2000, 50, 0x123456);
-			quad.alpha = 0.5;
+			quad.alpha = 0.0;
 
 			hull.type = b2Body.b2_staticBody;
 			position.y = 690;
