@@ -37,7 +37,7 @@ import starling.events.EnterFrameEvent;
 		
 		protected function onAdded(e:Event):void 
 		{
-            displayScale = stage.stageHeight / this.height;
+            displayScale = stage.stageHeight / 720.0; //this.height;
 			removeEventListener(Event.ADDED_TO_STAGE, onAdded);
 		}
 		
