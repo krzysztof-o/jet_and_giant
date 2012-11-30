@@ -189,6 +189,14 @@ package game
 			{
 				(Global.enemiesManager.getEnemyById(data.id) as FlyingEnemy).detonate(true);
 			}
+			else if (id == Message.FIGHTER_DETONATE)
+			{
+				Global.fighter.detonate(true);
+			}
+			else if (id == Message.BOMBER_DETONATE)
+			{
+				Global.fighter.detonate(true)
+			}
 
 
         }

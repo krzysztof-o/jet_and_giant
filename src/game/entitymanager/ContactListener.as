@@ -10,6 +10,7 @@ package game.entitymanager
 	import game.enemy.FlyingEnemy;
 
 	import game.entities.Bomb;
+	import game.entities.Bomber;
 	import game.entities.Ground;
 	import game.entities.GroundEnemy;
 	import game.entities.fighter.Fighter;
@@ -79,6 +80,50 @@ package game.entitymanager
 				}
 			}
 
+			if(checkFighterHitsFlayingEnemy(bodyA, bodyB))
+			{
+				if(bodyA.GetDefinition().userData is Fighter)
+				{
+					(bodyA.GetDefinition().userData as Fighter).detonate();
+					(bodyB.GetDefinition().userData as FlyingEnemy).detonate();
+				}
+				else
+				{
+					(bodyB.GetDefinition().userData as Fighter).detonate();
+					(bodyA.GetDefinition().userData as FlyingEnemy).detonate();
+
+				}
+			}
+
+
+			if(checkBomberHitsFlayingEnemy(bodyA, bodyB))
+			{
+				if(bodyA.GetDefinition().userData is Bomber)
+				{
+					(bodyA.GetDefinition().userData as Bomber).detonate();
+					(bodyB.GetDefinition().userData as FlyingEnemy).detonate();
+				}
+				else
+				{
+					(bodyB.GetDefinition().userData as Bomber).detonate();
+					(bodyA.GetDefinition().userData as FlyingEnemy).detonate();
+
+				}
+			}
+
+			if(checkBylletHitsBomber(bodyA, bodyB))
+			{
+				if(bodyA.GetDefinition().userData is Bomber)
+				{
+					(bodyA.GetDefinition().userData as Bomber).detonate();
+				}
+				else
+				{
+					(bodyB.GetDefinition().userData as Bomber).detonate();
+
+				}
+			}
+
 		}
 
 		public function entitiesCollide(typeA:Class, typeB:Class, bodyA:b2Body, bodyB:b2Body):Boolean
@@ -95,6 +140,22 @@ package game.entitymanager
 			}
 			return false;
 		}
+
+		public function checkBomberHitsFlayingEnemy(bodyA:b2Body, bodyB:b2Body):Boolean
+		{
+			return entitiesCollide(Bomber,FlyingEnemy, bodyA,bodyB);
+		}
+
+		public function checkFighterHitsFlayingEnemy(bodyA:b2Body, bodyB:b2Body):Boolean
+		{
+			return entitiesCollide(Fighter,FlyingEnemy, bodyA,bodyB);
+		}
+
+		public function  checkBylletHitsBomber(bodyA:b2Body, bodyB:b2Body):Boolean
+		{
+			return entitiesCollide(Bomber, Bullet,bodyA,bodyB);
+		}
+
 
 		public function  checkBylletHitsFighter(bodyA:b2Body, bodyB:b2Body):Boolean
 		{

@@ -2,7 +2,10 @@ package game.entities.fighter
 {
 	import flash.media.Sound;
 	import flash.ui.Keyboard;
-    import game.entitymanager.Entity;
+
+	import game.SocketManager;
+	import game.entities.Message;
+	import game.entitymanager.Entity;
 
 	import game.Global;
 	import game.entities.strategies.FighterMovingStrategy;
@@ -22,7 +25,7 @@ package game.entities.fighter
 
 	public class Fighter extends Entity
     {
-		protected const MAX_HEALTH:int = 5;
+		protected const MAX_HEALTH:int = 10;
 		protected var health:int = MAX_HEALTH;
 		protected var weapon:Weapon;
 		protected var shootController:FighterShootController;
@@ -93,6 +96,11 @@ package game.entities.fighter
 			log("-------------------------------- hit fighter")
 			if(health <= 0)
 				remove();
+
+			if(!fromServer)
+			{
+				SocketManager.getInstance().send(Message.FIGHTER_DETONATE,{})
+			}
 		}
 	}
 }

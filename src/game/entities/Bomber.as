@@ -19,6 +19,7 @@ package game.entities
 
     public class Bomber extends Entity
     {
+		private var health: int = 50;
         private const BOMB_RELATIVE_X:Number = 160;
         private const BOMB_RELATIVE_Y:Number = 100;
         private var lastTime:int;
@@ -76,6 +77,19 @@ package game.entities
 			bomb.add();
 			bomb.hull.parent.setChildIndex(bomb.hull,0);
         }
+
+		override  public function detonate(fromServer:Boolean = false): void
+		{
+			health--;
+			log("-------------------------------- hit bomber")
+			if(health <= 0)
+				remove();
+
+			if(!fromServer)
+			{
+				SocketManager.getInstance().send(Message.BOMBER_DETONATE,{})
+			}
+		}
 
         override public function dispose():void
         {
