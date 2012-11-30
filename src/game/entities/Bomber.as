@@ -1,6 +1,6 @@
 package game.entities
 {
-    import flash.utils.getTimer;
+	import flash.utils.getTimer;
     import flash.utils.setTimeout;
 
 	import game.Global;
@@ -12,6 +12,7 @@ package game.entities
 
     import starling.core.Starling;
     import starling.display.Image;
+	import starling.display.MovieClip;
 	import starling.events.Event;
 	import starling.events.TouchEvent;
     import starling.events.TouchPhase;
@@ -26,9 +27,8 @@ package game.entities
         private const BOMB_RELATIVE_X:Number = 160;
         private const BOMB_RELATIVE_Y:Number = 100;
 		private var particleSystem:PDParticleSystem;
-		private var particleTextures:Vector.<Texture>;
         private var lastTime:int;
-		private var changeParticleTime:Number = 0;
+
 
         public function Bomber()
         {
@@ -47,7 +47,10 @@ package game.entities
 			position.y = 300;
 
             var img:Image = Assets.getImage("ship_giant_full");
-            hull.addChild(img);
+			var movieClip:MovieClip = new MovieClip(Assets.getTextures("animations_giant_"),15);
+			Starling.current.juggler.add(movieClip);
+            hull.addChild(movieClip);
+			movieClip.play();
 
 
             Starling.current.stage.addEventListener(TouchEvent.TOUCH, touchHandler);
@@ -56,9 +59,10 @@ package game.entities
 
 		private function onAddedToStage(event: Event): void
 		{
-			particleTextures = Assets.getTextures("fx_particle_smoke_")
-			particleSystem = new PDParticleSystem(Assets.ParicleConfig, particleTextures[0]);
+			particleSystem = new PDParticleSystem(Assets.ParicleConfig,Assets.getTexture("fx_particle_smoke_01")) ;
 			hull.addChild(particleSystem);
+			particleSystem.x = 30;
+			particleSystem.y = 40;
 			Starling.current.juggler.add(particleSystem);
 			particleSystem.start();
 		}
@@ -100,17 +104,6 @@ package game.entities
             super.dispose();
         }
 
-		override public function update(dt:Number):void
-		{
-			super.update(dt);
 
-			changeParticleTime += dt;
-			if(changeParticleTime > 100)
-			{
-				changeParticleTime = 0;
-				//.texture = particleTextures[Math.random() * particleTextures.length];
-
-			}
-		}
     }
 }
