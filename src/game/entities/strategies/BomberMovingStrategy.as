@@ -15,9 +15,9 @@ import flash.ui.Keyboard;
 
     public class BomberMovingStrategy implements IMovingStrategy
     {
-        public static const TOLERANCE_X:Number = 0.01;
-        public static const TOLERANCE_Y:Number = 0.01;
-        public static const TOLERANCE_Z:Number = 0.01;
+        public static const TOLERANCE_X:Number = 0.025;
+        public static const TOLERANCE_Y:Number = 0.025;
+        public static const TOLERANCE_Z:Number = 0.025;
 
         protected var lastZ:Number;
         protected var accMoved:Boolean;
@@ -44,31 +44,29 @@ import flash.ui.Keyboard;
 
         public function onAccUpdate(event:AccelerometerEvent):void
         {
-//            trace(event);
             if (Math.abs(event.accelerationX) > TOLERANCE_X)
-               speed.x = event.accelerationX;
+               direction.x = (event.accelerationX > 0.0 ? -1.0 : 1.5);
             else
-               speed.x = 0.0;
+               direction.x = 0.0;
 
             if (lastZ != NaN)
             {
-                var diffZ:Number = lastZ - event.accelerationZ;
+                var diffZ:Number = 0.825 - event.accelerationZ;
                 if (Math.abs(diffZ) > TOLERANCE_Z)
                 {
-                    speed.y = event.accelerationZ;
+                    diffZ = Math.max(diffZ, -2.0);
+                    direction.y = diffZ * 5.0;
                 }
                 else
                 {
-                    speed.y = 0.0;
+                    direction.y = 0.0;
                 }
             }
             else
             {
-                speed.y = 0.0;
+                direction.y = 0.0;
             }
-
-            speed.x *= -100.0;
-            speed.y *= -100.0;
+            lastZ = event.accelerationZ;
 
             accMoved = true;
         }
@@ -85,10 +83,7 @@ import flash.ui.Keyboard;
         {
             getDirection();
 
-//            trace("x ", speed.x,  "y ", speed.y, "acc ", accMoved);
-            if (!accMoved)
-            {
-                if (!keyboardManager.isKeyPressed(Keyboard.LEFT) && !keyboardManager.isKeyPressed(Keyboard.RIGHT))
+                if (!accMoved && !keyboardManager.isKeyPressed(Keyboard.LEFT) && !keyboardManager.isKeyPressed(Keyboard.RIGHT))
                 {
                     if (speed.x < .1 && speed.x > -.1) speed.x = 0;
                     else speed.x /= 1.1;
@@ -97,6 +92,7 @@ import flash.ui.Keyboard;
                 {
                     speed.x += direction.x * .4;
                 }
+
                 if (!accMoved && !keyboardManager.isKeyPressed(Keyboard.UP) && !keyboardManager.isKeyPressed(Keyboard.DOWN))
                 {
                     if (speed.y < .1 && speed.y > -.1) speed.y = 0;
@@ -106,11 +102,7 @@ import flash.ui.Keyboard;
                 {
                     speed.y += direction.y * .4;
                 }
-            }
-            else
-            {
                 accMoved = false;
-            }
 
             //min/max speed
             speed.x = Math.min(speed.x, 4);
@@ -123,7 +115,6 @@ import flash.ui.Keyboard;
             var dx:Number = entity.position.x + speed.x;
             var dy:Number = entity.position.y + speed.y;
 
-            //
             dx = Math.max(20, dx);
             dx = Math.min(Starling.current.stage.stageWidth - 20 - entity.hull.width, dx);
             dy = Math.max(20, dy);
