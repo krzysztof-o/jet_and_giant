@@ -6,7 +6,9 @@ package game
     import flash.events.SecurityErrorEvent;
     import flash.net.Socket;
 
-    import game.enemy.FlyingEnemy;
+	import flashx.textLayout.debug.assert;
+
+	import game.enemy.FlyingEnemy;
 
     import game.entities.GroundEnemy;
     import game.entities.Message;
@@ -185,7 +187,7 @@ package game
 			}
 			else if(id == Message.FLYING_ENEMY_DETONATE)
 			{
-				Global.enemiesManager.getEnemyById(data.id).detonate(true);
+				(Global.enemiesManager.getEnemyById(data.id) as FlyingEnemy).detonate(true);
 			}
 
 
