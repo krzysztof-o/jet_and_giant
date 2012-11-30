@@ -183,6 +183,10 @@ package game
 			{
 				 //Global.enemiesManager.
 			}
+			else if(id == Message.FLYING_ENEMY_DETONATE)
+			{
+				Global.enemiesManager.getEnemyById(data.id).detonate(true);
+			}
 
 
         }

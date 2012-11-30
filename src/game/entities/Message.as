@@ -12,5 +12,6 @@ package game.entities
         public static const CURRENT_TIME:String = "current_time";
         public static const NEW_ENEMY:String = "new_enemy";
 		public static var GROUND_ENEMY_DETONATE: String = "ground_enemy_detonate";
+		public static var FLYING_ENEMY_DETONATE: String = "flying_enemy_detonate";
     }
 }

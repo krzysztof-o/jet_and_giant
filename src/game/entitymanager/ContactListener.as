@@ -7,9 +7,13 @@ package game.entitymanager
 	import Box2D.Dynamics.b2ContactImpulse;
 	import Box2D.Dynamics.b2ContactListener;
 
+	import game.enemy.FlyingEnemy;
+
 	import game.entities.Bomb;
 	import game.entities.Ground;
 	import game.entities.GroundEnemy;
+	import game.weapon.bullet.Bullet;
+	import game.weapon.bullet.FighterBullet;
 
 	public class ContactListener extends b2ContactListener
 	{
@@ -18,7 +22,7 @@ package game.entitymanager
 			super();
 		}
 
-		public override function PreSolve(contact:b2Contact, oldManifold:b2Manifold):void
+		public override function BeginContact(contact:b2Contact):void
 		{
 			var bodyA:b2Body = contact.GetFixtureA().GetBody();
 			var bodyB:b2Body = contact.GetFixtureB().GetBody();
@@ -48,6 +52,19 @@ package game.entitymanager
 				}
 			}
 
+  			if(checkBulletHitsFlyingEnemy(bodyA, bodyB))
+  			{
+				if(bodyA.GetDefinition().userData is FlyingEnemy)
+				{
+					(bodyA.GetDefinition().userData as FlyingEnemy).detonate();
+				}
+				else
+				{
+					(bodyB.GetDefinition().userData as FlyingEnemy).detonate();
+
+				}
+			}
+
 		}
 
 		public function entitiesCollide(typeA:Class, typeB:Class, bodyA:b2Body, bodyB:b2Body):Boolean
@@ -63,6 +80,11 @@ package game.entitymanager
 				return true;
 			}
 			return false;
+		}
+
+		public function checkBulletHitsFlyingEnemy(bodyA:b2Body, bodyB:b2Body):Boolean
+		{
+			return entitiesCollide(FlyingEnemy, FighterBullet,bodyA,bodyB);
 		}
 
 		public function checkBombsHitsGroundEnemy(bodyA:b2Body, bodyB:b2Body):Boolean

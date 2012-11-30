@@ -12,6 +12,8 @@ package game.entitymanager
     import starling.display.Sprite;
 	import starling.events.Event;
 
+	import utlis.log;
+
 	public class BodySprite extends Sprite 
 	{
 		private var _body:b2Body;
@@ -126,7 +128,7 @@ package game.entitymanager
             }
             else
             {
-                body.SetPosition(new b2Vec2(x / Scene.worldScale, y / Scene.worldScale));
+		        body.SetPosition(new b2Vec2(x / Scene.worldScale, y / Scene.worldScale));
                 body.SetAngle(rotation);
             }
 		}

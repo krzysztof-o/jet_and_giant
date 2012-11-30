@@ -1,13 +1,19 @@
 package game.enemy
 {
-    import game.Global;
-    import game.entities.EnemyBase;
-    import game.entities.strategies.EnemyMovingStrategy;
+	import flash.media.ID3Info;
+
+	import game.Global;
+	import game.SocketManager;
+	import game.entities.EnemyBase;
+	import game.entities.Message;
+	import game.entities.strategies.EnemyMovingStrategy;
     import game.weapon.EnemyWeapon;
     import game.weapon.Weapon;
 
+	import utlis.log;
 
-    public class FlyingEnemy extends EnemyBase
+
+	public class FlyingEnemy extends EnemyBase
     {
         protected var enemVO:EnemyVO;
         protected var weapon:EnemyWeapon;
@@ -45,6 +51,7 @@ package game.enemy
             }
         }
 
+    }
         public function setData(data:Object):void
         {
             weapon.setData(data);
@@ -56,4 +63,13 @@ package game.enemy
             weapon.getNext();
         }
     }
+		public function detonate(fromServer:Boolean = false): void
+		{
+			if(!fromServer)
+			{
+				SocketManager.getInstance().send(Message.FLYING_ENEMY_DETONATE, {id: vo.id});
+			}
+			remove();
+		}
+	}
 }

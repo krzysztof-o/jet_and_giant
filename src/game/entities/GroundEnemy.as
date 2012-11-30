@@ -65,8 +65,6 @@ package game.entities
         {
             super.setVO(enemyVO);
             weapon.setNewTimeInterval();
-        }
-
 		}
 	}
 }
