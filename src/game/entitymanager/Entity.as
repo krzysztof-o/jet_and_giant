@@ -2,7 +2,9 @@ package game.entitymanager
 {
 	import flash.geom.Point;
 	import flash.geom.Point;
-    import game.Global;
+	import flash.utils.getQualifiedClassName;
+
+	import game.Global;
 
     import game.entities.strategies.DefaultMovingStrategy;
 	import game.entities.strategies.IMovingStrategy;
@@ -41,7 +43,7 @@ package game.entitymanager
 
         public function Entity()
         {
-            hull = new BodySprite();
+            hull = new BodySprite(this);
         }
 
         public function dispose():void

@@ -1,6 +1,7 @@
 package game.scene
 {
 	import Box2D.Common.Math.b2Vec2;
+	import Box2D.Dynamics.b2Body;
 	import Box2D.Dynamics.b2World;
 
 	import flash.geom.Point;
@@ -40,6 +41,11 @@ package game.scene
 		{
 			world.Step(e.passedTime, 10, 10);
 			world.ClearForces();
+			for each(var deadBody:b2Body in bodiesToDestroy)
+			{
+				world.DestroyBody(bodiesToDestroy.pop());
+			}
+
 			
 			scaleX = Scene.displayScale;
 			scaleY = Scene.displayScale;
@@ -67,11 +73,13 @@ package game.scene
             return child;
 		}
 
+		private var bodiesToDestroy:Vector.<b2Body> = new Vector.<b2Body>();
+
 		override public function removeChild(child:DisplayObject, dispose:Boolean = false):DisplayObject
 		{
 			if (child is BodySprite)
 			{
-				world.DestroyBody((child as BodySprite).body);
+				bodiesToDestroy.push((child as BodySprite).body);
 			}
 			super.removeChild(child, dispose);
 			return child;

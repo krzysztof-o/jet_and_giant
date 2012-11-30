@@ -77,10 +77,10 @@ package game.entitymanager
 			body.SetAngle(rotation);
 		}
 		
-		public function BodySprite()
+		public function BodySprite(owner:Entity)
 		{
 			bodyDef = new b2BodyDef();
-			bodyDef.userData = this;
+			bodyDef.userData = owner;
 			addEventListener(Event.ADDED_TO_STAGE, onAdded);
 
 			//bodyDef.linearDamping = linearDamping;

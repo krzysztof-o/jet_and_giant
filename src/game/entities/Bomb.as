@@ -31,5 +31,10 @@ package game.entities
 			hull.y = position.y;
 			hull.active = false;
         }
+
+		public function detonate():void
+		{
+			 remove();
+		}
     }
 }
