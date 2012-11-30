@@ -18,9 +18,12 @@ package game.entities.fighter
 
 	import utlis.ClientType;
 	import utlis.Sounds;
+	import utlis.log;
 
 	public class Fighter extends Entity
     {
+		protected const MAX_HEALTH:int = 5;
+		protected var health:int = MAX_HEALTH;
 		protected var weapon:Weapon;
 		protected var shootController:FighterShootController;
 		protected var engineAnimation:FighterEngineAnimation;
@@ -82,6 +85,14 @@ package game.entities.fighter
 
 			ratataAnimationController.showRatata();
 			Sounds.Laser.play();
+		}
+
+		override  public function detonate(fromServer:Boolean = false): void
+		{
+			health--;
+			log("-------------------------------- hit fighter")
+			if(health <= 0)
+				remove();
 		}
 	}
 }

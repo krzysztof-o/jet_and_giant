@@ -12,6 +12,7 @@ package game.entitymanager
 	import game.entities.Bomb;
 	import game.entities.Ground;
 	import game.entities.GroundEnemy;
+	import game.entities.fighter.Fighter;
 	import game.weapon.bullet.Bullet;
 	import game.weapon.bullet.FighterBullet;
 
@@ -65,6 +66,19 @@ package game.entitymanager
 				}
 			}
 
+			if(checkBylletHitsFighter(bodyA, bodyB))
+			{
+				if(bodyA.GetDefinition().userData is Fighter)
+				{
+					(bodyA.GetDefinition().userData as Fighter).detonate();
+				}
+				else
+				{
+					(bodyB.GetDefinition().userData as Fighter).detonate();
+
+				}
+			}
+
 		}
 
 		public function entitiesCollide(typeA:Class, typeB:Class, bodyA:b2Body, bodyB:b2Body):Boolean
@@ -82,6 +96,16 @@ package game.entitymanager
 			return false;
 		}
 
+		public function  checkBylletHitsFighter(bodyA:b2Body, bodyB:b2Body):Boolean
+		{
+			if(bodyA.GetDefinition().userData is FighterBullet || bodyB.GetDefinition().userData is FighterBullet)
+			{
+				return false;
+			}
+
+
+			return entitiesCollide(Fighter, Bullet,bodyA,bodyB);
+		}
 		public function checkBulletHitsFlyingEnemy(bodyA:b2Body, bodyB:b2Body):Boolean
 		{
 			return entitiesCollide(FlyingEnemy, FighterBullet,bodyA,bodyB);

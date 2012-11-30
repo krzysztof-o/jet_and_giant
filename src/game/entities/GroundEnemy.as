@@ -51,15 +51,14 @@ package game.entities
             sprite.setNextRotation(data.time, data.r);
             weapon.shootTimeInterval = data.time - Global.currentTime;
         }
-		public function detonate(fromServer:Boolean = false): void
+		override public function detonate(fromServer:Boolean = false): void
 		{
-			log("detonate", vo.id);
 
 			if(!fromServer)
 			{
 				SocketManager.getInstance().send(Message.GROUND_ENEMY_DETONATE, {id:vo.id})
 			}
-
+			remove();
     	}
         override public function setVO(enemyVO:EnemyVO):void
         {

@@ -33,7 +33,7 @@ package game.entities
 			hull.active = false;
         }
 
-		public function detonate():void
+		override  public function detonate(fromServer:Boolean = false):void
 		{
 			remove();
 		}

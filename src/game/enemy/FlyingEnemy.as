@@ -61,7 +61,7 @@ package game.enemy
             weapon.getNext();
 		}
 
-		public function detonate(fromServer:Boolean = false): void
+		override public function detonate(fromServer:Boolean = false): void
 		{
 			if(!fromServer)
 			{

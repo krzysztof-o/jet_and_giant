@@ -96,5 +96,10 @@ package game.entitymanager
         {
             movingStrategy.dispose();
         }
+
+		public function detonate(fromServer:Boolean = false): void
+		{
+
+		}
     }
 }
