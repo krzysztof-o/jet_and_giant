@@ -9,6 +9,7 @@ package game.entitymanager
 
 	import game.entities.Bomb;
 	import game.entities.Ground;
+	import game.entities.GroundEnemy;
 
 	public class ContactListener extends b2ContactListener
 	{
@@ -33,6 +34,20 @@ package game.entitymanager
 				}
 			}
 
+			if(checkBombsHitsGroundEnemy(bodyA, bodyB))
+			{
+				if(bodyA.GetDefinition().userData is Bomb)
+				{
+					(bodyA.GetDefinition().userData as Bomb).detonate();
+					(bodyB.GetDefinition().userData as GroundEnemy).detonate();
+				}
+				else
+				{
+					(bodyB.GetDefinition().userData as Bomb).detonate();
+					(bodyA.GetDefinition().userData as GroundEnemy).detonate();
+				}
+			}
+
 		}
 
 		public function entitiesCollide(typeA:Class, typeB:Class, bodyA:b2Body, bodyB:b2Body):Boolean
@@ -48,6 +63,11 @@ package game.entitymanager
 				return true;
 			}
 			return false;
+		}
+
+		public function checkBombsHitsGroundEnemy(bodyA:b2Body, bodyB:b2Body):Boolean
+		{
+			return entitiesCollide(Bomb,  GroundEnemy, bodyA, bodyB);
 		}
 
 		public function checkBombHitsGround(bodyA:b2Body, bodyB:b2Body):Boolean

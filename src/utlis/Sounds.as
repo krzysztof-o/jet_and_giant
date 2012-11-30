@@ -15,6 +15,14 @@ package utlis
 		private static var soundClip:Class;
 		public static var TestSound:Sound = new soundClip() as Sound;
 
+		[Embed(source="/sounds/77087__supraliminal__laser-short.mp3")]
+		private static var laserClip:Class;
+		public static var Laser:Sound = new laserClip() as Sound;
+
+
+		[Embed(source="/sounds/space.mp3")]
+		private static var spaceClip:Class;
+		public static var Space:Sound = new spaceClip() as Sound;
 
 	}
 }

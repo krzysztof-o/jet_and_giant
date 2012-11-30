@@ -179,6 +179,10 @@ package game
                 if (ClientType.MOBILE)
                     Global.enemiesManager.addEnemy(data);
             }
+			else if(id == Message.GROUND_ENEMY_DETONATE)
+			{
+				 //Global.enemiesManager.
+			}
 
 
         }

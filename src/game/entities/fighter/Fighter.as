@@ -1,5 +1,6 @@
 package game.entities.fighter
 {
+	import flash.media.Sound;
 	import flash.ui.Keyboard;
     import game.entitymanager.Entity;
 
@@ -16,6 +17,7 @@ package game.entities.fighter
 	import starling.events.Event;
 
 	import utlis.ClientType;
+	import utlis.Sounds;
 
 	public class Fighter extends Entity
     {
@@ -79,6 +81,7 @@ package game.entities.fighter
 			weapon.shoot(x,  y);
 
 			ratataAnimationController.showRatata();
+			Sounds.Laser.play();
 		}
 	}
 }

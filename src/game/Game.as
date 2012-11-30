@@ -56,7 +56,8 @@ import game.entities.Bomber;
 //			vo.type = 1;
 //			EnemyFactory.getInstance().createEnemy(vo);
 //            vo = null;
-			Sounds.TestSound.play();
+			Sounds.Space.play(0,200);
+
         }
     }
 }
