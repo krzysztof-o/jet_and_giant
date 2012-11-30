@@ -4,8 +4,8 @@ package game.entities.fighter
 	import flash.ui.Keyboard;
 
 	import game.SocketManager;
-	import game.enemy.BoomAnimation;
-	import game.entities.Message;
+    import game.enemy.BoomAnimation;
+    import game.entities.Message;
 	import game.entitymanager.Entity;
 
 	import game.Global;
@@ -93,6 +93,7 @@ package game.entities.fighter
 
 		override  public function detonate(fromServer:Boolean = false): void
 		{
+            new BoomAnimation(position.x,  position.y);
 			health--;
 			log("-------------------------------- hit fighter")
 			if(health <= 0)

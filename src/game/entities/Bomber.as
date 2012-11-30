@@ -5,8 +5,8 @@ package game.entities
 
 	import game.Global;
     import game.SocketManager;
-	import game.enemy.BoomAnimation;
-	import game.entities.strategies.BomberMovingStrategy;
+    import game.enemy.BoomAnimation;
+    import game.entities.strategies.BomberMovingStrategy;
 	import game.entities.strategies.ServerMovingStrategy;
 	import game.entitymanager.Entity;
 
@@ -81,6 +81,7 @@ package game.entities
 
 		override  public function detonate(fromServer:Boolean = false): void
 		{
+            new BoomAnimation(position.x,  position.y);
 			health--;
 			log("-------------------------------- hit bomber")
 			if(health <= 0)

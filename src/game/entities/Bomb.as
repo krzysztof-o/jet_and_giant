@@ -1,7 +1,8 @@
 package game.entities
 {
 	import game.Global;
-	import game.entities.strategies.BombMovingStrategy;
+    import game.enemy.BoomAnimation;
+    import game.entities.strategies.BombMovingStrategy;
     import game.entitymanager.Entity;
 
     import starling.display.Quad;
@@ -35,6 +36,7 @@ package game.entities
 
 		override  public function detonate(fromServer:Boolean = false):void
 		{
+            //new BoomAnimation(position.x,  position.y);
 			remove();
 		}
     }
