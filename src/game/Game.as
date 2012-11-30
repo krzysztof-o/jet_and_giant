@@ -35,7 +35,7 @@ import utlis.Sounds;
         {
             super();
 
-            var parallax:Parallax = new Parallax(1.0);
+            var parallax:Parallax = new Parallax(0.3);
             addChild(parallax);
 
             var width:Number = 1280;

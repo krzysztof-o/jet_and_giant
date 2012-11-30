@@ -13,7 +13,7 @@ package game.entities.strategies
 
         public function update(timer:Number):void
         {
-            enemy.position.y = 650;
+            enemy.position.y = 780;
             enemy.position.x -= 3;
         }
 
