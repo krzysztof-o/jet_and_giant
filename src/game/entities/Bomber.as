@@ -12,10 +12,13 @@ package game.entities
 
     import starling.core.Starling;
     import starling.display.Image;
-    import starling.events.TouchEvent;
+	import starling.display.MovieClip;
+	import starling.events.Event;
+	import starling.events.TouchEvent;
     import starling.events.TouchPhase;
+	import starling.extensions.PDParticleSystem;
 
-    import utlis.ClientType;
+	import utlis.ClientType;
     import utlis.log;
 
     public class Bomber extends Entity
@@ -24,6 +27,7 @@ package game.entities
         private const BOMB_RELATIVE_X:Number = 160;
         private const BOMB_RELATIVE_Y:Number = 100;
         private var lastTime:int;
+		private var particleSystem:PDParticleSystem;
 
         public function Bomber()
         {
@@ -42,11 +46,24 @@ package game.entities
 			position.y = 300;
 
             var img:Image = Assets.getImage("ship_giant_full");
-            hull.addChild(img);
-
+			var movieClip:MovieClip = new MovieClip(Assets.getTextures("animations_giant_"),15);
+			Starling.current.juggler.add(movieClip);
+			hull.addChild(movieClip);
+			movieClip.play();
 
             Starling.current.stage.addEventListener(TouchEvent.TOUCH, touchHandler);
-        }
+			hull.addEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
+		}
+
+		private function onAddedToStage(event: Event): void
+		{
+			particleSystem = new PDParticleSystem(Assets.ParicleConfig,Assets.getTexture("fx_particle_smoke_01")) ;
+			hull.addChild(particleSystem);
+			particleSystem.x = 30;
+			particleSystem.y = 40;
+			Starling.current.juggler.add(particleSystem);
+			particleSystem.start();
+		}
 
         private function touchHandler(event:TouchEvent):void
         {
