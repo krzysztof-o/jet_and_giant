@@ -19,7 +19,7 @@ package game.entities
         {
             vo = enemyVO;
             Global.enemiesManager.enemiesById[vo.id] = this;
-            position.x = Starling.current.stage.stageWidth + 100;
+            position.x = Starling.current.stage.stageWidth + 200;
             position.y = enemyVO.y;
         }
 

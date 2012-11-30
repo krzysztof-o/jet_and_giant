@@ -67,6 +67,7 @@ package game.enemy
 			{
 				SocketManager.getInstance().send(Message.FLYING_ENEMY_DETONATE, {id: vo.id});
 			}
+            new BoomAnimation(position.x,  position.y);
 			remove();
 		}
 	}

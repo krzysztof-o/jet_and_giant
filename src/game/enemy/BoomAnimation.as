@@ -2,22 +2,26 @@ package game.enemy
 {
     import com.greensock.TweenMax;
 
-    import game.entitymanager.Entity;
+    import starling.core.Starling;
+    import starling.display.MovieClip;
+    import starling.display.Sprite;
 
-    import starling.display.Image;
-
-    public class BoomAnimation extends Entity
+    public class BoomAnimation extends Sprite
     {
-        public function BoomAnimation(x:Number,y:Number)
+        public function BoomAnimation(x:Number, y:Number)
         {
-            add();
+            Starling.current.stage.addChild(this);
 
-            position.x = x;
-            position.y = y;
-            var mc:Image = Assets.getImage("fx_particle_boom_01");
-            hull.addChild(mc);
+            this.x = x;
+            this.y = y;
+            var mc:MovieClip = new MovieClip(Assets.getTextures("fx_particle_crash_"));
+            addChild(mc);
+            mc.x = -300;
+            mc.y = -150;
+            Starling.juggler.add(mc);
 
-            TweenMax.to(mc, .2, {alpha: 0, delay: .2, onComplete: remove});
+            TweenMax.to(mc, .2, {alpha: 0, delay: .2, onComplete: removeFromParent});
         }
+
     }
 }
