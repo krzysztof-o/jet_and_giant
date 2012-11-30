@@ -9,9 +9,12 @@ package game.scene
 	import game.entitymanager.BodySprite;
 	import game.entitymanager.ContactListener;
 
-	import starling.display.DisplayObject;
+import starling.core.Starling;
+
+import starling.display.DisplayObject;
 	import starling.display.Sprite;
-	import starling.events.EnterFrameEvent;
+import starling.display.Stage;
+import starling.events.EnterFrameEvent;
 	import starling.events.Event;
 
 	public class Scene extends Sprite
@@ -34,6 +37,7 @@ package game.scene
 		
 		protected function onAdded(e:Event):void 
 		{
+            displayScale = stage.stageHeight / this.height;
 			removeEventListener(Event.ADDED_TO_STAGE, onAdded);
 		}
 		
@@ -45,7 +49,6 @@ package game.scene
 			{
 				world.DestroyBody(bodiesToDestroy.pop());
 			}
-
 			
 			scaleX = Scene.displayScale;
 			scaleY = Scene.displayScale;

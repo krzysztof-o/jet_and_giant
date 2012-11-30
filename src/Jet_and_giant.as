@@ -4,6 +4,8 @@ package
     import flash.display.Sprite;
     import flash.display.StageAlign;
     import flash.display.StageScaleMode;
+import flash.geom.Rectangle;
+import flash.sensors.Accelerometer;
 
     import game.Game;
     import game.SocketManager;
@@ -21,17 +23,29 @@ package
             stage.align = StageAlign.TOP_LEFT;
             stage.scaleMode = StageScaleMode.NO_SCALE;
 
-            var starling:Starling = new Starling(Game, stage);
-			starling.showStats = true;
-            starling.start();
-
-            var socketManager:SocketManager = SocketManager.getInstance();
-            socketManager.connect("192.168.3.91", 17234);
-
-            var isMobile:Boolean = stage.loaderInfo.parameters.isMobile == "true";
+            var isMobile:Boolean = stage.loaderInfo.parameters.isMobile == "true"  || Accelerometer.isSupported;
             ClientType.MOBILE = isMobile;
             ClientType.DESKTOP = !isMobile;
             log(isMobile ? "MOBILE" : "DESKTOP");
+
+            var viewport:Rectangle;
+            if (isMobile)
+            {
+                 viewport = new Rectangle(0,0,stage.fullScreenWidth, stage.fullScreenHeight);
+            }
+            else
+            {
+                 viewport = new Rectangle(0,0, stage.stageWidth, stage.stageHeight);
+            }
+
+            var starling:Starling = new Starling(Game, stage, viewport);
+			starling.showStats = true;
+            starling.start();
+
+            viewport = null;
+
+            var socketManager:SocketManager = SocketManager.getInstance();
+            socketManager.connect("192.168.3.91", 17234);
         }
     }
 }

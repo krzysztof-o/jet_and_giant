@@ -49,7 +49,7 @@ package game.entities.fighter
 			ratata.stop();
 		}
 
-		private function createRatataImage()
+		private function createRatataImage(): void
 		{
 			ratataTextures = Assets.getTextures("fx_particle_ratata");
 			ratata = new MovieClip(ratataTextures,50);
