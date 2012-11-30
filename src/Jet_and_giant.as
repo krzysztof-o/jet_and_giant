@@ -4,8 +4,8 @@ package
     import flash.display.Sprite;
     import flash.display.StageAlign;
     import flash.display.StageScaleMode;
-import flash.geom.Rectangle;
-import flash.sensors.Accelerometer;
+	import flash.geom.Rectangle;
+	import flash.sensors.Accelerometer;
 
     import game.Game;
     import game.SocketManager;

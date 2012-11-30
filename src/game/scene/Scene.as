@@ -45,7 +45,7 @@ import starling.events.EnterFrameEvent;
 		{
 			world.Step(e.passedTime, 10, 10);
 			world.ClearForces();
-			for each(var deadBody:b2Body in bodiesToDestroy)
+			while(bodiesToDestroy.length > 0)
 			{
 				world.DestroyBody(bodiesToDestroy.pop());
 			}

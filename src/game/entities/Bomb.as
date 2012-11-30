@@ -1,6 +1,7 @@
 package game.entities
 {
-    import game.entities.strategies.BombMovingStrategy;
+	import game.Global;
+	import game.entities.strategies.BombMovingStrategy;
     import game.entitymanager.Entity;
 
     import starling.display.Quad;
@@ -34,7 +35,7 @@ package game.entities
 
 		public function detonate():void
 		{
-			 remove();
+			remove();
 		}
     }
 }

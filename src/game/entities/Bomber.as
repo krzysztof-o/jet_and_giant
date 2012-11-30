@@ -1,35 +1,27 @@
 package game.entities
 {
-	import flash.media.Sound;
-	import flash.utils.getTimer;
+    import flash.utils.getTimer;
     import flash.utils.setTimeout;
 
 	import game.Global;
-	import game.SmokeMovieClip;
-	import game.SocketManager;
+    import game.SocketManager;
     import game.entities.strategies.BomberMovingStrategy;
 	import game.entities.strategies.ServerMovingStrategy;
 	import game.entitymanager.Entity;
 
     import starling.core.Starling;
     import starling.display.Image;
-	import starling.display.MovieClip;
-	import starling.events.Event;
-	import starling.events.TouchEvent;
+    import starling.events.TouchEvent;
     import starling.events.TouchPhase;
-	import starling.extensions.PDParticleSystem;
-	import starling.textures.Texture;
 
-	import utlis.ClientType;
+    import utlis.ClientType;
     import utlis.log;
 
     public class Bomber extends Entity
     {
         private const BOMB_RELATIVE_X:Number = 160;
         private const BOMB_RELATIVE_Y:Number = 100;
-		private var particleSystem:PDParticleSystem;
         private var lastTime:int;
-
 
         public function Bomber()
         {
@@ -48,25 +40,11 @@ package game.entities
 			position.y = 300;
 
             var img:Image = Assets.getImage("ship_giant_full");
-			var movieClip:MovieClip = new MovieClip(Assets.getTextures("animations_giant_"),15);
-			Starling.current.juggler.add(movieClip);
-            hull.addChild(movieClip);
-			movieClip.play();
+            hull.addChild(img);
 
 
             Starling.current.stage.addEventListener(TouchEvent.TOUCH, touchHandler);
-			hull.addEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
         }
-
-		private function onAddedToStage(event: Event): void
-		{
-			particleSystem = new PDParticleSystem(Assets.ParicleConfig,Assets.getTexture("fx_particle_smoke_01")) ;
-			hull.addChild(particleSystem);
-			particleSystem.x = 30;
-			particleSystem.y = 40;
-			Starling.current.juggler.add(particleSystem);
-			particleSystem.start();
-		}
 
         private function touchHandler(event:TouchEvent):void
         {
@@ -94,7 +72,7 @@ package game.entities
 
 
             bomb.position.x = x - 80;
-            bomb.position.y = y - bomb.hull.height * 3;
+            bomb.position.y = y - bomb.hull.height * 2;
 			bomb.add();
 			bomb.hull.parent.setChildIndex(bomb.hull,0);
         }
@@ -104,7 +82,5 @@ package game.entities
             Starling.current.stage.removeEventListener(TouchEvent.TOUCH, touchHandler);
             super.dispose();
         }
-
-
     }
 }

@@ -3,7 +3,8 @@
     import game.enemy.FlyingEnemy;
     import game.entities.Bomb;
     import game.entities.Bomber;
-       import game.entities.GroundBullet;
+	   import game.entities.Explosion;
+	   import game.entities.GroundBullet;
        import game.entities.GroundEnemy;
 	   import game.entities.fighter.Fighter;
 	   import game.entitymanager.EnemiesManager;
@@ -19,6 +20,7 @@
 
         public static var bulletPool:Pool = new Pool(Bullet);
         public static var bombPool:Pool = new Pool(Bomb);
+		public static var explosionPool:Pool = new Pool(Explosion);
 		public static var fighterBulletPool:Pool = new Pool(FighterBullet);
 		public static var groundBulletPool:Pool = new Pool(GroundBullet);
         public static var enemiesPool:Pool = new Pool(FlyingEnemy);
