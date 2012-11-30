@@ -72,7 +72,7 @@ package game.entities
 
 
             bomb.position.x = x - 80;
-            bomb.position.y = y - bomb.hull.height * 2;
+            bomb.position.y = y - bomb.hull.height * 3;
 			bomb.add();
 			bomb.hull.parent.setChildIndex(bomb.hull,0);
         }

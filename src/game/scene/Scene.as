@@ -6,6 +6,7 @@ package game.scene
 	import flash.geom.Point;
 
 	import game.entitymanager.BodySprite;
+	import game.entitymanager.ContactListener;
 
 	import starling.display.DisplayObject;
 	import starling.display.Sprite;
@@ -15,6 +16,7 @@ package game.scene
 	public class Scene extends Sprite
 	{
 		protected var world:b2World;
+		protected var contactListener:ContactListener;
 		private var dt:Number;
 		public static var worldScale:Number = 100;
 		public static var displayScale:Number = 1;
@@ -23,6 +25,8 @@ package game.scene
 		public function Scene(width:Number, height:Number):void
 		{
 			world = new b2World(new b2Vec2(0, 10), true);
+			contactListener = new ContactListener();
+			world.SetContactListener(contactListener);
 			addEventListener(EnterFrameEvent.ENTER_FRAME, onFrame);
 			addEventListener(Event.ADDED_TO_STAGE, onAdded);
 		}

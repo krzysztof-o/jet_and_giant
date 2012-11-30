@@ -20,7 +20,7 @@ package game.entitymanager
 		
 		public var friction:Number = 0.5;
 		public var density:Number = 1;
-		public var restitution:Number = 0.2;
+		public var restitution:Number = 0.3;
 		public var linearDamping:Number = 0;
 		public var angularDamping:Number = 0;
 		public var type:uint = b2Body.b2_dynamicBody;
@@ -80,6 +80,7 @@ package game.entitymanager
 		public function BodySprite()
 		{
 			bodyDef = new b2BodyDef();
+			bodyDef.userData = this;
 			addEventListener(Event.ADDED_TO_STAGE, onAdded);
 
 			//bodyDef.linearDamping = linearDamping;
