@@ -40,6 +40,9 @@ package
                 viewport = new Rectangle(0, 0, stage.stageWidth, stage.stageHeight);
             }
 
+            ClientType.WIDTH = viewport.width;
+            ClientType.HEIGHT = viewport.height;
+
             var starling:Starling = new Starling(Game, stage, viewport);
             starling.showStats = true;
             starling.start();

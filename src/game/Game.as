@@ -21,7 +21,9 @@ import game.entities.Bomber;
 
     import starling.display.Sprite;
 
-	import utlis.Sounds;
+import utlis.ClientType;
+
+import utlis.Sounds;
 
 	public class Game extends Sprite
     {
@@ -36,7 +38,10 @@ import game.entities.Bomber;
             var parallax:Parallax = new Parallax(1.0);
             addChild(parallax);
 
-            scene = new Scene(width, height);
+            var width:Number = 1280;
+            var height:Number = 720;
+
+            scene = new Scene(width,height);
             addChild(scene);
             entityManager.init(scene);
 

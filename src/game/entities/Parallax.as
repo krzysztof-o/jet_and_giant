@@ -33,6 +33,12 @@ import starling.display.Sprite;
         [Embed(source="../../assets/background_parallax_03.png")]
         protected static const ParallaxBitmap03:Class;
 
+        [Embed(source="../../assets/background_parallax_04.png")]
+        protected static const ParallaxBitmap04:Class;
+
+        [Embed(source="../../assets/background_parallax_05.png")]
+        protected static const ParallaxBitmap05:Class;
+
         protected var layers:Vector.<Image>;
 
         public function Parallax(_speed:Number)
@@ -50,9 +56,23 @@ import starling.display.Sprite;
 
         public function onAddedToStage(event:Event):void
         {
-            var tex:Texture = Texture.fromBitmap(new ParallaxBitmap01);
+            var tex:Texture = Texture.fromBitmap(new ParallaxBitmap05);
             tex.repeat = true;
             var img:Image = new Image(tex);
+            layers.push(img);
+            tex = null;
+            img = null;
+
+//            tex = Texture.fromBitmap(new ParallaxBitmap04);
+//            tex.repeat = true;
+//            img = new Image(tex);
+//            layers.push(img);
+//            tex = null;
+//            img = null;
+
+            tex = Texture.fromBitmap(new ParallaxBitmap03);
+            tex.repeat = true;
+            img = new Image(tex);
             layers.push(img);
             tex = null;
             img = null;
@@ -64,14 +84,15 @@ import starling.display.Sprite;
             tex = null;
             img = null;
 
-            tex = Texture.fromBitmap(new ParallaxBitmap03);
+            tex = Texture.fromBitmap(new ParallaxBitmap01);
             tex.repeat = true;
             img = new Image(tex);
             layers.push(img);
             tex = null;
             img = null;
 
-            for (var i:uint=0; i<layers.length; ++i)
+            var texCoordX:Number = stage.stageWidth / 512;
+            for (var i:int=layers.length-1; i>=0; --i)
             {
                 img = layers[i];
                 addChild(img);
@@ -79,8 +100,8 @@ import starling.display.Sprite;
                 img.height = stage.stageHeight;
 
                 img.x = img.y = 0.0;
-                img.setTexCoords(1, new Point(2,0));
-                img.setTexCoords(3, new Point(2,1));
+                img.setTexCoords(1, new Point(texCoordX,0));
+                img.setTexCoords(3, new Point(texCoordX,1));
             }
 
             this.x = this.y = 0.0;
@@ -102,16 +123,17 @@ import starling.display.Sprite;
 
             var diff:Number = (timer - lastUpdate) * 0.001;
 
-            for (var i:uint=0; i<layers.length; ++i)
+            var lim:int = layers.length;
+            for (var i:int=0; i<lim; ++i)
             {
-                var dist:Number = (diff * speed / Math.exp(1/(i+1)));
+                var dist:Number = (diff * speed / Math.exp(i));
+                var img:Image = layers[i];
                 for (var vID:uint=0; vID<4; ++vID)
                 {
-                    var p:Point = layers[i].getTexCoords(vID);
-
+                    var p:Point = img.getTexCoords(vID);
                     p.x += dist;
 
-                    layers[i].setTexCoords(vID, p);
+                    img.setTexCoords(vID, p);
                     p = null;
                 }
                 dist = null;
