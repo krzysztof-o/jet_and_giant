@@ -1,7 +1,5 @@
 package
 {
-	import flash.geom.Rectangle;
-
 	import starling.display.Image;
     import starling.textures.Texture;
     import starling.textures.TextureAtlas;
@@ -25,6 +23,11 @@ package
 
         private static const ATLAS_JET:TextureAtlas = new TextureAtlas(Texture.fromBitmap(new ATLAS_JET_IMAGE(), false), XML(new ATLAS_JET_XML()));
 
+		[Embed(source="/assets/particle.pex", mimeType="application/octet-stream")]
+		public static const ParticleConfigClass:Class;
+
+		public static const ParicleConfig:XML = XML(new ParticleConfigClass());
+
 
         public static function getImage(textureName:String):Image
         {
@@ -32,6 +35,10 @@ package
             return new Image(ATLAS.getTexture(textureName) || ATLAS_JET.getTexture(textureName));
         }
 
+		public static function getTexture(textureName:String):Texture
+		{
+			return ATLAS_JET.getTexture(textureName);
+		}
 		public static function getTextures(prifix:String): Vector.<Texture>
 		{
 			return ATLAS_JET.getTextures(prifix);

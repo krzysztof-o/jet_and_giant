@@ -4,24 +4,31 @@ package game.entities
     import flash.utils.setTimeout;
 
 	import game.Global;
-    import game.SocketManager;
+	import game.SmokeMovieClip;
+	import game.SocketManager;
     import game.entities.strategies.BomberMovingStrategy;
 	import game.entities.strategies.ServerMovingStrategy;
 	import game.entitymanager.Entity;
 
     import starling.core.Starling;
     import starling.display.Image;
-    import starling.events.TouchEvent;
+	import starling.events.Event;
+	import starling.events.TouchEvent;
     import starling.events.TouchPhase;
+	import starling.extensions.PDParticleSystem;
+	import starling.textures.Texture;
 
-    import utlis.ClientType;
+	import utlis.ClientType;
     import utlis.log;
 
     public class Bomber extends Entity
     {
         private const BOMB_RELATIVE_X:Number = 160;
         private const BOMB_RELATIVE_Y:Number = 100;
+		private var particleSystem:PDParticleSystem;
+		private var particleTextures:Vector.<Texture>;
         private var lastTime:int;
+		private var changeParticleTime:Number = 0;
 
         public function Bomber()
         {
@@ -44,7 +51,17 @@ package game.entities
 
 
             Starling.current.stage.addEventListener(TouchEvent.TOUCH, touchHandler);
+			hull.addEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
         }
+
+		private function onAddedToStage(event: Event): void
+		{
+			particleTextures = Assets.getTextures("fx_particle_smoke_")
+			particleSystem = new PDParticleSystem(Assets.ParicleConfig, particleTextures[0]);
+			hull.addChild(particleSystem);
+			Starling.current.juggler.add(particleSystem);
+			particleSystem.start();
+		}
 
         private function touchHandler(event:TouchEvent):void
         {
@@ -82,5 +99,18 @@ package game.entities
             Starling.current.stage.removeEventListener(TouchEvent.TOUCH, touchHandler);
             super.dispose();
         }
+
+		override public function update(dt:Number):void
+		{
+			super.update(dt);
+
+			changeParticleTime += dt;
+			if(changeParticleTime > 100)
+			{
+				changeParticleTime = 0;
+				//.texture = particleTextures[Math.random() * particleTextures.length];
+
+			}
+		}
     }
 }

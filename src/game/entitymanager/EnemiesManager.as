@@ -9,7 +9,6 @@ package game.entitymanager
     public class EnemiesManager extends Entity
     {
         private var enemies:Vector.<EnemyVO> = new Vector.<EnemyVO>();
-
         public function EnemiesManager()
         {
         }
@@ -32,7 +31,7 @@ package game.entitymanager
 
         override public function update(timer:Number):void
         {
-            //log("enemies", enemies.length);
+            log("enemies", enemies.length);
             for (var i:uint = 0; i < enemies.length; i++)
             {
                 if (Global.timeWithCorrection > enemies[i].time * 100)

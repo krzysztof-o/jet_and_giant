@@ -19,8 +19,8 @@
 
         public static var bulletPool:Pool = new Pool(Bullet);
         public static var bombPool:Pool = new Pool(Bomb);
-		public static  var fighterBulletPool:Pool = new Pool(FighterBullet);
-		public static  var groundBulletPool:Pool = new Pool(GroundBullet);
+		public static var fighterBulletPool:Pool = new Pool(FighterBullet);
+		public static var groundBulletPool:Pool = new Pool(GroundBullet);
         public static var enemiesPool:Pool = new Pool(FlyingEnemy);
         public static var groundEnemiesPool:Pool = new Pool(GroundEnemy);
 
