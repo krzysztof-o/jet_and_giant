@@ -6,13 +6,11 @@ package game
     import flash.events.SecurityErrorEvent;
     import flash.net.Socket;
 
+    import game.entities.GroundEnemy;
     import game.entities.Message;
     import game.entities.strategies.ServerMovingStrategy;
 
-	import game.entities.strategies.ServerMovingStrategy;
-
-
-	import utlis.ClientType;
+    import utlis.ClientType;
     import utlis.log;
 
     public class SocketManager
@@ -75,22 +73,22 @@ package game
                 log("onResponse (" + messages.length + ")" + messages);
                 if (messages.length > 0)
                 {
-//                    try
-//                    {
-
-                    var arr:Array = messages.split("\n");
-                    for each(var m:String in arr)
+                    try
                     {
-                        if (m.length > 2)
+
+                        var arr:Array = messages.split("\n");
+                        for each(var m:String in arr)
                         {
-                            var obj:Object = JSON.parse(m);
-                            parse(obj.id, obj.data);
+                            if (m.length > 2)
+                            {
+                                var obj:Object = JSON.parse(m);
+                                parse(obj.id, obj.data);
+                            }
                         }
                     }
-//                    }
-//                    catch (e:*)
-//                    {
-//                    }
+                    catch (e:*)
+                    {
+                    }
                 }
             }
         }
@@ -129,19 +127,43 @@ package game
                     Global.bomber.dropBomb(data.x, data.y);
                 }
             }
-			else if(id == Message.FIGHTER_SHOOT)
-			{
-				if(ClientType.MOBILE)
-				{
-					Global.fighter.shoot();
-				}
-			}
+            else if (id == Message.FIGHTER_SHOOT)
+            {
+                if (ClientType.MOBILE)
+                {
+                    Global.fighter.shoot();
+                }
+            }
             else if (id == Message.ENEMIES_DEFINITION)
             {
-                Global.enemiesManager.setEnemies(data.enemies);
-                Global.serverTime = data.current_time;
-                Global.clientServerTimeDifference = new Date().time - data.current_time;
+                //Global.enemiesManager.setEnemies(data.enemies);
+                if (data.current_time)
+                {
+                    Global.serverTime = data.current_time;
+                    Global.clientServerTimeDifference = new Date().time - data.current_time;
+                }
                 log("clientServerTimeDifference", Global.clientServerTimeDifference);
+            }
+            else if (id == Message.GROUND_SHOOT)
+            {
+                if (ClientType.MOBILE)
+                {
+                    var enemy:GroundEnemy = Global.enemiesManager.getEnemyById(data.id);
+                    if (enemy)
+                    {
+                        enemy.setData(data);
+                    }
+                }
+            }
+            else if (id == Message.CURRENT_TIME)
+            {
+                Global.serverTime = Number(data);
+                Global.enemiesManager.refreshData();
+            }
+            else if (id == Message.NEW_ENEMY)
+            {
+                if (ClientType.MOBILE)
+                    Global.enemiesManager.addEnemy(data);
             }
 
 

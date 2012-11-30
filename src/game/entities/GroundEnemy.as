@@ -1,5 +1,7 @@
 package game.entities
 {
+    import game.Global;
+    import game.enemy.EnemyVO;
     import game.entities.strategies.GroundEnemyMovingStrategy;
 
     public class GroundEnemy extends EnemyBase
@@ -11,7 +13,7 @@ package game.entities
         {
             super();
 
-            sprite = new GroundEnemySprite();
+            sprite = new GroundEnemySprite(this);
             hull.addChild(sprite);
 
             movingStrategy = new GroundEnemyMovingStrategy(this);
@@ -26,6 +28,7 @@ package game.entities
             {
                 weapon.shoot(position.x, position.y);
             }
+
             super.update(timer);
         }
 
@@ -34,6 +37,20 @@ package game.entities
             sprite.dispose();
             sprite = null;
             super.dispose();
+        }
+
+        public function setData(data:Object):void
+        {
+//            position.x = data.x;
+//            position.y = data.y;
+            sprite.setNextRotation(data.time, data.r);
+            weapon.shootTimeInterval = data.time - Global.currentTime;
+        }
+
+        override public function setVO(enemyVO:EnemyVO):void
+        {
+            super.setVO(enemyVO);
+            weapon.setNewTimeInterval();
         }
     }
 }

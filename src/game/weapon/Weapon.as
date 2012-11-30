@@ -7,7 +7,7 @@ package game.weapon
 	public class Weapon
 	{
 		protected var loadingTime:Number;
-		protected var shootTimeInterval:Number;
+		public var shootTimeInterval:Number;
 
         public function Weapon()
 		{
@@ -31,6 +31,7 @@ package game.weapon
 
 		public function get isLoaded():Boolean
 		{
+            if(shootTimeInterval == -1) return false;
 			return loadingTime >= shootTimeInterval;
 		}
 

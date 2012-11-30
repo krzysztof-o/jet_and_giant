@@ -1,5 +1,6 @@
 package game.entities
 {
+    import game.Global;
     import game.enemy.EnemyVO;
     import game.entitymanager.Entity;
 
@@ -8,7 +9,7 @@ package game.entities
     public class EnemyBase extends Entity
     {
 
-        protected var vo:EnemyVO;
+        public var vo:EnemyVO;
 
         public function EnemyBase()
         {
@@ -17,8 +18,15 @@ package game.entities
         public function setVO(enemyVO:EnemyVO):void
         {
             vo = enemyVO;
-            position.x = Starling.current.stage.stageWidth;
+            Global.enemiesManager.enemiesById[vo.id] = this;
+            position.x = Starling.current.stage.stageWidth + 100;
             position.y = enemyVO.y;
+        }
+
+        override public function dispose():void
+        {
+            delete Global.enemiesManager.enemiesById[vo.id];
+            super.dispose();
         }
     }
 }

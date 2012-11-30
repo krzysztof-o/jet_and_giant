@@ -4,7 +4,7 @@ package game.entities
     import game.weapon.Weapon;
     import game.weapon.bullet.Bullet;
 
-    import utlis.log;
+    import utlis.ClientType;
 
     public class GroundWeapon extends Weapon
     {
@@ -14,7 +14,6 @@ package game.entities
         {
             this.sprite = sprite;
             super();
-            setNewTimeInterval();
         }
 
         override public function shoot(x:Number, y:Number):void
@@ -23,15 +22,22 @@ package game.entities
             var bullet:Bullet = createBullet();
 
             bullet.add();
-            bullet.position.x = x  + 30;
+            bullet.position.x = x - 20;
             bullet.position.y = y - 20;
             setNewTimeInterval();
         }
 
-        private function setNewTimeInterval():void
+        public function setNewTimeInterval():void
         {
-            shootTimeInterval = Math.random() * 500 + Math.random() * 600;
-            sprite.nextMove(shootTimeInterval / 1000);
+            if(ClientType.DESKTOP)
+            {
+                shootTimeInterval = 2000 + Math.random() * 500 + Math.random() * 600;
+                sprite.nextMove(shootTimeInterval / 1000);
+            }
+            else
+            {
+                shootTimeInterval = -1;
+            }
         }
 
         protected function createBullet():Bullet
