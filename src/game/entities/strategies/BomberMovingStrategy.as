@@ -49,8 +49,6 @@ import flash.ui.Keyboard;
             else
                direction.x = 0.0;
 
-            if (lastZ != NaN)
-            {
                 var diffZ:Number = 0.825 - event.accelerationZ;
                 if (Math.abs(diffZ) > TOLERANCE_Z)
                 {
@@ -61,12 +59,6 @@ import flash.ui.Keyboard;
                 {
                     direction.y = 0.0;
                 }
-            }
-            else
-            {
-                direction.y = 0.0;
-            }
-            lastZ = event.accelerationZ;
 
             accMoved = true;
         }
