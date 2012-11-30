@@ -1,5 +1,6 @@
 package game.entities
 {
+	import flash.media.Sound;
 	import flash.utils.getTimer;
     import flash.utils.setTimeout;
 

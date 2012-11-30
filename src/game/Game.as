@@ -2,7 +2,8 @@ package game
 {
 
 import flash.events.TimerEvent;
-import flash.utils.Timer;
+	import flash.media.Sound;
+	import flash.utils.Timer;
 
 import game.entities.Bomber;
     import game.entities.fighter.Fighter;
@@ -20,7 +21,9 @@ import game.entities.Bomber;
 
     import starling.display.Sprite;
 
-    public class Game extends Sprite
+	import utlis.Sounds;
+
+	public class Game extends Sprite
     {
         private var entityManager:EntityManager = EntityManager.getInstance();
 
@@ -53,6 +56,7 @@ import game.entities.Bomber;
 //			vo.type = 1;
 //			EnemyFactory.getInstance().createEnemy(vo);
 //            vo = null;
+			Sounds.TestSound.play();
         }
     }
 }
