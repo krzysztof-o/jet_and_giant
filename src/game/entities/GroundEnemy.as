@@ -1,6 +1,7 @@
 package game.entities
 {
-    import game.entities.strategies.GroundEnemyMovingStrategy;
+	import game.enemy.BoomAnimation;
+	import game.entities.strategies.GroundEnemyMovingStrategy;
     import game.Global;
     import game.enemy.EnemyVO;
     import game.entities.strategies.GroundEnemyMovingStrategy;
@@ -58,6 +59,7 @@ package game.entities
 			{
 				SocketManager.getInstance().send(Message.GROUND_ENEMY_DETONATE, {id:vo.id})
 			}
+			new BoomAnimation(position.x,  position.y);
 			remove();
     	}
         override public function setVO(enemyVO:EnemyVO):void

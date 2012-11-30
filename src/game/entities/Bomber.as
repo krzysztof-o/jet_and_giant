@@ -5,7 +5,8 @@ package game.entities
 
 	import game.Global;
     import game.SocketManager;
-    import game.entities.strategies.BomberMovingStrategy;
+	import game.enemy.BoomAnimation;
+	import game.entities.strategies.BomberMovingStrategy;
 	import game.entities.strategies.ServerMovingStrategy;
 	import game.entitymanager.Entity;
 
@@ -19,7 +20,7 @@ package game.entities
 
     public class Bomber extends Entity
     {
-		private var health: int = 50;
+		private var health: int = 300;
         private const BOMB_RELATIVE_X:Number = 160;
         private const BOMB_RELATIVE_Y:Number = 100;
         private var lastTime:int;
@@ -83,7 +84,11 @@ package game.entities
 			health--;
 			log("-------------------------------- hit bomber")
 			if(health <= 0)
+			{
+				new BoomAnimation(position.x,  position.y);
 				remove();
+			}
+
 
 			if(!fromServer)
 			{

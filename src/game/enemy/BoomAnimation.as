@@ -2,11 +2,15 @@ package game.enemy
 {
     import com.greensock.TweenMax;
 
-    import starling.core.Starling;
+	import flash.media.Sound;
+
+	import starling.core.Starling;
     import starling.display.MovieClip;
     import starling.display.Sprite;
 
-    public class BoomAnimation extends Sprite
+	import utlis.Sounds;
+
+	public class BoomAnimation extends Sprite
     {
         public function BoomAnimation(x:Number, y:Number)
         {
@@ -20,6 +24,7 @@ package game.enemy
             mc.y = -150;
             Starling.juggler.add(mc);
 
+			Sounds.Boom.play();
             TweenMax.to(mc, .2, {alpha: 0, delay: .2, onComplete: removeFromParent});
         }
 

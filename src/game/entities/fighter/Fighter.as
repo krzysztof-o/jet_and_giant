@@ -4,6 +4,7 @@ package game.entities.fighter
 	import flash.ui.Keyboard;
 
 	import game.SocketManager;
+	import game.enemy.BoomAnimation;
 	import game.entities.Message;
 	import game.entitymanager.Entity;
 
@@ -25,7 +26,7 @@ package game.entities.fighter
 
 	public class Fighter extends Entity
     {
-		protected const MAX_HEALTH:int = 10;
+		protected const MAX_HEALTH:int = 100;
 		protected var health:int = MAX_HEALTH;
 		protected var weapon:Weapon;
 		protected var shootController:FighterShootController;
@@ -95,7 +96,10 @@ package game.entities.fighter
 			health--;
 			log("-------------------------------- hit fighter")
 			if(health <= 0)
+			{
+				new BoomAnimation(position.x,  position.y);
 				remove();
+			}
 
 			if(!fromServer)
 			{

@@ -24,5 +24,10 @@ package utlis
 		private static var spaceClip:Class;
 		public static var Space:Sound = new spaceClip() as Sound;
 
+		[Embed(source="/sounds/39068__alienbomb__explosion-1.mp3")]
+		private static var boomClip:Class;
+		public static var Boom:Sound = new boomClip() as Sound;
+
+
 	}
 }
