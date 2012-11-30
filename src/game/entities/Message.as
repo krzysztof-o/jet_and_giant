@@ -8,6 +8,7 @@ package game.entities
 		public static const FIGHTER_SHOOT:String = "fighter_shoot";
         public static const ENEMIES_DEFINITION:String = "enemies";
         public static const GROUND_SHOOT:String = "ground_shoot";
+        public static const FLYING_ENEMY_SHOOT:String = "flying_enemy_shoot";
         public static const CURRENT_TIME:String = "current_time";
         public static const NEW_ENEMY:String = "new_enemy";
     }

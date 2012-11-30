@@ -106,7 +106,7 @@ package game.entitymanager
             enemy.add();
         }
 
-        public function getEnemyById(id:Number):GroundEnemy
+        public function getEnemyById(id:Number):EnemyBase
         {
             return enemiesById[id];
         }

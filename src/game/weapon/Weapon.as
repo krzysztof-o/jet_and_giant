@@ -37,14 +37,18 @@ package game.weapon
 
 		public function shoot(x:Number,  y:Number) :void
 		{
-			loadingTime = 0;
-			shootTimeInterval = Math.random()*500 +  Math.random()*600;
-
-			var bullet:Bullet = Global.bulletPool.borrowObject();
+            getNext();
+            var bullet:Bullet = Global.bulletPool.borrowObject();
 			bullet.add();
 			bullet.position.x = x;
 			bullet.position.y = y;
             bullet = null;
 		}
+
+        public function getNext():void
+        {
+            loadingTime = 0;
+            shootTimeInterval = Math.random() * 500 + Math.random() * 600;
+        }
     }
 }

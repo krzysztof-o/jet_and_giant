@@ -10,7 +10,7 @@ package game.enemy
     public class FlyingEnemy extends EnemyBase
     {
         protected var enemVO:EnemyVO;
-        protected var weapon:Weapon;
+        protected var weapon:EnemyWeapon;
 
         public function FlyingEnemy()
         {
@@ -18,7 +18,7 @@ package game.enemy
 
             hull.addChild(Assets.getImage("ship_enemy_full"));
 
-            weapon = new EnemyWeapon();
+            weapon = new EnemyWeapon(this);
 
             movingStrategy = new EnemyMovingStrategy(this);
         }
@@ -45,5 +45,15 @@ package game.enemy
             }
         }
 
+        public function setData(data:Object):void
+        {
+            weapon.setData(data);
+        }
+
+        override public function setVO(enemyVO:EnemyVO):void
+        {
+            super.setVO(enemyVO);
+            weapon.getNext();
+        }
     }
 }

@@ -6,6 +6,8 @@ package game
     import flash.events.SecurityErrorEvent;
     import flash.net.Socket;
 
+    import game.enemy.FlyingEnemy;
+
     import game.entities.GroundEnemy;
     import game.entities.Message;
     import game.entities.strategies.ServerMovingStrategy;
@@ -148,10 +150,22 @@ package game
             {
                 if (ClientType.MOBILE)
                 {
-                    var enemy:GroundEnemy = Global.enemiesManager.getEnemyById(data.id);
+                    var enemy:GroundEnemy = Global.enemiesManager.getEnemyById(data.id) as GroundEnemy;
                     if (enemy)
                     {
                         enemy.setData(data);
+                    }
+                }
+            }
+            else if (id == Message.FLYING_ENEMY_SHOOT)
+            {
+                if (ClientType.MOBILE)
+                {
+                    log("flying enemy shoot", data);
+                    var enemy2:FlyingEnemy = Global.enemiesManager.getEnemyById(data.id) as FlyingEnemy;
+                    if (enemy2)
+                    {
+                        enemy2.setData(data);
                     }
                 }
             }
