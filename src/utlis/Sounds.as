@@ -11,7 +11,7 @@ package utlis
 
 	public class Sounds
 	{
-		[Embed(source="/sounds/test.mp3")]
+		[Embed(source="/sounds/sx_3.mp3")]
 		private static var soundClip:Class;
 		public static var TestSound:Sound = new soundClip() as Sound;
 

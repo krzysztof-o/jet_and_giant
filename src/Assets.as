@@ -7,14 +7,6 @@ package
     public class Assets
     {
 
-        [Embed(source="/assets/game_space_cadet_animations_002.png")]
-        private static const ATLAS_IMAGE:Class;
-
-        [Embed(source="/assets/game_space_cadet_animations_002.xml", mimeType="application/octet-stream")]
-        private static const ATLAS_XML:Class;
-
-        private static const ATLAS:TextureAtlas = new TextureAtlas(Texture.fromBitmap(new ATLAS_IMAGE(), false), XML(new ATLAS_XML()));
-
         [Embed(source="/assets/sprite_jetandgiant_full.png")]
         private static const ATLAS_JET_IMAGE:Class;
 
@@ -32,7 +24,7 @@ package
         public static function getImage(textureName:String):Image
         {
             trace("imgae: ", textureName);
-            return new Image(ATLAS.getTexture(textureName) || ATLAS_JET.getTexture(textureName));
+            return new Image(ATLAS_JET.getTexture(textureName));
         }
 
 		public static function getTexture(textureName:String):Texture
