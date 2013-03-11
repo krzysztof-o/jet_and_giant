@@ -1,13 +1,17 @@
-Jet & Giant
+
+Ganymede Hackathon: Jet & Giant
 =============
+29.11.2012 - 30.11.2012
 
-Ganymede Hackathon 29.11.2012 - 30.11.2012
 
-Authors:
+***WARNING*** This code is pretty shitty, but hackathon is not about design patterns, it's about hacking :>
+
+
+***Team:***
 * Krzysztof Opałka
 * Tomasz Piotrowski
 * Grzegorz Przybyłowicz
 * Dariusz Krok
-* Michał Fiałkowsi
+* Michał Fiałkowski
 * Ula Krystaszek
 * Przemek Piekarski
